@@ -1,0 +1,5 @@
+cluster,n_countries,examples,tau_retail,tau_grocery,tau_parks,tau_transit,tau_workplaces,tau_residential,lag_retail,lag_grocery,lag_parks,lag_transit,lag_workplaces,lag_residential
+1,16,"United Arab Emirates, Qatar, Saudi Arabia, Indonesia, Mali, Senegal",-0.42,-0.4,-0.5,-0.42,-0.44,0.52,-28,-26,-26.5,-27.5,-27.5,-27.5
+2,34,"Switzerland, Belarus, Japan, Russia, Czechia, India",-0.36,-0.18,0.27,-0.34,-0.3,0.34,1,-3.5,13.5,4,0,-3
+3,47,"Italy, Ireland, United Kingdom, Singapore, Belgium, Germany",-0.61,-0.52,-0.47,-0.63,-0.58,0.62,2,3,-2,2,3,0
+4,10,"Moldova, Ukraine, Bulgaria, Colombia, Poland, Kyrgyzstan",0.45,0.41,0.45,0.43,0.36,-0.4,27.5,28,28,28,28,28

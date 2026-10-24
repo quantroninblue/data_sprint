@@ -1,0 +1,7 @@
+term,estimate,std_error,p_value
+num_date,2.15,0.28,2.07e-14
+retail,-1.52,0.56,0.00686
+grocery,0.18,0.31,0.558
+transit,-0.46,0.24,0.0538
+workplaces,-0.62,0.46,0.177
+SD of random intercept,2.171,,

@@ -1,0 +1,4 @@
+model,rmse_paper,rmse_replication,rmse_corrected,median_country_rmse_per_million
+Date only,6840.16,8613.21,7689.33,28.6
+Date + contemporaneous mobility,6794.99,8438.98,22676.05,36.35
+Date + distributed-lag mobility,6690.44,13610.98,49202.11,54.84

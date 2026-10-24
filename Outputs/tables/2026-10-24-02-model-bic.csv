@@ -1,0 +1,4 @@
+model,bic_paper,bic_replication,bic_corrected
+Date only,79802.47,50446.7,138542.02
+Date + contemporaneous mobility,79096.29,50992.04,135132.25
+Date + distributed-lag mobility,80286.14,51107.55,134633.04

@@ -1,0 +1,181 @@
+variable,comparison,z,p_adjusted,significant_5pct
+tau_retail,Africa - Asia,-3.927,0.00112,TRUE
+tau_retail,Africa - Europe,-5.691,1.89e-07,TRUE
+tau_retail,Asia - Europe,-1.843,0.457,FALSE
+tau_retail,Africa - North America,-2.005,0.45,FALSE
+tau_retail,Asia - North America,1.311,0.949,FALSE
+tau_retail,Europe - North America,2.819,0.0579,FALSE
+tau_retail,Africa - Oceania,-0.819,1,FALSE
+tau_retail,Asia - Oceania,1.03,1,FALSE
+tau_retail,Europe - Oceania,1.852,0.513,FALSE
+tau_retail,North America - Oceania,0.298,0.766,FALSE
+tau_retail,Africa - South America,-4.205,0.000366,TRUE
+tau_retail,Asia - South America,-1.572,0.696,FALSE
+tau_retail,Europe - South America,-0.366,1,FALSE
+tau_retail,North America - South America,-2.384,0.188,FALSE
+tau_retail,Oceania - South America,-1.868,0.556,FALSE
+tau_grocery,Africa - Asia,-2.181,0.379,FALSE
+tau_grocery,Africa - Europe,-2.64,0.116,FALSE
+tau_grocery,Asia - Europe,-0.471,1,FALSE
+tau_grocery,Africa - North America,-1.275,1,FALSE
+tau_grocery,Asia - North America,0.56,1,FALSE
+tau_grocery,Europe - North America,0.947,1,FALSE
+tau_grocery,Africa - Oceania,-0.106,0.916,FALSE
+tau_grocery,Asia - Oceania,0.926,1,FALSE
+tau_grocery,Europe - Oceania,1.137,1,FALSE
+tau_grocery,North America - Oceania,0.59,1,FALSE
+tau_grocery,Africa - South America,-3.23,0.0186,TRUE
+tau_grocery,Asia - South America,-1.791,0.733,FALSE
+tau_grocery,Europe - South America,-1.486,1,FALSE
+tau_grocery,North America - South America,-2.033,0.505,FALSE
+tau_grocery,Oceania - South America,-1.907,0.622,FALSE
+tau_parks,Africa - Asia,-3.383,0.0107,TRUE
+tau_parks,Africa - Europe,-1.774,0.76,FALSE
+tau_parks,Asia - Europe,1.703,0.797,FALSE
+tau_parks,Africa - North America,0.391,1,FALSE
+tau_parks,Asia - North America,3.331,0.0121,TRUE
+tau_parks,Europe - North America,1.94,0.576,FALSE
+tau_parks,Africa - Oceania,-0.988,1,FALSE
+tau_parks,Asia - Oceania,0.602,1,FALSE
+tau_parks,Europe - Oceania,-0.16,0.873,FALSE
+tau_parks,North America - Oceania,-1.166,1,FALSE
+tau_parks,Africa - South America,-2.718,0.0788,FALSE
+tau_parks,Asia - South America,-0.427,1,FALSE
+tau_parks,Europe - South America,-1.55,0.969,FALSE
+tau_parks,North America - South America,-2.825,0.0615,FALSE
+tau_parks,Oceania - South America,-0.794,1,FALSE
+tau_transit,Africa - Asia,-4.557,6.74e-05,TRUE
+tau_transit,Africa - Europe,-5.628,2.74e-07,TRUE
+tau_transit,Asia - Europe,-1.116,0.793,FALSE
+tau_transit,Africa - North America,-1.814,0.488,FALSE
+tau_transit,Asia - North America,2.08,0.338,FALSE
+tau_transit,Europe - North America,2.999,0.0298,TRUE
+tau_transit,Africa - Oceania,-0.954,0.681,FALSE
+tau_transit,Asia - Oceania,1.212,0.903,FALSE
+tau_transit,Europe - Oceania,1.71,0.524,FALSE
+tau_transit,North America - Oceania,0.069,0.945,FALSE
+tau_transit,Africa - South America,-5.015,7.44e-06,TRUE
+tau_transit,Asia - South America,-1.956,0.404,FALSE
+tau_transit,Europe - South America,-1.228,1,FALSE
+tau_transit,North America - South America,-3.295,0.0118,TRUE
+tau_transit,Oceania - South America,-2.261,0.238,FALSE
+tau_workplaces,Africa - Asia,-4.445,0.000114,TRUE
+tau_workplaces,Africa - Europe,-5.161,3.44e-06,TRUE
+tau_workplaces,Asia - Europe,-0.73,0.931,FALSE
+tau_workplaces,Africa - North America,-2.011,0.31,FALSE
+tau_workplaces,Asia - North America,1.752,0.478,FALSE
+tau_workplaces,Europe - North America,2.355,0.167,FALSE
+tau_workplaces,Africa - Oceania,-1.158,0.987,FALSE
+tau_workplaces,Asia - Oceania,0.933,1,FALSE
+tau_workplaces,Europe - Oceania,1.258,1,FALSE
+tau_workplaces,North America - Oceania,-0.026,0.979,FALSE
+tau_workplaces,Africa - South America,-5.484,6.24e-07,TRUE
+tau_workplaces,Asia - South America,-2.523,0.128,FALSE
+tau_workplaces,Europe - South America,-2.051,0.322,FALSE
+tau_workplaces,North America - South America,-3.569,0.0043,TRUE
+tau_workplaces,Oceania - South America,-2.355,0.185,FALSE
+tau_residential,Africa - Asia,-1.637,1,FALSE
+tau_residential,Africa - Europe,-3.517,0.00611,TRUE
+tau_residential,Asia - Europe,-2.03,0.465,FALSE
+tau_residential,Africa - North America,-0.386,1,FALSE
+tau_residential,Asia - North America,1.037,1,FALSE
+tau_residential,Europe - North America,2.695,0.0916,FALSE
+tau_residential,Africa - Oceania,-0.543,1,FALSE
+tau_residential,Asia - Oceania,0.239,0.811,FALSE
+tau_residential,Europe - Oceania,1.147,1,FALSE
+tau_residential,North America - Oceania,-0.314,1,FALSE
+tau_residential,Africa - South America,1.253,1,FALSE
+tau_residential,Asia - South America,2.463,0.165,FALSE
+tau_residential,Europe - South America,3.802,0.00215,TRUE
+tau_residential,North America - South America,1.474,1,FALSE
+tau_residential,Oceania - South America,1.276,1,FALSE
+lag_retail,Africa - Asia,-0.881,1,FALSE
+lag_retail,Africa - Europe,-3.666,0.0037,TRUE
+lag_retail,Asia - Europe,-2.944,0.0453,TRUE
+lag_retail,Africa - North America,-1.63,1,FALSE
+lag_retail,Asia - North America,-0.932,1,FALSE
+lag_retail,Europe - North America,1.462,1,FALSE
+lag_retail,Africa - Oceania,-2.474,0.174,FALSE
+lag_retail,Asia - Oceania,-2.086,0.443,FALSE
+lag_retail,Europe - Oceania,-0.78,1,FALSE
+lag_retail,North America - Oceania,-1.502,1,FALSE
+lag_retail,Africa - South America,-2.045,0.45,FALSE
+lag_retail,Asia - South America,-1.483,1,FALSE
+lag_retail,Europe - South America,0.447,0.655,FALSE
+lag_retail,North America - South America,-0.661,1,FALSE
+lag_retail,Oceania - South America,0.963,1,FALSE
+lag_grocery,Africa - Asia,-1.309,1,FALSE
+lag_grocery,Africa - Europe,-4.021,0.000868,TRUE
+lag_grocery,Asia - Europe,-2.865,0.0584,FALSE
+lag_grocery,Africa - North America,-0.937,1,FALSE
+lag_grocery,Asia - North America,0.158,0.875,FALSE
+lag_grocery,Europe - North America,2.492,0.165,FALSE
+lag_grocery,Africa - Oceania,-1.072,1,FALSE
+lag_grocery,Asia - Oceania,-0.465,1,FALSE
+lag_grocery,Europe - Oceania,0.808,1,FALSE
+lag_grocery,North America - Oceania,-0.526,1,FALSE
+lag_grocery,Africa - South America,-2.441,0.176,FALSE
+lag_grocery,Asia - South America,-1.591,1,FALSE
+lag_grocery,Europe - South America,0.286,1,FALSE
+lag_grocery,North America - South America,-1.557,1,FALSE
+lag_grocery,Oceania - South America,-0.547,1,FALSE
+lag_parks,Africa - Asia,0.518,1,FALSE
+lag_parks,Africa - Europe,0.345,1,FALSE
+lag_parks,Asia - Europe,-0.184,1,FALSE
+lag_parks,Africa - North America,0.212,1,FALSE
+lag_parks,Asia - North America,-0.228,1,FALSE
+lag_parks,Europe - North America,-0.078,0.938,FALSE
+lag_parks,Africa - Oceania,-0.959,1,FALSE
+lag_parks,Asia - Oceania,-1.216,1,FALSE
+lag_parks,Europe - Oceania,-1.134,1,FALSE
+lag_parks,North America - Oceania,-1.04,1,FALSE
+lag_parks,Africa - South America,-0.503,1,FALSE
+lag_parks,Asia - South America,-0.878,1,FALSE
+lag_parks,Europe - South America,-0.757,1,FALSE
+lag_parks,North America - South America,-0.629,1,FALSE
+lag_parks,Oceania - South America,0.553,1,FALSE
+lag_transit,Africa - Asia,-1.32,1,FALSE
+lag_transit,Africa - Europe,-1.904,0.739,FALSE
+lag_transit,Asia - Europe,-0.616,1,FALSE
+lag_transit,Africa - North America,-0.996,1,FALSE
+lag_transit,Asia - North America,0.11,0.912,FALSE
+lag_transit,Europe - North America,0.613,1,FALSE
+lag_transit,Africa - Oceania,-2.287,0.311,FALSE
+lag_transit,Asia - Oceania,-1.688,1,FALSE
+lag_transit,Europe - Oceania,-1.416,1,FALSE
+lag_transit,North America - Oceania,-1.667,1,FALSE
+lag_transit,Africa - South America,-2.294,0.327,FALSE
+lag_transit,Asia - South America,-1.433,1,FALSE
+lag_transit,Europe - South America,-1.033,1,FALSE
+lag_transit,North America - South America,-1.38,1,FALSE
+lag_transit,Oceania - South America,0.638,1,FALSE
+lag_workplaces,Africa - Asia,-0.908,1,FALSE
+lag_workplaces,Africa - Europe,-2.468,0.177,FALSE
+lag_workplaces,Asia - Europe,-1.647,0.796,FALSE
+lag_workplaces,Africa - North America,-1.045,1,FALSE
+lag_workplaces,Asia - North America,-0.302,1,FALSE
+lag_workplaces,Europe - North America,1.039,1,FALSE
+lag_workplaces,Africa - Oceania,-2.35,0.225,FALSE
+lag_workplaces,Asia - Oceania,-1.949,0.513,FALSE
+lag_workplaces,Europe - Oceania,-1.219,1,FALSE
+lag_workplaces,North America - Oceania,-1.7,0.801,FALSE
+lag_workplaces,Africa - South America,-3.033,0.0363,TRUE
+lag_workplaces,Asia - South America,-2.478,0.185,FALSE
+lag_workplaces,Europe - South America,-1.403,1,FALSE
+lag_workplaces,North America - South America,-2.025,0.471,FALSE
+lag_workplaces,Oceania - South America,0.239,0.811,FALSE
+lag_residential,Africa - Asia,-1.67,1,FALSE
+lag_residential,Africa - Europe,-0.647,1,FALSE
+lag_residential,Asia - Europe,1.104,1,FALSE
+lag_residential,Africa - North America,-1.748,1,FALSE
+lag_residential,Asia - North America,-0.37,1,FALSE
+lag_residential,Europe - North America,-1.271,1,FALSE
+lag_residential,Africa - Oceania,-1.865,0.933,FALSE
+lag_residential,Asia - Oceania,-1.089,1,FALSE
+lag_residential,Europe - Oceania,-1.583,1,FALSE
+lag_residential,North America - Oceania,-0.846,1,FALSE
+lag_residential,Africa - South America,-1.788,1,FALSE
+lag_residential,Asia - South America,-0.663,1,FALSE
+lag_residential,Europe - South America,-1.391,1,FALSE
+lag_residential,North America - South America,-0.33,0.741,FALSE
+lag_residential,Oceania - South America,0.57,1,FALSE

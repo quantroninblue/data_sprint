@@ -1,0 +1,7 @@
+item,paper,replication,corrected
+Countries in continent tables,106,109,134
+North America included,No,No,Yes
+Clusters found,4,4,4
+Best model by BIC,Contemporaneous,Date only,Date + distributed-lag mobility
+Best model by validation RMSE,Distributed lag,Date + contemporaneous mobility,Date only
+Residential mobility in contemporaneous model,Absent (dropped by s(workplaces + residential)),Absent (same code),Own smooth term

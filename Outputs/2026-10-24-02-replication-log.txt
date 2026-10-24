@@ -1,0 +1,74 @@
+REPLICATION LOG  |  run: 2026-10-24 12:56:29 
+
+1. SAMPLES 
+   Corrected sample              : 134 countries (all continents) 
+   As-published, models          : 125 countries (name-mismatch countries removed). Paper: not reported 
+   As-published, continent tables: 109 countries (also no North America). Paper: 106 
+   The remaining gap of 3 is not explained by the public code; most likely 
+   countries lost inside the authors' tryCatch loop. 
+
+A. CROSS-CORRELATIONS 
+   Window 2020-02-15 to 2020-06-19. Outcome: daily cases, negatives set to 0 (paper's rule). Lags -28..+28. 
+   Computed for 134 countries; 3 have at least one category with too little variation (kept, NA for that category). 
+   Share of countries whose best lag sits at the search-window edge (|lag| >= 27 days): 
+     retail         29% 
+     grocery        28% 
+     parks          30% 
+     transit        29% 
+     workplaces     25% 
+     residential    27% 
+   If the best lag were spread evenly, only 4 of 57 lags (7%) would be edge lags. 
+   A large share at the edge suggests the 'best' lag is picked up by the 
+   common trend in both series, not by a real delayed effect. 
+
+   Continent medians of tau, corrected sample (paper Table 1): 
+     Number of countries | 29 | 36 | 37 | 18 | 4 | 10 | NA 
+     Retail & recreation | -0.35 (-0.47 to -0.22) | -0.47 (-0.59 to -0.33) | -0.62 (-0.73 to -0.54) | -0.39 (-0.51 to -0.26) | -0.51 (-0.66 to -0.33) | 0.33 (-0.43 to 0.38) | 4.28e-05 
+     Grocery & pharmacy | -0.28 (-0.42 to -0.13) | -0.37 (-0.49 to 0.25) | -0.50 (-0.56 to -0.39) | -0.37 (-0.49 to -0.24) | -0.46 (-0.57 to -0.32) | 0.29 (-0.41 to 0.36) | 0.013 
+     Parks | -0.39 (-0.46 to -0.21) | -0.44 (-0.62 to 0.30) | -0.35 (-0.48 to 0.28) | -0.39 (-0.49 to -0.34) | -0.40 (-0.59 to -0.07) | -0.02 (-0.52 to 0.33) | 0.464 
+     Transit stations | -0.35 (-0.46 to -0.23) | -0.44 (-0.62 to 0.27) | -0.63 (-0.73 to -0.55) | -0.41 (-0.49 to -0.32) | -0.51 (-0.68 to -0.32) | 0.37 (-0.21 to 0.45) | 8.89e-05 
+     Workplaces | -0.32 (-0.43 to -0.18) | -0.46 (-0.60 to -0.16) | -0.57 (-0.66 to -0.49) | -0.41 (-0.49 to -0.25) | -0.50 (-0.67 to -0.31) | 0.36 (0.32 to 0.47) | 1.08e-05 
+     Residential | 0.39 (0.26 to 0.47) | 0.52 (0.16 to 0.66) | 0.58 (0.52 to 0.66) | 0.40 (0.29 to 0.49) | 0.42 (0.06 to 0.65) | -0.33 (-0.42 to 0.35) | 0.000923 
+   Kruskal-Wallis significant (p < 0.05) for 5 of 6 tau variables and 4 of 6 lag variables. Paper: 'significant differences for all six parameters'. 
+   Dunn pairs significant after Holm correction: 21 of 180 
+
+   Model-based clustering (mclust): 
+   As published: 107 countries -> 4 clusters (model VEV). Paper: 4 clusters. 
+   Corrected   : 131 countries -> 4 clusters (model VEV). Paper: 4 clusters. 
+
+   Figures saved: fig1-max-tau-map, fig2-best-lag-map, boxplot-tau-by-continent 
+
+B. MODELS 
+   B1. AS PUBLISHED (authors' code reproduced) 
+   Training rows 15317 (123 countries); validation rows 9293 
+   Tweedie power estimated: 1.668  (paper's code: 1.656) 
+   Models fitted (2.9 min so far) 
+
+   B2. CORRECTED 
+   Training rows 14453 (131 countries); validation rows 9862 (same rows for all three models) 
+   BIC (lower is better): 
+     Date only                          paper  79802.47 | replication  50446.70 | corrected 138542.02 
+     Date + contemporaneous mobility    paper  79096.29 | replication  50992.04 | corrected 135132.25 
+     Date + distributed-lag mobility    paper  80286.14 | replication  51107.55 | corrected 134633.04 
+   Validation RMSE, cases per day (lower is better): 
+     Date only                          paper  6840.16 | replication  8613.21 | corrected  7689.33 | per-million median  28.60 
+     Date + contemporaneous mobility    paper  6794.99 | replication  8438.98 | corrected 22676.05 | per-million median  36.35 
+     Date + distributed-lag mobility    paper  6690.44 | replication 13610.98 | corrected 49202.11 | per-million median  54.84 
+   Table 3 as published (replication): 
+     num_date                         2.15  SE   0.28  p 2.07e-14 
+     retail                          -1.52  SE   0.56  p 0.00686 
+     grocery                          0.18  SE   0.31  p 0.558 
+     transit                         -0.46  SE   0.24  p 0.0538 
+     workplaces                      -0.62  SE   0.46  p 0.177 
+     SD of random intercept           2.17  SE     NA  p NA 
+   Diebold-Mariano p-values, as published: 7.5e-24, 2.37e-48, 1.18e-44 | corrected: 3.48e-08, 9.42e-10, 9.65e-10 
+
+C. HEADLINE: paper vs replication vs corrected 
+   Countries in continent tables    | 106                      | 109                              | 134 
+   North America included           | No                       | No                               | Yes 
+   Clusters found                   | 4                        | 4                                | 4 
+   Best model by BIC                | Contemporaneous          | Date only                        | Date + distributed-lag mobility 
+   Best model by validation RMSE    | Distributed lag          | Date + contemporaneous mobility  | Date only 
+   Residential mobility in contemporaneous model | Absent (dropped by s(workplaces + residential)) | Absent (same code)               | Own smooth term 
+
+Done in 7.9 minutes. 

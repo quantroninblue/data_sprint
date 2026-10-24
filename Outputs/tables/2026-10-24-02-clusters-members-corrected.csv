@@ -1,0 +1,132 @@
+iso2,country,continent,cluster
+AE,United Arab Emirates,Asia,1
+AF,Afghanistan,Asia,2
+AG,Antigua and Barbuda,North America,3
+AO,Angola,Africa,3
+AR,Argentina,South America,2
+AT,Austria,Europe,3
+AU,Australia,Oceania,3
+AW,Aruba,North America,2
+BA,Bosnia and Herzegovina,Europe,2
+BB,Barbados,North America,3
+BD,Bangladesh,Asia,1
+BE,Belgium,Europe,3
+BF,Burkina Faso,Africa,3
+BG,Bulgaria,Europe,4
+BH,Bahrain,Asia,1
+BJ,Benin,Africa,2
+BO,Bolivia,South America,2
+BR,Brazil,South America,2
+BS,The Bahamas,North America,3
+BW,Botswana,Africa,3
+BY,Belarus,Europe,2
+BZ,Belize,North America,2
+CA,Canada,North America,3
+CH,Switzerland,Europe,2
+CI,Côte d'Ivoire,Africa,2
+CL,Chile,South America,3
+CM,Cameroon,Africa,3
+CO,Colombia,South America,4
+CR,Costa Rica,North America,3
+CV,Cape Verde,Africa,1
+CZ,Czechia,Europe,2
+DE,Germany,Europe,3
+DK,Denmark,Europe,3
+DO,Dominican Republic,North America,4
+EC,Ecuador,South America,2
+EE,Estonia,Europe,3
+EG,Egypt,Africa,2
+ES,Spain,Europe,3
+FI,Finland,Europe,3
+FJ,Fiji,Oceania,2
+FR,France,Europe,3
+GA,Gabon,Africa,1
+GB,United Kingdom,Europe,3
+GE,Georgia,Asia,3
+GH,Ghana,Africa,1
+GR,Greece,Europe,3
+GT,Guatemala,North America,2
+HK,Hong Kong,Asia,2
+HN,Honduras,North America,2
+HR,Croatia,Europe,3
+HT,Haiti,North America,2
+HU,Hungary,Europe,3
+ID,Indonesia,Asia,1
+IE,Ireland,Europe,3
+IL,Israel,Asia,2
+IN,India,Asia,2
+IQ,Iraq,Asia,4
+IT,Italy,Europe,3
+JM,Jamaica,North America,3
+JO,Jordan,Asia,3
+JP,Japan,Asia,2
+KE,Kenya,Africa,1
+KG,Kyrgyzstan,Asia,4
+KH,Cambodia,Asia,2
+KR,South Korea,Asia,3
+KW,Kuwait,Asia,3
+KZ,Kazakhstan,Asia,2
+LA,Laos,Asia,2
+LB,Lebanon,Asia,2
+LK,Sri Lanka,Asia,1
+LT,Lithuania,Europe,3
+LU,Luxembourg,Europe,3
+LV,Latvia,Europe,3
+LY,Libya,Africa,2
+MA,Morocco,Africa,3
+MD,Moldova,Europe,4
+MK,North Macedonia,Europe,2
+ML,Mali,Africa,1
+MM,Myanmar (Burma),Asia,3
+MN,Mongolia,Asia,2
+MT,Malta,Europe,3
+MU,Mauritius,Africa,2
+MX,Mexico,North America,1
+MY,Malaysia,Asia,3
+MZ,Mozambique,Africa,2
+NA,Namibia,Africa,2
+NE,Niger,Africa,3
+NG,Nigeria,Africa,1
+NI,Nicaragua,North America,2
+NL,Netherlands,Europe,3
+NO,Norway,Europe,3
+NP,Nepal,Asia,4
+NZ,New Zealand,Oceania,3
+OM,Oman,Asia,1
+PA,Panama,North America,3
+PE,Peru,South America,2
+PG,Papua New Guinea,Oceania,2
+PH,Philippines,Asia,2
+PK,Pakistan,Asia,2
+PL,Poland,Europe,4
+PT,Portugal,Europe,3
+PY,Paraguay,South America,4
+QA,Qatar,Asia,1
+RO,Romania,Europe,3
+RS,Serbia,Europe,3
+RU,Russia,Europe,2
+RW,Rwanda,Africa,3
+SA,Saudi Arabia,Asia,1
+SE,Sweden,Europe,2
+SG,Singapore,Asia,3
+SI,Slovenia,Europe,3
+SK,Slovakia,Europe,3
+SN,Senegal,Africa,1
+SV,El Salvador,North America,1
+TG,Togo,Africa,2
+TH,Thailand,Asia,3
+TJ,Tajikistan,Asia,3
+TR,Turkey,Asia,3
+TT,Trinidad and Tobago,North America,2
+TW,Taiwan,Asia,2
+TZ,Tanzania,Africa,3
+UA,Ukraine,Europe,4
+UG,Uganda,Africa,1
+US,United States,North America,3
+UY,Uruguay,South America,3
+VE,Venezuela,South America,4
+VN,Vietnam,Asia,2
+YE,Yemen,Asia,2
+ZA,South Africa,Africa,1
+ZM,Zambia,Africa,2
+ZW,Zimbabwe,Africa,2

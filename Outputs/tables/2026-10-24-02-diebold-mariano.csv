@@ -1,0 +1,7 @@
+version,comparison,statistic,p_value
+as_published,Date only vs contemporaneous,10.1041565430889,7.49756717824752e-24
+as_published,Distributed lag vs contemporaneous,14.7156917918299,2.36996194997135e-48
+as_published,Distributed lag vs date only,14.1116153252088,1.18200907467302e-44
+corrected,Date only vs contemporaneous,-5.52001211256124,3.4756194707461e-08
+corrected,Distributed lag vs contemporaneous,6.12495617508194,9.41717107913815e-10
+corrected,Distributed lag vs date only,6.12098829850752,9.65381142109274e-10
