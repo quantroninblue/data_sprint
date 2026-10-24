@@ -2,6 +2,8 @@
 
 React + TypeScript + Vite. Editorial layout with a transit-map motif: the six Google mobility categories are the six "lines", and the sections are stops along them.
 
+**Live:** https://quantroninblue.github.io/data_sprint/ (rebuilt by `.github/workflows/pages.yml` on every push to `main` that touches `dashboard/`).
+
 ```bash
 cd dashboard
 npm install
