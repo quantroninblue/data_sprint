@@ -22,9 +22,10 @@ data_sprint/
 │   │   └── 2026-10-24-reference.csv                    JHU lookup with population
 │   └── processed/
 │       └── 2026-10-24-panel-clean.csv                  cleaned country-day analysis panel
-└── replication/                scripts, run from the repo root in numeric order
-    ├── 01_data_import.R        builds replication/out/panel.rds from data/interim
-    └── out/                    script output (gitignored)
+├── replication/                scripts, run from the repo root in numeric order
+│   ├── 01_data_import.R        builds replication/out/panel.rds from data/interim
+│   └── out/                    script output (gitignored)
+└── dashboard/                  React mock-up of the results dashboard (see dashboard/README.md)
 ```
 
 ## Data notes
@@ -45,5 +46,6 @@ data_sprint/
 
 ## Change log
 
+- 2026-10-24: added `dashboard/`, a React + Vite mock-up of the results dashboard. `dashboard/scripts/build_data.py` turns `data/processed/2026-10-24-panel-clean.csv` into the JSON files the app reads (preliminary cross-correlations, continent tests, k-means clusters, rolling windows; model forecasts are simulated).
 - 2026-10-24: `replication/01_data_import.R` builds the country-day panel from `data/interim`: parses `DD-MM-YYYY` dates, joins cases and population on ISO2, adds continent, saves `replication/out/panel.rds`.
 - 2026-10-24: restructured the repo into `docs/`, `data/{raw,interim,processed}/` and `replication/`. Removed the duplicate panel copy under `replication/Deva_data/`, the scratch `Data_explorer.R` (superseded by `01_data_import.R`) and the committed patch file. Importer paths updated.
