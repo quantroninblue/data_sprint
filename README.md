@@ -24,6 +24,14 @@ data_sprint/
 │       └── 2026-10-24-panel-clean.csv                  cleaned country-day analysis panel
 ├── replication/                scripts, run from the repo root in numeric order
 │   ├── 01_data_import.R        builds replication/out/panel.rds from data/interim
+│   ├── 02_eda_setup.R          shared EDA theme (black, blue/red), helpers, derived panel
+│   ├── 03_eda_descriptives.R   descriptive tables, distributions, timelines, heatmaps
+│   ├── 04_eda_kendall_compute.R  Kendall tau cross-correlation, lags -28..+28 (paper window and full period)
+│   ├── 05_eda_kendall_plots.R  lag distribution, CCF curves, heatmaps, tau inflation, sign checks
+│   ├── 06_eda_maps.R           world maps of tau and lag
+│   ├── 07_eda_normality.R      normality plots and tests (histograms, QQ, Shapiro-Wilk, skewness/kurtosis, ACF)
+│   ├── 08_eda_country_table.R  country : population : infections table and plots
+│   ├── 09_eda_continent_tests.R  tau and lag by continent: Shapiro-Wilk, Kruskal-Wallis, Dunn (Holm), boxplots
 │   └── out/                    script output (gitignored)
 └── dashboard/                  React mock-up of the results dashboard (see dashboard/README.md)
 ```
@@ -46,6 +54,7 @@ data_sprint/
 
 ## Change log
 
+- 2026-10-24: added EDA scripts `02`-`09` in `replication/`: shared dark theme and helpers (`02`), descriptive tables and plots (`03`), Kendall cross-correlation and lag plots (`04`-`05`), world maps (`06`), normality plots and tests (`07`: histograms, QQ, Shapiro-Wilk per country, skewness/kurtosis, autocorrelation), the country : population : infections table with rankings, scatter plots and maps (`08`), and continent boxplots with Shapiro-Wilk, Kruskal-Wallis and Dunn-Holm (`09`). Run in order after `01`. R packages: tidyverse, scales, ggridges, ragg, sf, rnaturalearth, rnaturalearthdata (optional: pcaPP for faster Kendall, ggrepel for point labels). Clustering is not included yet.
 - 2026-10-24: added `dashboard/`, a React + Vite mock-up of the results dashboard. `dashboard/scripts/build_data.py` turns `data/processed/2026-10-24-panel-clean.csv` into the JSON files the app reads (preliminary cross-correlations, continent tests, k-means clusters, rolling windows; model forecasts are simulated).
 - 2026-10-24: `replication/01_data_import.R` builds the country-day panel from `data/interim`: parses `DD-MM-YYYY` dates, joins cases and population on ISO2, adds continent, saves `replication/out/panel.rds`.
 - 2026-10-24: restructured the repo into `docs/`, `data/{raw,interim,processed}/` and `replication/`. Removed the duplicate panel copy under `replication/Deva_data/`, the scratch `Data_explorer.R` (superseded by `01_data_import.R`) and the committed patch file. Importer paths updated.
