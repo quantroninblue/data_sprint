@@ -7,7 +7,8 @@ Three versions of the cross-correlation results:
 Models and clusters come from Devashish's replication (paper / authors' code re-run / corrected).
 The rolling-window view is our own preliminary extension, computed here.
 
-Run from the repo root:  python3 -I dashboard/scripts/build_data.py   (needs numpy, scipy and Rscript)
+Run from the repo root:  python3 -I dashboard/scripts/build_data.py   (needs numpy, scipy and Rscript on PATH)
+On Windows:              py -I dashboard\scripts\build_data.py
 """
 
 import csv
@@ -54,7 +55,7 @@ def num(s):
 def numeric_codes():
     """ISO2 -> zero-padded numeric ISO code, which the world-atlas map uses as feature ids."""
     out = {}
-    with open(REFERENCE_CSV, newline="") as f:
+    with open(REFERENCE_CSV, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             if row["Province_State"] == "" and row["Admin2"] == "" and row["iso2"] and row["code3"]:
                 out.setdefault(row["iso2"], f"{int(float(row['code3'])):03d}")
@@ -64,7 +65,7 @@ def numeric_codes():
 def load_panel():
     """Daily arrays per country from the cleaned panel."""
     info, mob, per100k = {}, {}, {}
-    with open(PANEL_CSV, newline="") as f:
+    with open(PANEL_CSV, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             i = day_index(row["date"])
             if i < 0 or i >= N_DAYS:
@@ -106,7 +107,7 @@ def published_s1(name_to_iso):
 def ours_2020():
     """Devashish's corrected replication: one row per country."""
     out = {}
-    with open(os.path.join(DEV_TABLES, "2026-10-24-02-xcorr-by-country.csv"), newline="") as f:
+    with open(os.path.join(DEV_TABLES, "2026-10-24-02-xcorr-by-country.csv"), newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             lag = {cat: num(row[f"lag_{cat}"]) for cat in CATS}
             out[row["iso2"]] = {
@@ -119,7 +120,7 @@ def ours_2020():
 def full_period():
     """Teerth's full-period ('smooth') best lags."""
     out = {}
-    with open(os.path.join(EDA_OUT, "tables", "04_kendall_best_by_country.csv"), newline="") as f:
+    with open(os.path.join(EDA_OUT, "tables", "04_kendall_best_by_country.csv"), newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             if row["spec"] != "smooth":
                 continue
@@ -132,11 +133,12 @@ def full_period():
 def eda_ccf():
     """Teerth's tau-at-every-lag curves (an .rds file, so R converts it)."""
     with tempfile.TemporaryDirectory() as tmp:
-        path = os.path.join(tmp, "ccf.csv")
-        rds = os.path.join(EDA_OUT, "kendall_ccf.rds")
+        # Forward slashes, because R reads backslashes in a string literal as escapes (Windows paths).
+        path = os.path.join(tmp, "ccf.csv").replace("\\", "/")
+        rds = os.path.join(EDA_OUT, "kendall_ccf.rds").replace("\\", "/")
         subprocess.run(["Rscript", "-e", f'write.csv(readRDS("{rds}")[, c("spec","iso2","variable","lag","tau")], "{path}", row.names = FALSE)'], check=True)
         out = {"ours": {}, "full": {}}
-        with open(path, newline="") as f:
+        with open(path, newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
                 version = "ours" if row["spec"] == "paper" else "full"
                 curve = out[version].setdefault(row["iso2"], {}).setdefault(row["variable"], [None] * len(LAGS))
@@ -148,17 +150,17 @@ def eda_tests():
     """Teerth's Kruskal-Wallis and Dunn (Holm) results, plus continent medians and IQRs."""
     out = {"ours": {c: {} for c in CATS}, "full": {c: {} for c in CATS}}
     version = lambda spec: "ours" if spec == "paper" else "full"
-    with open(os.path.join(EDA_OUT, "tables", "09_kruskal_wallis.csv"), newline="") as f:
+    with open(os.path.join(EDA_OUT, "tables", "09_kruskal_wallis.csv"), newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             out[version(row["spec"])][row["variable"]][row["outcome"]] = {
                 "kw_h": r(num(row["chi_sq"])), "kw_p": r(num(row["p"]), 6), "medians": {}, "iqr": {}, "dunn": []}
-    with open(os.path.join(EDA_OUT, "tables", "09_continent_summary_long.csv"), newline="") as f:
+    with open(os.path.join(EDA_OUT, "tables", "09_continent_summary_long.csv"), newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             t = out[version(row["spec"])][row["variable"]][row["outcome"]]
             code = CONTINENT_CODE[row["continent"]]
             t["medians"][code] = r(num(row["median"]))
             t["iqr"][code] = [r(num(row["q1"])), r(num(row["q3"]))]
-    with open(os.path.join(EDA_OUT, "tables", "09_dunn_holm_pairs.csv"), newline="") as f:
+    with open(os.path.join(EDA_OUT, "tables", "09_dunn_holm_pairs.csv"), newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             out[version(row["spec"])][row["variable"]][row["outcome"]]["dunn"].append({
                 "a": CONTINENT_CODE[row["group1"]], "b": CONTINENT_CODE[row["group2"]],
@@ -187,7 +189,7 @@ def label_clusters(profiles):
 
 
 def dev_cluster_profiles(version):
-    rows = list(csv.DictReader(open(os.path.join(DEV_TABLES, f"2026-10-24-02-clusters-profile-{version}.csv"), newline="")))
+    rows = list(csv.DictReader(open(os.path.join(DEV_TABLES, f"2026-10-24-02-clusters-profile-{version}.csv"), newline="", encoding="utf-8")))
     prof = {}
     for row in rows:
         t = float(np.median([float(row[f"tau_{c}"]) for c in MOB_CATS]))
@@ -213,7 +215,7 @@ def published_cluster_profiles(s1):
 # ---------- Models ----------
 
 def dev_models():
-    read = lambda f: list(csv.DictReader(open(os.path.join(DEV_TABLES, f), newline="")))
+    read = lambda f: list(csv.DictReader(open(os.path.join(DEV_TABLES, f), newline="", encoding="utf-8")))
     keys = {"Date only": "date", "Date + contemporaneous mobility": "mobility", "Date + distributed-lag mobility": "lagged"}
     bic, rmse, per_country = {}, {}, {}
     for row in read("2026-10-24-02-model-bic.csv"):
@@ -240,7 +242,7 @@ SHORT_CAT = {"retail": "retail", "grocery": "grocery", "parks": "parks", "transi
 
 
 def fair_test(name_to_iso):
-    read = lambda f: list(csv.DictReader(open(os.path.join(EDA_OUT, f), newline="")))
+    read = lambda f: list(csv.DictReader(open(os.path.join(EDA_OUT, f), newline="", encoding="utf-8")))
     cont = lambda c: "NA" if c == "NorthAm" else c
 
     # Paper's method: |tau| profile for real pairs vs wrong-country (placebo) pairs. Paper's lag convention.
@@ -316,7 +318,7 @@ def rmd_figures(name_to_iso):
     """Fig 1 (lockdown-wave heatmap), Fig 9 (who moved first) and Fig 12 (lockdown styles), if the exports exist."""
     if not os.path.isdir(RMD_OUT):
         return None
-    read = lambda f: list(csv.DictReader(open(os.path.join(RMD_OUT, f), newline="")))
+    read = lambda f: list(csv.DictReader(open(os.path.join(RMD_OUT, f), newline="", encoding="utf-8")))
     cont = lambda c: "NA" if c in ("NA_", "NorthAm", "North America") else CONTINENT_CODE.get(c, c)
     missing = set()
 
@@ -429,7 +431,7 @@ def main():
     clusters = {"published": published_profiles, "replication": dev_cluster_profiles("as-published"), "corrected": dev_cluster_profiles("corrected")}
     corrected_types = {c["id"]: c["type"] for c in clusters["corrected"]}
     members = {}
-    with open(os.path.join(DEV_TABLES, "2026-10-24-02-clusters-members-corrected.csv"), newline="") as f:
+    with open(os.path.join(DEV_TABLES, "2026-10-24-02-clusters-members-corrected.csv"), newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             members[row["iso2"]] = corrected_types[int(row["cluster"])]
 
@@ -468,7 +470,7 @@ def main():
     }
 
     def dump(name, obj):
-        with open(os.path.join(OUT, name), "w") as f:
+        with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
             json.dump(obj, f, separators=(",", ":"), allow_nan=False)
         print(f"{name}: {os.path.getsize(os.path.join(OUT, name)) / 1e6:.2f} MB")
 

@@ -8,9 +8,23 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
+Needs Node.js 20 or newer. The data files in `public/data/` are committed, so the app runs without rebuilding them.
+
+**On Windows** (PowerShell or Command Prompt, from the repo folder):
+
+```powershell
+cd dashboard
+npm install
+npm run dev
+```
+
+If PowerShell refuses to run `npm` ("running scripts is disabled"), use `npm.cmd install` and `npm.cmd run dev`, or run the commands in Command Prompt.
+
+To make a production build: `npm run build`, then `npm run preview` (http://localhost:4173).
+
 ## Data
 
-The app only reads the JSON files in `public/data/`. `scripts/build_data.py` builds them from the team's outputs (run it from the repo root with `python3 -I dashboard/scripts/build_data.py`; needs numpy, scipy and Rscript). The types are in `src/lib/data.ts`.
+The app only reads the JSON files in `public/data/`. `scripts/build_data.py` builds them from the team's outputs (run it from the repo root with `python3 -I dashboard/scripts/build_data.py`, or `py -I dashboard\scripts\build_data.py` on Windows; needs Python 3 with numpy and scipy, and R with `Rscript` on PATH). The types are in `src/lib/data.ts`.
 
 Every view compares the paper's published findings with ours:
 
