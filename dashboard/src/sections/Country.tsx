@@ -16,6 +16,9 @@ export function CountrySection({ d, iso, cat, setCat, version }: Ctx) {
   const clusterType = version === "published" ? s?.cluster.published : s?.cluster.corrected;
   const cluster = clusterType ? CLUSTER_NAMES[clusterType] : null;
   const markers = EVENTS.map((e) => ({ i: dayDiff(start, parseDate(e.date)), label: e.label }));
+  // Fair-test results for this country: tau and false-discovery-adjusted p (Benjamini–Hochberg), two samples.
+  const fair = (["main", "full"] as const).map((k) => d.fair.countries[k].find((r) => r.iso2 === iso) ?? null);
+  const fmtQ = (q: number) => (q < 0.001 ? "<0.001" : q.toFixed(3));
 
   return (
     <Section
@@ -59,8 +62,43 @@ export function CountrySection({ d, iso, cat, setCat, version }: Ctx) {
               ))}
             </tbody>
           </table>
+          <div className="perforation" aria-hidden />
+          <div className="t-label" style={{ marginBottom: 4 }}>Fair test · τ and adjusted p</div>
+          {fair.some(Boolean) ? (
+            <table className="data fare">
+              <thead>
+                <tr><th>Link</th><th className="num">Feb–Jun 2020</th><th className="num">To Sep 2020</th></tr>
+              </thead>
+              <tbody>
+                {([["transmission", "Movement → growth"], ["behaviour", "Growth → movement"]] as const).map(([key, label]) => (
+                  <tr key={key}>
+                    <td>{label}</td>
+                    {fair.map((r, k) => {
+                      const q = r ? (key === "transmission" ? r.q_transmission : r.q_behaviour) : null;
+                      const t = r ? (key === "transmission" ? r.tau_transmission : r.tau_behaviour) : null;
+                      const sig = q !== null && q < 0.1;
+                      return (
+                        <td key={k} className="num" style={{ fontWeight: sig ? 600 : 400 }}>
+                          {fmtTau(t)}
+                          <div className="fare-lag">{q === null ? "not tested" : `adj. p ${fmtQ(q)}${sig ? " ✓" : ""}`}</div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p className="small" style={{ margin: 0 }}>Not in the fair test: too few days with enough cases to measure growth.</p>
+          )}
           <p className="small" style={{ margin: "8px 0 0" }}>
-            Strongest Kendall's τ between daily cases and movement, with its lag underneath. A negative lag means movement changed before
+            Fair test: mobility index against weekly case growth with the shared daily trend removed. Adjusted p is the
+            false-discovery-adjusted p-value across all countries (Benjamini–Hochberg, from 499 shuffled series). Tests are one-sided in
+            the expected direction (movement → growth positive, growth → movement negative), so a link with the wrong sign scores near 1.
+            ✓ marks adj. p &lt; 0.10.
+          </p>
+          <p className="small" style={{ margin: "8px 0 0" }}>
+            Top table: strongest Kendall's τ between daily cases and movement, with its lag underneath. A negative lag means movement changed before
             cases did. {s?.published ? "" : `${c.name} isn't in the paper's tables. `}2020–22 uses 7-day averages.
           </p>
         </div>
