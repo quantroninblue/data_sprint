@@ -1,2 +1,15 @@
-# Too big for GitHub (>100 MB); unzip the committed zip in the repo root to get it
-Round_1_Problem_3_Group_5_and_6/Global_Mobility_Report.csv
+# Full Google mobility CSV (1.1 GB, too big for GitHub).
+# Unzip data/raw/full-mobility-report.zip inside data/raw/ to get it; the unzipped folder stays local.
+data/raw/Round_1_Problem_3_Group_5_and_6/
+
+# Script outputs
+replication/out/
+
+# Patches are applied, not stored
+*.patch
+
+# R and OS clutter
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
