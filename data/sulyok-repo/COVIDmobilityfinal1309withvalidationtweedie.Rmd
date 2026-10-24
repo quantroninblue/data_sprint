@@ -1,0 +1,362 @@
+---
+title: "COVID Mobility Final 0908"
+author: "Sulyok"
+date: "August 9, 2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r echo=TRUE, warning=FALSE}
+
+library(readr)
+library(ggpubr)
+
+#mobility data
+gmr <- read_csv("Downloads/Global_Mobility_Report(1).csv", col_types = cols(date = col_date(format = "%Y-%m-%d")))
+
+library(data.table)
+library(ggplot2)
+
+### Loading country data
+
+countries <- fread("http://download.geonames.org/export/dump/countryInfo.txt", skip = "ISO3", na.strings = "")
+names(countries)[c(1,5, 9)] <- c("geo", "Country.Region", "Continent")
+countries$lang <- sapply(strsplit(sapply(strsplit(countries$Languages, ","), `[`, 1), "-"), `[`, 1)
+countries$translated <- "Coronavirus"
+
+### Obtaining the case numbers
+
+jhu_url <- paste0("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/",
+                  "csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+CaseData <- fread(jhu_url, check.names = TRUE)
+CaseData$Province.State[ CaseData$Province.State=="" ] <- CaseData$Country.Region[ CaseData$Province.State=="" ]
+CaseData <- melt(CaseData, id.vars = 1:4, variable.name = "Date", variable.factor = FALSE)
+CaseData$Date <- as.Date( substring(CaseData$Date, 2), format = "%m.%d.%y" )
+CaseData <- CaseData[ , .(CumCaseNumber = sum(value)), .(Country.Region, Date)][order(Country.Region, Date)]
+CaseData <-  CaseData[ ,.(date = Date[-1], CumCaseNumber = CumCaseNumber[-1], IncCaseNumber = diff(CumCaseNumber)),
+                       .(Country.Region)]
+
+CaseData[Country.Region=="US"]$Country.Region <- "United States"
+CaseData <- merge(CaseData,countries[,c("Country.Region", "geo", "Continent")])
+CaseData$country_region<-CaseData$Country.Region
+
+CaseData$IncCaseNumber<-ifelse(CaseData$IncCaseNumber<0, 0, CaseData$IncCaseNumber )
+#write.csv(CaseData, "CaseNumbers1407JHUreal.csv")
+levels(factor(gmr$country_region))
+levels(factor(CaseData$country_region))
+
+   
+countryanalysis<- function(x) {
+  xgmr<-subset(gmr, country_region==x & is.na(sub_region_1)==TRUE)
+  xgmr<-xgmr[c(2,7:13)]
+  xmerged<-merge(xgmr, CaseData, by=c("country_region", "date"))
+  crosscorr<-function(b) {ccfkendall <-sapply( -28:28, function(l) cor.test(b, Hmisc::Lag(xmerged$IncCaseNumber,l),method = "kendall", use = "complete.obs")$estimate )
+  }
+  cc<-as.data.frame(lapply(xmerged[3:8], crosscorr))
+    ccabs<-abs(cc)
+ a<-as.data.frame(lapply(ccabs[1:6], which.max))
+ b<-as.data.frame(lapply(cc[1:6], max ))
+ c<-as.data.frame(lapply(cc[1:6], min))
+ e<-ifelse(abs(b)<abs(c), c, b)
+ names(e) <-c("V1", "V2", "V3", "V4", "V5", "V6")
+ a$country_region<-x
+ a<-data.frame(cbind(a,e))
+ }
+results<-NULL
+d<-NULL
+
+for( country_region in unique(gmr$country_region) ) {
+   skip_to_next <- FALSE
+  tryCatch(d<-countryanalysis(country_region), tryCatch(results<-rbind(results, data.frame(d))), error = function(e) { skip_to_next <<- TRUE})
+  if(skip_to_next) { next }
+
+  }
+
+results<-unique(results)
+results$retail_and_recreation_percent_change_from_baseline<-results$retail_and_recreation_percent_change_from_baseline-29
+results$grocery_and_pharmacy_percent_change_from_baseline<- results$grocery_and_pharmacy_percent_change_from_baseline-29
+results$parks_percent_change_from_baseline<- results$parks_percent_change_from_baseline-29
+results$transit_stations_percent_change_from_baseline<-results$transit_stations_percent_change_from_baseline-29
+results$workplaces_percent_change_from_baseline<-results$workplaces_percent_change_from_baseline-29
+results$residential_percent_change_from_baseline<-results$workplaces_percent_change_from_baseline-29
+
+
+results<-merge(unique(CaseData[,6:7]), results, by="country_region")
+
+lapply(results[,3:14], shapiro.test)
+library(dunn.test)
+
+percontinetanalysislag<-function(x) {
+  print(x)
+p<-ggplot(results, aes(Continent, x)) + geom_boxplot()+ geom_jitter()+ xlab("Continent") + ylab("Lag in days") + labs(x)
+print(p)
+dunn.test(x, results$Continent, method="holm")}
+
+percontinetanalysistau<-function(x) {
+  print(x)
+p<-ggplot(results, aes(Continent, x)) + geom_boxplot()+ geom_jitter()+ xlab("Continent") + ylab("Kendall Tau") + ggtitle(x)
+print(p)
+dunn.test(x, results$Continent, method="holm")}
+
+
+lapply(results[,3:8], percontinetanalysislag)
+lapply(results[,9:14], percontinetanalysistau)
+
+library(tableone)
+vars<-c(colnames(results[,3:14]))
+factorvars<-c("Continent")
+tab1<-CreateTableOne(vars=vars, strata="Continent", data=results)
+print(tab1, nonnormal=vars)
+write.csv(print(tab1, nonnormal=vars), "correlationtablescovidcontinentrev.csv")
+
+library(dplyr)
+require(maps)
+require(viridis)
+theme_set(theme_void())
+
+world_map <- map_data("world")
+
+
+results$region<-results$country_region
+print(levels(factor(world_map$region)))
+print(levels(factor(results$region)))
+different2 <- anti_join(results, world_map, by = "region")
+print(levels(factor(different2$region )))
+
+world_map <- map_data("world")
+ world_map<-world_map %>% #here change all county names that do not match in the world map to the data terminology
+   mutate(region = ifelse(region =="USA",  "United States", region)) 
+  world_map<-world_map %>% #here change all county names that do not match in the world map to the data terminology
+   mutate(region = ifelse(region =="UK",  "United Kingdom", region)) 
+   world_map<-world_map %>% #here change all county names that do not match in the world map to the data terminology
+   mutate(region = ifelse(region =="Trinidad",  "Trinidad and Tobago", region)) 
+   world_map<-world_map %>% #here change all county names that do not match in the world map to the data terminology
+   mutate(region = ifelse(region =="Macedonia",  "North Macedonia", region)) 
+   world_map<-world_map %>% #here change all county names that do not match in the world map to the data terminology
+   mutate(region = ifelse(region =="Czech Republic",  "Czechia", region)) 
+    world_map<-world_map %>% #here change all county names that do not match in the world map to the data terminology
+   mutate(region = ifelse(region =="Antigua",  "Antigua and Barbuda", region)) 
+
+corrmap <- full_join( world_map, results, by = "region")
+
+
+ p1<-ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = retail_and_recreation_percent_change_from_baseline ), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Retail and recreation - lag") + labs(fill = "Lag to maximum correlation in days")
+p2<- ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = V1 ), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Retail and recreation -strength of correlation") + labs(fill = "Kendall`s Tau")
+
+ p3<-ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = grocery_and_pharmacy_percent_change_from_baseline), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Grocery and pharmacy- lag") + labs(fill = "Lag to maximum correlation in days")
+p4<- ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = V2 ), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Grocery and pharmacy- strength of correlation") + labs(fill = "Kendall`s Tau")
+
+ p5<-ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = parks_percent_change_from_baseline), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Parks- lag") + labs(fill = "Lag to maximum correlation in days")
+p6<- ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = V3 ), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Parks- strength of correlation") + labs(fill = "Kendall`s Tau")
+ p7<-ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = transit_stations_percent_change_from_baseline), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Transit stations- lag") + labs(fill = "Lag to maximum correlation in days")
+p8<- ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = V4 ), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Transit stations- strength of correlation") + labs(fill = "Kendall`s Tau")
+p9<-ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = workplaces_percent_change_from_baseline), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Workplace- lag") + labs(fill = "Lag to maximum correlation in days")
+p10<- ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = V5 ), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Workplace- strength of correlation") + labs(fill = "Kendall`s Tau")
+p11<-ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = residential_percent_change_from_baseline), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Residential- lag") + labs(fill = "Lag to maximum correlation in days")
+p12<- ggplot(corrmap, aes(long, lat, group=group))+
+    geom_polygon(aes(fill = V6), color = "white")+
+    scale_fill_viridis_c(option = "C") + ggtitle("Residential- strength of correlation") + labs(fill = "Kendall`s Tau")
+
+
+ 
+library(ggpubr)
+lags<- ggarrange(p1, p3, p5, p7, p9, p11 , ncol = 2, nrow = 3)
+lags
+taus<- ggarrange(p2, p4, p6, p8, p10, p12, ncol = 2, nrow = 3)
+taus
+summary(results)
+
+write.csv(results, "resultscovidcorrgmd.csv")
+
+
+#mobility data
+gmr <- read_csv("Downloads/Global_Mobility_Report(2).csv", col_types = cols(date = col_date(format = "%Y-%m-%d")))
+
+
+
+### Loading country data
+
+countries <- fread("http://download.geonames.org/export/dump/countryInfo.txt", skip = "ISO3", na.strings = "")
+names(countries)[c(1,5, 9)] <- c("geo", "Country.Region", "Continent")
+countries$lang <- sapply(strsplit(sapply(strsplit(countries$Languages, ","), `[`, 1), "-"), `[`, 1)
+countries$translated <- "Coronavirus"
+
+### Obtaining the case numbers
+
+jhu_url <- paste0("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/",
+                  "csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+CaseData <- fread(jhu_url, check.names = TRUE)
+CaseData$Province.State[ CaseData$Province.State=="" ] <- CaseData$Country.Region[ CaseData$Province.State=="" ]
+CaseData <- melt(CaseData, id.vars = 1:4, variable.name = "Date", variable.factor = FALSE)
+CaseData$Date <- as.Date( substring(CaseData$Date, 2), format = "%m.%d.%y" )
+CaseData <- CaseData[ , .(CumCaseNumber = sum(value)), .(Country.Region, Date)][order(Country.Region, Date)]
+CaseData <-  CaseData[ ,.(date = Date[-1], CumCaseNumber = CumCaseNumber[-1], IncCaseNumber = diff(CumCaseNumber)),
+                       .(Country.Region)]
+
+CaseData[Country.Region=="US"]$Country.Region <- "United States"
+CaseData <- merge(CaseData,countries[,c("Country.Region", "geo", "Continent")])
+CaseData$country_region<-CaseData$Country.Region
+
+CaseData$IncCaseNumber<-ifelse(CaseData$IncCaseNumber<0, 0, CaseData$IncCaseNumber )
+write.csv(CaseData, "CaseNumbberseptember.csv")
+
+
+
+
+allmerged<-merge(gmr, CaseData, by=c("country_region", "date"))
+all<-allmerged
+all$NumDate <- as.numeric(all$date)-min(as.numeric(all$date))
+data<- subset(all, is.na(all$sub_region_1)==TRUE)
+data$IncCaseNumber<-ifelse(data$IncCaseNumber<0, 0, data$IncCaseNumber )
+
+data<-data[c(1,2, 9:14, 17,20)]
+summary(data)
+data<-na.omit(data)
+
+
+   
+
+library(dlnm)
+
+
+library(lme4)
+library(lmerTest)
+library(gamm4)
+
+library(dplyr)
+data$country_region<-factor(data$country_region)
+
+datat<-data %>%
+  filter(date<= "2020-06-19")
+datav<-data %>%
+  filter(date> "2020-06-19")
+
+cb1 <- crossbasis(datat$grocery_and_pharmacy_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datat$country_region)
+cb2 <- crossbasis(datat$retail_and_recreation_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datat$country_region)
+cb4 <- crossbasis(datat$transit_stations_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datat$country_region)
+cb5 <- crossbasis(datat$workplaces_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datat$country_region)
+cb6 <- crossbasis(datat$residential_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datat$country_region)
+
+ #make data identical to the dataset with crossbasis (deleting the first 14 observations in all countries)
+datam<-datat %>%
+  group_by(country_region) %>%
+  slice(-c(1:14))
+
+
+
+fit1 <- gamm(IncCaseNumber~s(NumDate), random=list(country_region=~1), data=datam, family="tw")
+
+fit2 <- gamm(IncCaseNumber~s(NumDate)+s(retail_and_recreation_percent_change_from_baseline)+s(grocery_and_pharmacy_percent_change_from_baseline)+ s(transit_stations_percent_change_from_baseline)+s(workplaces_percent_change_from_baseline+residential_percent_change_from_baseline), random=list(country_region=~1), data=datam, family="tw")
+
+
+fitcb<- gamm(IncCaseNumber~s(NumDate) + cb1  + cb2 + cb4 + cb5 + cb6, random=list(country_region=~1), data=datat, family="tw")
+
+BIC(fit1$lme)
+BIC(fit2$lme)
+BIC(fitcb$lme)
+
+summary(fit1$lme)
+summary(fit2$lme)
+ranef(fit2$lme)
+summary(fitcb$lme)
+
+
+summary(fit1$gam)
+summary(fit2$gam)
+summary(fitcb$gam)
+
+plot(fit1$lme)
+plot(fit1$gam)
+
+plot(fit2$lme)
+plot(fit2$gam)
+
+plot(fitcb$lme)
+plot(fitcb$gam)
+
+#preparing data for the validation
+
+cb1 <- crossbasis(datav$grocery_and_pharmacy_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datav$country_region)
+cb2 <- crossbasis(datav$retail_and_recreation_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datav$country_region)
+cb4 <- crossbasis(datav$transit_stations_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datav$country_region)
+cb5 <- crossbasis(datav$workplaces_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datav$country_region)
+cb6 <- crossbasis(datav$residential_percent_change_from_baseline , lag=14, argvar=list(fun="lin"),arglag=list(df=5), group=datav$country_region)
+
+dataval<-datav %>%
+  group_by(country_region) %>%
+  slice(-c(1:14))
+
+
+pred1<-predict.gam(fit1$gam, dataval, type="response")
+pred2<-predict.gam(fit2$gam, dataval, type="response")
+predcb<-predict.gam(fitcb$gam, datav, type="response")
+predcb<-predcb[!is.na(predcb)]
+
+
+RMSE <- function(pred, obs){
+  sqrt(mean((pred - obs)^2))
+}
+
+
+RMSE(pred1, dataval$IncCaseNumber)
+RMSE(pred2, dataval$IncCaseNumber)
+RMSE(predcb, dataval$IncCaseNumber) #lag distributed is slightly better than contempr.-worst is the without GMD
+
+
+dataval$pred1<-pred1
+dataval$pred2<-pred2
+dataval$predcb<-predcb
+
+rmsepercountry1<-dataval %>%
+  group_by(country_region) %>%
+  summarise(RMSE(pred1, IncCaseNumber), .groups = 'drop')
+summary(rmsepercountry1)
+
+
+
+rmsepercountry2<-dataval %>%
+  group_by(country_region) %>%
+  summarise(RMSE(pred2, IncCaseNumber), .groups = 'drop')
+summary(rmsepercountry2)
+
+rmsepercountrycb<-dataval %>%
+  group_by(country_region) %>%
+  summarise(RMSE(predcb, IncCaseNumber), .groups = 'drop')
+summary(rmsepercountrycb)
+
+
+library(forecast)
+dm.test(pred1-dataval$IncCaseNumber, pred2-dataval$IncCaseNumber)
+dm.test(predcb-dataval$IncCaseNumber, pred2-dataval$IncCaseNumber)
+dm.test(predcb-dataval$IncCaseNumber, pred1-dataval$IncCaseNumber)
+
+
+
+
+
+
+
+```

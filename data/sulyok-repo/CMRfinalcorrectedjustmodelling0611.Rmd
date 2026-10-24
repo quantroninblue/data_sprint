@@ -1,0 +1,190 @@
+---
+title: "COVID Mobility Final 0908"
+author: "Sulyok"
+date: "August 9, 2020"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r echo=TRUE, warning=FALSE}
+
+library(readr)
+library(data.table)
+library(ggplot2)
+
+
+
+#mobility data
+gmr <- read_csv("Downloads/Global_Mobility_Report(2).csv", col_types = cols(date = col_date(format = "%Y-%m-%d")))
+
+
+
+### Loading country data
+
+countries <- fread("http://download.geonames.org/export/dump/countryInfo.txt", skip = "ISO3", na.strings = "")
+names(countries)[c(1,5, 9)] <- c("geo", "Country.Region", "Continent")
+countries$lang <- sapply(strsplit(sapply(strsplit(countries$Languages, ","), `[`, 1), "-"), `[`, 1)
+countries$translated <- "Coronavirus"
+
+### Obtaining the case numbers
+
+jhu_url <- paste0("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/",
+                  "csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+CaseData <- fread(jhu_url, check.names = TRUE)
+CaseData$Province.State[ CaseData$Province.State=="" ] <- CaseData$Country.Region[ CaseData$Province.State=="" ]
+CaseData <- melt(CaseData, id.vars = 1:4, variable.name = "Date", variable.factor = FALSE)
+CaseData$Date <- as.Date( substring(CaseData$Date, 2), format = "%m.%d.%y" )
+CaseData <- CaseData[ , .(CumCaseNumber = sum(value)), .(Country.Region, Date)][order(Country.Region, Date)]
+CaseData <-  CaseData[ ,.(date = Date[-1], CumCaseNumber = CumCaseNumber[-1], IncCaseNumber = diff(CumCaseNumber)),
+                       .(Country.Region)]
+
+CaseData[Country.Region=="US"]$Country.Region <- "United States"
+CaseData <- merge(CaseData,countries[,c("Country.Region", "geo", "Continent")])
+CaseData$country_region<-CaseData$Country.Region
+
+CaseData$IncCaseNumber<-ifelse(CaseData$IncCaseNumber<0, 0, CaseData$IncCaseNumber )
+write.csv(CaseData, "CaseNumbberseptember0110.csv")
+
+
+
+
+allmerged<-merge(gmr, CaseData, by=c("country_region", "date"))
+all<-allmerged
+all$NumDate <- as.numeric(all$date)-min(as.numeric(all$date))
+data<- subset(all, is.na(all$sub_region_1)==TRUE)
+data$IncCaseNumber<-ifelse(data$IncCaseNumber<0, 0, data$IncCaseNumber )
+
+data<-data[c(1,2, 9:14, 17,20)]
+summary(data)
+data<-na.omit(data)
+
+
+   
+
+library(dlnm)
+
+
+library(lme4)
+library(lmerTest)
+library(gamm4)
+
+library(dplyr)
+data$country_region<-factor(data$country_region)
+
+datat<-data %>%
+  filter(date<= "2020-06-19")
+datav<-data %>%
+  filter(date> "2020-06-19")
+
+cb1 <- crossbasis(datat$grocery_and_pharmacy_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datat$country_region)
+cb2 <- crossbasis(datat$retail_and_recreation_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datat$country_region)
+cb4 <- crossbasis(datat$transit_stations_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datat$country_region)
+cb5 <- crossbasis(datat$workplaces_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datat$country_region)
+cb6 <- crossbasis(datat$residential_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datat$country_region)
+
+ #make data identical to the dataset with crossbasis (deleting the first 14 observations in all countries)
+datam<-datat %>%
+  group_by(country_region) %>%
+  slice(-c(1:14))
+set.seed(2020)
+fittweedie<-gam(IncCaseNumber~s(NumDate) + s(country_region, bs="re"), data=datam, family="tw")
+summary(fittweedie) # just to estimate p , with gam instead of gamm model  ######
+BIC(fittweedie)
+
+
+fit1 <- gamm(IncCaseNumber~s(NumDate), random=list(country_region=~1), data=datam, family=Tweedie(p=1.656)) ####modify power functin accordingly
+
+
+fit2 <- gamm(IncCaseNumber~s(NumDate)+s(retail_and_recreation_percent_change_from_baseline)+s(grocery_and_pharmacy_percent_change_from_baseline)+ s(transit_stations_percent_change_from_baseline)+s(workplaces_percent_change_from_baseline+residential_percent_change_from_baseline), random=list(country_region=~1), data=datam, family=Tweedie(p=1.656))
+
+
+fitcb<- gamm(IncCaseNumber~s(NumDate) + cb1  + cb2 + cb4 + cb5 + cb6, random=list(country_region=~1), data=datat, family=Tweedie(p=1.656))
+
+BIC(fit1$lme)
+BIC(fit2$lme)
+BIC(fitcb$lme)
+
+summary(fit1$lme)
+summary(fit2$lme)
+ranef(fit2$lme)
+summary(fitcb$lme)
+
+
+summary(fit1$gam)
+summary(fit2$gam)
+summary(fitcb$gam)
+
+plot(fit1$lme)
+plot(fit1$gam)
+
+plot(fit2$lme)
+plot(fit2$gam)
+
+plot(fitcb$lme)
+plot(fitcb$gam)
+
+#preparing data for the validation
+
+cb1 <- crossbasis(datav$grocery_and_pharmacy_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datav$country_region)
+cb2 <- crossbasis(datav$retail_and_recreation_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datav$country_region)
+cb4 <- crossbasis(datav$transit_stations_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datav$country_region)
+cb5 <- crossbasis(datav$workplaces_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datav$country_region)
+cb6 <- crossbasis(datav$residential_percent_change_from_baseline , lag=14, argvar=list(fun="bs"),arglag=list(df=5), group=datav$country_region)
+
+dataval<-datav %>%
+  group_by(country_region) %>%
+  slice(-c(1:14))
+
+
+pred1<-predict.gam(fit1$gam, dataval, type="response")
+pred2<-predict.gam(fit2$gam, dataval, type="response")
+predcb<-predict.gam(fitcb$gam, datav, type="response")
+predcb<-predcb[!is.na(predcb)]
+
+
+RMSE <- function(pred, obs){
+  sqrt(mean((pred - obs)^2))
+}
+
+
+RMSE(pred1, dataval$IncCaseNumber)
+RMSE(pred2, dataval$IncCaseNumber)
+RMSE(predcb, dataval$IncCaseNumber) #lag distributed is slightly better than contempr.-worst is the without GMD
+
+
+
+dataval$pred1<-pred1
+dataval$pred2<-pred2
+dataval$predcb<-predcb
+
+rmsepercountry1<-dataval %>%
+  group_by(country_region) %>%
+  summarise(RMSE(pred1, IncCaseNumber), .groups = 'drop')
+summary(rmsepercountry1)
+
+
+
+rmsepercountry2<-dataval %>%
+  group_by(country_region) %>%
+  summarise(RMSE(pred2, IncCaseNumber), .groups = 'drop')
+summary(rmsepercountry2)
+
+rmsepercountrycb<-dataval %>%
+  group_by(country_region) %>%
+  summarise(RMSE(predcb, IncCaseNumber), .groups = 'drop')
+summary(rmsepercountrycb)
+
+
+library(forecast)
+dm.test(pred1-dataval$IncCaseNumber, pred2-dataval$IncCaseNumber)
+dm.test(predcb-dataval$IncCaseNumber, pred2-dataval$IncCaseNumber)
+dm.test(predcb-dataval$IncCaseNumber, pred1-dataval$IncCaseNumber)
+
+
+
+
+
+
+
+```
