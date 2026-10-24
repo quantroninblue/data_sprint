@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
-import type { Cat, Country } from "../lib/data";
-import { CATS, catVar, type ThemeMode } from "../lib/theme";
+import type { Cat, Country, Version } from "../lib/data";
+import { CATS, catVar, VERSIONS, type ThemeMode } from "../lib/theme";
 import { flag } from "../lib/util";
 
 export const STOPS = [
@@ -9,9 +9,11 @@ export const STOPS = [
   { id: "lag", label: "Lag explorer" },
   { id: "map", label: "World map" },
   { id: "continents", label: "Continents" },
+  { id: "fair", label: "Fair test" },
   { id: "clusters", label: "Clusters" },
   { id: "models", label: "Models" },
   { id: "over-time", label: "Over time" },
+  { id: "why", label: "Why it changed" },
 ] as const;
 
 function useActiveStop() {
@@ -39,12 +41,51 @@ interface MastheadProps {
   setCat: (c: Cat) => void;
   mode: ThemeMode;
   setMode: (m: ThemeMode) => void;
-  preliminary: boolean;
+  version: Version;
+  setVersion: (v: Version) => void;
 }
 
-export function Masthead({ countries, iso, setIso, cat, setCat, mode, setMode, preliminary }: MastheadProps) {
+/** Presentation mode: each stop fills the screen and the arrow keys move between stops. */
+function usePresenting(activeIdx: number) {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    document.documentElement.classList.toggle("presenting", on);
+    if (!on) return;
+    const go = (i: number) => document.getElementById(STOPS[Math.max(0, Math.min(STOPS.length - 1, i))].id)?.scrollIntoView({ behavior: "smooth" });
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.tagName === "INPUT" || t.tagName === "SELECT" || t.tagName === "TEXTAREA") return;
+      if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(e.key)) { e.preventDefault(); go(activeIdx + 1); }
+      else if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) { e.preventDefault(); go(activeIdx - 1); }
+      else if (e.key === "Home") { e.preventDefault(); go(0); }
+      else if (e.key === "End") { e.preventDefault(); go(STOPS.length - 1); }
+      else if (e.key === "Escape") setOn(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [on, activeIdx]);
+  useEffect(() => {
+    const onFs = () => { if (!document.fullscreenElement) setOn(false); };
+    document.addEventListener("fullscreenchange", onFs);
+    return () => document.removeEventListener("fullscreenchange", onFs);
+  }, []);
+  const toggle = () => {
+    const next = !on;
+    setOn(next);
+    try {
+      if (next && !document.fullscreenElement) void document.documentElement.requestFullscreen?.();
+      if (!next && document.fullscreenElement) void document.exitFullscreen();
+    } catch {
+      /* fullscreen not allowed; presenting still works in the window */
+    }
+  };
+  return [on, toggle] as const;
+}
+
+export function Masthead({ countries, iso, setIso, cat, setCat, mode, setMode, version, setVersion }: MastheadProps) {
   const active = useActiveStop();
   const activeIdx = STOPS.findIndex((s) => s.id === active);
+  const [presenting, togglePresenting] = usePresenting(activeIdx);
   const current = countries.find((c) => c.iso2 === iso);
   const [text, setText] = useState(current?.name ?? "");
   useEffect(() => setText(current?.name ?? ""), [current]);
@@ -59,8 +100,11 @@ export function Masthead({ countries, iso, setIso, cat, setCat, mode, setMode, p
       <div className="masthead-inner">
         <div className="mast-top">
           <div className="wordmark">Moving Less <span>· mobility &amp; COVID-19</span></div>
-          {preliminary && <span className="badge" title="Numbers are preliminary until the R analysis is final">Mock-up · preliminary data</span>}
           <div className="spacer" />
+          {presenting && <span className="small present-hint">← → to change stop · Esc to exit</span>}
+          <button className="present-btn" onClick={togglePresenting} aria-pressed={presenting}>
+            {presenting ? "Exit" : "Present"}
+          </button>
           <button
             className="icon-btn"
             aria-label={mode === "dark" ? "Switch to light theme" : "Switch to dark theme"}
@@ -87,14 +131,23 @@ export function Masthead({ countries, iso, setIso, cat, setCat, mode, setMode, p
             <span aria-hidden>{flag(iso)}</span>
             <input
               list="country-list" value={text}
+              placeholder={`Search ${countries.length} countries`}
+              // Clear on focus so the suggestion list shows every country, not just the current one.
+              onFocus={() => setText("")}
               onChange={(e) => { setText(e.target.value); commit(e.target.value); }}
-              onBlur={() => setText(current?.name ?? "")}
+              onBlur={() => setText(countries.find((c) => c.iso2 === iso)?.name ?? "")}
+              onKeyDown={(e) => { if (e.key === "Escape") (e.target as HTMLInputElement).blur(); }}
               aria-label="Choose a country"
+              title="Type to search, or click a country on any map"
             />
             <datalist id="country-list">
               {countries.map((c) => <option key={c.iso2} value={c.name} />)}
             </datalist>
           </label>
+          <div className="country-pick">
+            <span className="filter-label">Version</span>
+            <Seg label="Results version" value={version} onChange={setVersion} options={VERSIONS.map((v) => ({ value: v.key, label: v.label }))} />
+          </div>
           <div className="lines" role="group" aria-label="Mobility category">
             <span className="filter-label" style={{ alignSelf: "center", marginRight: 4 }}>Line</span>
             {CATS.map((c) => (
@@ -114,9 +167,11 @@ export function Section({ id, n, title, dek, children }: { id: string; n: number
   const label = STOPS.find((s) => s.id === id)?.label;
   return (
     <section className="section" id={id}>
-      <div className="kicker"><span className="stop" />Stop {n} · {label}</div>
-      <h2>{title}</h2>
-      {dek && <p className="dek">{dek}</p>}
+      <div className="reveal">
+        <div className="kicker"><span className="stop" />Stop {n} · {label}</div>
+        <h2>{title}</h2>
+        {dek && <p className="dek">{dek}</p>}
+      </div>
       {children}
     </section>
   );

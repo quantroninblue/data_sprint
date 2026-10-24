@@ -19,7 +19,24 @@ export const PAPER_LAG: Record<Cat, Record<Continent, number>> = {
   residential: { AF: -15, AS: -4, EU: -0.5, OC: 5, SA: 26.5, NA: 1 },
 };
 
+// Adjusted Kruskal–Wallis p-values reported alongside Tables 1 and 2.
+export const PAPER_P: Record<"tau" | "lag", Record<Cat, number>> = {
+  tau: { retail: 0.012, grocery: 0.084, parks: 0.698, transit: 0.012, workplaces: 0.012, residential: 0.014 },
+  lag: { retail: 0.078, grocery: 0.195, parks: 0.698, transit: 0.078, workplaces: 0.012, residential: 0.012 },
+};
+
+// Table 3 of the paper: same-day mobility model.
+export const PAPER_TABLE3 = [
+  { term: "retail", estimate: -1.34, se: 0.59, p: 0.025 },
+  { term: "grocery", estimate: 0.33, se: 0.36, p: 0.358 },
+  { term: "transit", estimate: -0.33, se: 0.36, p: 0.368 },
+  { term: "workplaces", estimate: -0.42, se: 0.51, p: 0.415 },
+];
+
 export const PAPER_N: Record<Continent, number> = { AF: 24, AS: 32, EU: 36, OC: 4, SA: 10, NA: 16 };
+
+// Dates marked on every timeline.
+export const EVENTS = [{ date: "2020-03-11", label: "WHO declares a pandemic" }];
 
 export const MODEL_LABELS: Record<"date" | "mobility" | "lagged", string> = {
   date: "Date only",

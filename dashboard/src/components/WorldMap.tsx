@@ -33,7 +33,8 @@ export function WorldMap({ numericToIso, fill, selected, highlight, onSelect, to
     if (!width) return [];
     const projection = geoEqualEarth().fitExtent([[2, 2], [width - 2, height - 2]], { type: "FeatureCollection", features: FEATURES });
     const path = geoPath(projection);
-    return FEATURES.map((f) => ({ id: String(f.id), name: f.properties.name, d: path(f) ?? "" }));
+    // A few disputed areas have no ISO code, so the key falls back to the feature's position.
+    return FEATURES.map((f, k) => ({ key: f.id === undefined ? `x${k}` : String(f.id), id: String(f.id), name: f.properties.name, d: path(f) ?? "" }));
   }, [width, height]);
 
   return (
@@ -46,7 +47,7 @@ export function WorldMap({ numericToIso, fill, selected, highlight, onSelect, to
             const isSel = iso && iso === selected;
             return (
               <path
-                key={p.id}
+                key={p.key}
                 d={p.d}
                 fill={fill(iso)}
                 opacity={dim ? 0.22 : 1}

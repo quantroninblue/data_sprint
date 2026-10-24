@@ -77,7 +77,7 @@ export function OverTime({ d, iso, setIso, cat, mode }: Ctx) {
 
   return (
     <Section
-      id="over-time" n={8}
+      id="over-time" n={9}
       title="Beyond the paper: did the link fade as the pandemic wore on?"
       dek={<>The paper stopped in June 2020. Here the same method runs over a moving {d.meta.rolling.window_days}-day window through April 2022, using 7-day average cases per 100k.</>}
     >

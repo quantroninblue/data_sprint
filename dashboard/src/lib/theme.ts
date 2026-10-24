@@ -1,6 +1,6 @@
 import { interpolateLab } from "d3-interpolate";
 import { useEffect, useState } from "react";
-import type { Cat, Continent } from "./data";
+import type { Cat, ClusterType, Continent, Version } from "./data";
 
 // The six mobility categories are the six "lines" of the transit map.
 export const CATS: { key: Cat; label: string; short: string; mobility: boolean }[] = [
@@ -19,11 +19,20 @@ export const CONTINENT_SHORT: Record<Continent, string> = {
   AF: "Africa", AS: "Asia", EU: "Europe", OC: "Oceania", SA: "S. America", NA: "N. America",
 };
 
-export const CLUSTER_NAMES: Record<number, { name: string; blurb: string }> = {
-  1: { name: "Early movers", blurb: "Mobility fell about four weeks before cases rose." },
-  2: { name: "In step", blurb: "Strong negative link with almost no lag, mostly Western Europe, N. America and Australia." },
-  3: { name: "Loosely coupled", blurb: "Weak correlation, with short lags." },
-  4: { name: "Opposite track", blurb: "Mobility recovered while cases climbed, mostly S. America and Eastern Europe." },
+export const VERSIONS: { key: Version; label: string; short: string }[] = [
+  { key: "published", label: "Paper · 2020", short: "Paper" },
+  { key: "ours", label: "Ours · 2020", short: "Ours 2020" },
+  { key: "full", label: "Ours · 2020–22", short: "Ours 2020–22" },
+];
+export const VERSION_BY_KEY = Object.fromEntries(VERSIONS.map((v) => [v.key, v])) as Record<Version, (typeof VERSIONS)[number]>;
+
+// Cluster families, matched across the paper's numbering and ours by their profile.
+export const CLUSTER_ORDER: ClusterType[] = ["instep", "loose", "early", "opposite"];
+export const CLUSTER_NAMES: Record<ClusterType, { name: string; blurb: string }> = {
+  instep: { name: "In step", blurb: "Strong negative link with almost no lag: mostly Western Europe, N. America and Australia." },
+  loose: { name: "Loosely coupled", blurb: "Weaker correlation at short lags." },
+  early: { name: "Early movers", blurb: "Best lag at about −28 days: movement fell about four weeks before cases, or the search hit its edge." },
+  opposite: { name: "Opposite track", blurb: "Best lag at +28 days with τ flipped: mostly Eastern Europe and S. America." },
 };
 
 export type ThemeMode = "light" | "dark";

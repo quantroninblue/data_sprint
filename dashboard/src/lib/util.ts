@@ -49,6 +49,86 @@ export function median(v: number[]) {
   return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
 }
 
+/** Trailing 7-day mean; null until a full week of values is available. */
+export function rolling7(s: Series): Series {
+  return s.map((_, i) => {
+    if (i < 6) return null;
+    let sum = 0;
+    for (let k = i - 6; k <= i; k++) {
+      const v = s[k];
+      if (v === null) return null;
+      sum += v;
+    }
+    return sum / 7;
+  });
+}
+
+export const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/** Eases a number towards its target (used for the odometer readouts and the sliding curve). */
+export function useTween(target: number, ms = 260, from?: number) {
+  const [value, setValue] = useState(from ?? target);
+  const current = useRef(from ?? target);
+  useEffect(() => {
+    if (prefersReducedMotion()) {
+      current.current = target;
+      setValue(target);
+      return;
+    }
+    const start = current.current;
+    const t0 = performance.now();
+    let raf = 0;
+    const step = (now: number) => {
+      const t = Math.min(1, (now - t0) / ms);
+      const eased = 1 - (1 - t) ** 3;
+      current.current = start + (target - start) * eased;
+      setValue(current.current);
+      if (t < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, ms]);
+  return value;
+}
+
+/** Adds the "in" class to every .reveal element once it scrolls into view. */
+export function useReveal(deps: unknown[]) {
+  useEffect(() => {
+    const els = [...document.querySelectorAll<HTMLElement>(".reveal:not(.in)")];
+    if (prefersReducedMotion()) {
+      els.forEach((el) => el.classList.add("in"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      }),
+      { rootMargin: "0px 0px -8% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
+}
+
+/** Selected country, line and version live in the URL so a view can be shared as a link. */
+export function readUrlState() {
+  const q = new URLSearchParams(window.location.search);
+  return { country: q.get("country") ?? undefined, line: q.get("line") ?? undefined, version: q.get("version") ?? undefined };
+}
+
+export function writeUrlState(country: string, line: string, version: string) {
+  const q = new URLSearchParams(window.location.search);
+  q.set("country", country);
+  q.set("line", line);
+  q.set("version", version);
+  window.history.replaceState(null, "", `${window.location.pathname}?${q.toString()}`);
+}
+
 export function useWidth<T extends HTMLElement>(): [React.RefObject<T | null>, number] {
   const ref = useRef<T>(null);
   const [w, setW] = useState(0);

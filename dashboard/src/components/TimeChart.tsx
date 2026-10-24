@@ -11,6 +11,7 @@ export interface TimeSeries {
   values: Series;
   area?: boolean;
   faded?: boolean;
+  width?: number;
 }
 
 interface Props {
@@ -23,7 +24,10 @@ interface Props {
   valueFormat?: (v: number | null) => string;
   zero?: boolean;
   band?: { from: number; to: number; label: string };
+  markers?: { i: number; label: string }[];
   directLabels?: boolean;
+  draw?: boolean; // lines draw themselves in when the chart scrolls into view
+  strokeWidth?: number;
   ariaLabel: string;
   footer?: ReactNode;
 }
@@ -32,7 +36,7 @@ const M = { top: 12, right: 92, bottom: 26, left: 40 };
 
 export function TimeChart({
   start, series, height = 240, range, yDomain, yFormat = (v) => `${v}`, valueFormat, zero,
-  band, directLabels = true, ariaLabel,
+  band, markers = [], directLabels = true, draw, strokeWidth = 2, ariaLabel,
 }: Props) {
   const [ref, width] = useWidth<HTMLDivElement>();
   const [hover, setHover] = useState<number | null>(null);
@@ -114,14 +118,24 @@ export function TimeChart({
                 <text y={18} textAnchor="middle">{t.toLocaleDateString("en-GB", { month: "short", year: t.getUTCMonth() === 0 || ticksX.length < 6 ? "2-digit" : undefined, timeZone: "UTC" })}</text>
               </g>
             ))}
-            {series.map((s) => (
-              <g key={s.key} opacity={s.faded ? 0.25 : 1} style={{ transition: "opacity 0.25s" }}>
-                {s.area && <path d={mkArea(visible(s.values)) ?? ""} fill={s.color} opacity={0.12} />}
-                <path d={mkLine(visible(s.values)) ?? ""} fill="none" stroke={s.color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+            {markers.filter((m) => m.i >= i0 && m.i <= i1).map((m) => (
+              <g key={m.label} pointerEvents="none">
+                <line x1={xi(m.i)} x2={xi(m.i)} y1={0} y2={innerH} stroke="var(--ink-2)" strokeWidth={1} />
+                <text x={xi(m.i) + 6} y={band ? 28 : 12} className="annot-strong">{m.label}</text>
               </g>
             ))}
-            {labels.map((d) => (
-              <g key={d.s.key}>
+            {series.map((s, k) => (
+              <g key={s.key} opacity={s.faded ? 0.25 : 1} style={{ transition: "opacity 0.25s" }}>
+                {s.area && <path d={mkArea(visible(s.values)) ?? ""} fill={s.color} opacity={0.12} />}
+                <path
+                  d={mkLine(visible(s.values)) ?? ""} fill="none" stroke={s.color} strokeWidth={s.width ?? strokeWidth}
+                  strokeLinejoin="round" strokeLinecap="round"
+                  {...(draw ? { pathLength: 1, className: "draw", style: { animationDelay: `${k * 120}ms` } } : {})}
+                />
+              </g>
+            ))}
+            {labels.map((d, k) => (
+              <g key={d.s.key} className={draw ? "draw-fade" : undefined} style={draw ? { animationDelay: `${900 + k * 120}ms` } : undefined}>
                 <circle cx={xi(d.i)} cy={d.ty} r={4} fill={d.s.color} stroke="var(--ring)" strokeWidth={2} />
                 {Math.abs(d.ly - d.ty) > 3 && <line x1={xi(d.i) + 6} x2={innerW + 8} y1={d.ty} y2={d.ly} stroke="var(--axis)" />}
                 <text x={innerW + 10} y={d.ly} dy="0.32em" className="direct-label">{d.s.label}</text>
