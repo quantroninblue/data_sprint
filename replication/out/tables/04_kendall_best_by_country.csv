@@ -1,0 +1,1563 @@
+spec,iso2,country,continent,variable,best_lag,tau_best,tau_lag0,n_pairs,at_boundary
+paper,AO,Angola,Africa,grocery,15,-0.129,-0.072,111,FALSE
+paper,AO,Angola,Africa,parks,9,-0.141,-0.128,117,FALSE
+paper,AO,Angola,Africa,residential,11,0.148,0.123,115,FALSE
+paper,AO,Angola,Africa,retail,14,-0.158,-0.137,112,FALSE
+paper,AO,Angola,Africa,transit,2,-0.177,-0.147,124,FALSE
+paper,AO,Angola,Africa,workplaces,11,-0.165,-0.021,115,FALSE
+paper,BJ,Benin,Africa,grocery,-22,-0.183,-0.153,104,FALSE
+paper,BJ,Benin,Africa,parks,23,-0.207,-0.019,103,FALSE
+paper,BJ,Benin,Africa,residential,-27,0.201,0.166,99,FALSE
+paper,BJ,Benin,Africa,retail,-26,-0.171,-0.127,100,FALSE
+paper,BJ,Benin,Africa,transit,-25,-0.216,-0.212,101,FALSE
+paper,BJ,Benin,Africa,workplaces,-25,-0.145,-0.095,101,FALSE
+paper,BW,Botswana,Africa,grocery,5,-0.099,-0.022,121,FALSE
+paper,BW,Botswana,Africa,parks,-3,0.104,0.06,123,FALSE
+paper,BW,Botswana,Africa,residential,4,0.193,0.128,122,FALSE
+paper,BW,Botswana,Africa,retail,4,-0.146,-0.064,122,FALSE
+paper,BW,Botswana,Africa,transit,5,-0.169,-0.06,121,FALSE
+paper,BW,Botswana,Africa,workplaces,8,-0.155,-0.114,118,FALSE
+paper,BF,Burkina Faso,Africa,grocery,4,-0.519,-0.477,122,FALSE
+paper,BF,Burkina Faso,Africa,parks,4,-0.49,-0.411,122,FALSE
+paper,BF,Burkina Faso,Africa,residential,1,0.591,0.588,125,FALSE
+paper,BF,Burkina Faso,Africa,retail,4,-0.552,-0.518,122,FALSE
+paper,BF,Burkina Faso,Africa,transit,4,-0.603,-0.528,122,FALSE
+paper,BF,Burkina Faso,Africa,workplaces,1,-0.447,-0.445,125,FALSE
+paper,CM,Cameroon,Africa,grocery,-1,-0.215,-0.19,125,FALSE
+paper,CM,Cameroon,Africa,parks,-1,-0.278,-0.238,125,FALSE
+paper,CM,Cameroon,Africa,residential,-1,0.244,0.227,125,FALSE
+paper,CM,Cameroon,Africa,retail,-1,-0.218,-0.2,125,FALSE
+paper,CM,Cameroon,Africa,transit,-1,-0.212,-0.188,125,FALSE
+paper,CM,Cameroon,Africa,workplaces,7,-0.207,-0.201,119,FALSE
+paper,CV,Cape Verde,Africa,grocery,-19,-0.385,-0.165,107,FALSE
+paper,CV,Cape Verde,Africa,parks,-19,-0.414,-0.227,107,FALSE
+paper,CV,Cape Verde,Africa,residential,-24,0.457,0.244,86,FALSE
+paper,CV,Cape Verde,Africa,retail,-28,-0.394,-0.186,98,TRUE
+paper,CV,Cape Verde,Africa,transit,-28,-0.401,-0.23,98,TRUE
+paper,CV,Cape Verde,Africa,workplaces,-28,-0.391,-0.17,98,TRUE
+paper,CI,Côte d'Ivoire,Africa,grocery,28,0.329,-0.07,98,TRUE
+paper,CI,Côte d'Ivoire,Africa,parks,-4,-0.322,-0.27,122,FALSE
+paper,CI,Côte d'Ivoire,Africa,residential,-15,0.269,0.253,111,FALSE
+paper,CI,Côte d'Ivoire,Africa,retail,28,0.296,-0.178,98,TRUE
+paper,CI,Côte d'Ivoire,Africa,transit,-11,-0.268,-0.201,115,FALSE
+paper,CI,Côte d'Ivoire,Africa,workplaces,-15,-0.27,-0.185,111,FALSE
+paper,EG,Egypt,Africa,grocery,28,0.336,-0.039,98,TRUE
+paper,EG,Egypt,Africa,parks,-28,-0.393,-0.212,98,TRUE
+paper,EG,Egypt,Africa,residential,-21,0.391,0.241,105,FALSE
+paper,EG,Egypt,Africa,retail,-21,-0.417,-0.289,105,FALSE
+paper,EG,Egypt,Africa,transit,-21,-0.35,-0.217,105,FALSE
+paper,EG,Egypt,Africa,workplaces,-20,-0.33,-0.142,106,FALSE
+paper,GA,Gabon,Africa,grocery,-28,-0.351,-0.208,98,TRUE
+paper,GA,Gabon,Africa,parks,-10,-0.334,-0.08,116,FALSE
+paper,GA,Gabon,Africa,residential,-28,0.464,0.416,98,TRUE
+paper,GA,Gabon,Africa,retail,-24,-0.344,-0.143,102,FALSE
+paper,GA,Gabon,Africa,transit,-19,-0.322,-0.131,107,FALSE
+paper,GA,Gabon,Africa,workplaces,-28,-0.493,-0.284,98,TRUE
+paper,GH,Ghana,Africa,grocery,-26,-0.213,-0.019,100,FALSE
+paper,GH,Ghana,Africa,parks,-23,-0.239,-0.167,103,FALSE
+paper,GH,Ghana,Africa,residential,-23,0.27,0.18,103,FALSE
+paper,GH,Ghana,Africa,retail,-26,-0.222,-0.16,100,FALSE
+paper,GH,Ghana,Africa,transit,-26,-0.231,-0.16,100,FALSE
+paper,GH,Ghana,Africa,workplaces,-23,-0.185,-0.067,103,FALSE
+paper,GW,Guinea-Bissau,Africa,parks,26,0.405,-0.035,52,FALSE
+paper,GW,Guinea-Bissau,Africa,retail,-6,-0.438,-0.342,53,FALSE
+paper,GW,Guinea-Bissau,Africa,workplaces,-28,-0.3,-0.242,98,TRUE
+paper,KE,Kenya,Africa,grocery,-24,-0.389,-0.211,102,FALSE
+paper,KE,Kenya,Africa,parks,-28,-0.461,-0.223,98,TRUE
+paper,KE,Kenya,Africa,residential,-28,0.444,0.287,98,TRUE
+paper,KE,Kenya,Africa,retail,-28,-0.403,-0.178,98,TRUE
+paper,KE,Kenya,Africa,transit,-27,-0.401,-0.185,99,FALSE
+paper,KE,Kenya,Africa,workplaces,-24,-0.316,-0.212,102,FALSE
+paper,LY,Libya,Africa,grocery,-26,0.303,0.152,100,FALSE
+paper,LY,Libya,Africa,parks,28,0.216,0.058,98,TRUE
+paper,LY,Libya,Africa,residential,-9,0.145,0.091,117,FALSE
+paper,LY,Libya,Africa,retail,26,0.209,-0.073,100,FALSE
+paper,LY,Libya,Africa,transit,28,0.236,-0.139,98,TRUE
+paper,LY,Libya,Africa,workplaces,-9,-0.166,-0.06,117,FALSE
+paper,ML,Mali,Africa,grocery,-25,-0.452,-0.222,101,FALSE
+paper,ML,Mali,Africa,parks,-25,-0.388,-0.153,101,FALSE
+paper,ML,Mali,Africa,residential,-26,0.506,0.384,100,FALSE
+paper,ML,Mali,Africa,retail,-27,-0.486,-0.259,99,FALSE
+paper,ML,Mali,Africa,transit,-17,-0.58,-0.497,109,FALSE
+paper,ML,Mali,Africa,workplaces,-22,-0.435,-0.264,104,FALSE
+paper,MU,Mauritius,Africa,grocery,-25,0.45,-0.386,101,FALSE
+paper,MU,Mauritius,Africa,parks,2,-0.482,-0.453,124,FALSE
+paper,MU,Mauritius,Africa,residential,4,0.479,0.446,122,FALSE
+paper,MU,Mauritius,Africa,retail,2,-0.474,-0.448,124,FALSE
+paper,MU,Mauritius,Africa,transit,2,-0.505,-0.452,124,FALSE
+paper,MU,Mauritius,Africa,workplaces,3,-0.507,-0.435,123,FALSE
+paper,MA,Morocco,Africa,grocery,-7,-0.531,-0.46,119,FALSE
+paper,MA,Morocco,Africa,parks,-8,-0.581,-0.506,118,FALSE
+paper,MA,Morocco,Africa,residential,-4,0.646,0.587,122,FALSE
+paper,MA,Morocco,Africa,retail,-7,-0.553,-0.485,119,FALSE
+paper,MA,Morocco,Africa,transit,-7,-0.593,-0.52,119,FALSE
+paper,MA,Morocco,Africa,workplaces,-10,-0.57,-0.458,116,FALSE
+paper,MZ,Mozambique,Africa,grocery,-28,-0.173,-0.141,98,TRUE
+paper,MZ,Mozambique,Africa,parks,0,-0.426,-0.426,126,FALSE
+paper,MZ,Mozambique,Africa,residential,-25,0.309,0.295,101,FALSE
+paper,MZ,Mozambique,Africa,retail,-28,-0.32,-0.287,98,TRUE
+paper,MZ,Mozambique,Africa,transit,0,-0.299,-0.299,126,FALSE
+paper,MZ,Mozambique,Africa,workplaces,-24,-0.277,-0.171,102,FALSE
+paper,NA,Namibia,Africa,grocery,-16,0.323,0.071,110,FALSE
+paper,NA,Namibia,Africa,parks,21,-0.262,0.031,105,FALSE
+paper,NA,Namibia,Africa,residential,20,0.223,0.017,106,FALSE
+paper,NA,Namibia,Africa,retail,20,-0.243,0.008,106,FALSE
+paper,NA,Namibia,Africa,transit,17,-0.232,-0.036,109,FALSE
+paper,NA,Namibia,Africa,workplaces,-13,0.223,-0.012,113,FALSE
+paper,NE,Niger,Africa,grocery,-7,-0.457,-0.331,119,FALSE
+paper,NE,Niger,Africa,parks,-2,-0.571,-0.543,124,FALSE
+paper,NE,Niger,Africa,residential,-2,0.594,0.537,124,FALSE
+paper,NE,Niger,Africa,retail,-4,-0.594,-0.474,122,FALSE
+paper,NE,Niger,Africa,transit,1,-0.582,-0.562,125,FALSE
+paper,NE,Niger,Africa,workplaces,-2,-0.493,-0.407,124,FALSE
+paper,NG,Nigeria,Africa,grocery,-27,-0.422,-0.229,99,FALSE
+paper,NG,Nigeria,Africa,parks,-28,-0.506,-0.308,98,TRUE
+paper,NG,Nigeria,Africa,residential,-28,0.538,0.314,98,TRUE
+paper,NG,Nigeria,Africa,retail,-28,-0.473,-0.236,98,TRUE
+paper,NG,Nigeria,Africa,transit,-28,-0.44,-0.222,98,TRUE
+paper,NG,Nigeria,Africa,workplaces,-28,-0.455,-0.235,98,TRUE
+paper,RW,Rwanda,Africa,grocery,-1,-0.277,-0.258,125,FALSE
+paper,RW,Rwanda,Africa,parks,1,-0.278,-0.261,125,FALSE
+paper,RW,Rwanda,Africa,residential,-1,0.287,0.263,125,FALSE
+paper,RW,Rwanda,Africa,retail,-1,-0.284,-0.257,125,FALSE
+paper,RW,Rwanda,Africa,transit,2,-0.262,-0.241,124,FALSE
+paper,RW,Rwanda,Africa,workplaces,-1,-0.253,-0.229,125,FALSE
+paper,SN,Senegal,Africa,grocery,-24,-0.486,-0.257,102,FALSE
+paper,SN,Senegal,Africa,parks,-28,-0.593,-0.371,98,TRUE
+paper,SN,Senegal,Africa,residential,-28,0.542,0.333,98,TRUE
+paper,SN,Senegal,Africa,retail,-28,-0.477,-0.266,98,TRUE
+paper,SN,Senegal,Africa,transit,-24,-0.527,-0.328,102,FALSE
+paper,SN,Senegal,Africa,workplaces,-28,-0.418,-0.262,98,TRUE
+paper,ZA,South Africa,Africa,grocery,-28,-0.26,-0.096,98,TRUE
+paper,ZA,South Africa,Africa,parks,-27,-0.46,-0.238,99,FALSE
+paper,ZA,South Africa,Africa,residential,-28,0.402,0.213,98,TRUE
+paper,ZA,South Africa,Africa,retail,-28,-0.294,-0.114,98,TRUE
+paper,ZA,South Africa,Africa,transit,-28,-0.345,-0.178,98,TRUE
+paper,ZA,South Africa,Africa,workplaces,-28,-0.361,-0.184,98,TRUE
+paper,TZ,Tanzania,Africa,grocery,16,-0.395,-0.161,110,FALSE
+paper,TZ,Tanzania,Africa,parks,23,-0.392,-0.178,103,FALSE
+paper,TZ,Tanzania,Africa,residential,19,0.406,0.212,107,FALSE
+paper,TZ,Tanzania,Africa,retail,16,-0.39,-0.211,110,FALSE
+paper,TZ,Tanzania,Africa,transit,16,-0.398,-0.166,110,FALSE
+paper,TZ,Tanzania,Africa,workplaces,14,-0.37,-0.233,112,FALSE
+paper,TG,Togo,Africa,grocery,-27,-0.335,-0.165,99,FALSE
+paper,TG,Togo,Africa,parks,28,0.326,-0.106,98,TRUE
+paper,TG,Togo,Africa,residential,-27,0.38,0.283,99,FALSE
+paper,TG,Togo,Africa,retail,-27,-0.348,-0.213,99,FALSE
+paper,TG,Togo,Africa,transit,2,-0.351,-0.257,124,FALSE
+paper,TG,Togo,Africa,workplaces,26,0.219,-0.162,100,FALSE
+paper,UG,Uganda,Africa,grocery,-26,-0.345,-0.151,100,FALSE
+paper,UG,Uganda,Africa,parks,-24,-0.508,-0.358,102,FALSE
+paper,UG,Uganda,Africa,residential,-28,0.388,0.182,98,TRUE
+paper,UG,Uganda,Africa,retail,-28,-0.348,-0.156,98,TRUE
+paper,UG,Uganda,Africa,transit,-28,-0.405,-0.193,98,TRUE
+paper,UG,Uganda,Africa,workplaces,-28,-0.337,-0.199,98,TRUE
+paper,ZM,Zambia,Africa,grocery,28,0.296,-0.049,98,TRUE
+paper,ZM,Zambia,Africa,parks,27,0.353,-0.14,99,FALSE
+paper,ZM,Zambia,Africa,residential,8,0.408,0.364,118,FALSE
+paper,ZM,Zambia,Africa,retail,-26,-0.283,-0.269,100,FALSE
+paper,ZM,Zambia,Africa,transit,-26,-0.311,-0.29,100,FALSE
+paper,ZM,Zambia,Africa,workplaces,-21,-0.3,-0.189,105,FALSE
+paper,ZW,Zimbabwe,Africa,grocery,-11,-0.149,-0.074,115,FALSE
+paper,ZW,Zimbabwe,Africa,parks,-11,-0.123,-0.082,115,FALSE
+paper,ZW,Zimbabwe,Africa,residential,6,0.149,0.131,120,FALSE
+paper,ZW,Zimbabwe,Africa,retail,-11,-0.15,-0.098,115,FALSE
+paper,ZW,Zimbabwe,Africa,transit,-11,-0.146,-0.112,115,FALSE
+paper,ZW,Zimbabwe,Africa,workplaces,10,-0.125,-0.068,116,FALSE
+paper,AF,Afghanistan,Asia,grocery,-13,-0.457,-0.318,81,FALSE
+paper,AF,Afghanistan,Asia,parks,16,-0.618,-0.517,78,FALSE
+paper,AF,Afghanistan,Asia,residential,11,0.536,0.47,83,FALSE
+paper,AF,Afghanistan,Asia,retail,-13,-0.495,-0.399,81,FALSE
+paper,AF,Afghanistan,Asia,transit,-5,-0.521,-0.45,89,FALSE
+paper,AF,Afghanistan,Asia,workplaces,-13,-0.455,-0.371,81,FALSE
+paper,BH,Bahrain,Asia,grocery,-28,-0.399,-0.225,98,TRUE
+paper,BH,Bahrain,Asia,parks,-28,-0.393,-0.199,98,TRUE
+paper,BH,Bahrain,Asia,residential,-28,0.659,0.423,98,TRUE
+paper,BH,Bahrain,Asia,retail,-28,-0.431,-0.19,98,TRUE
+paper,BH,Bahrain,Asia,transit,-28,-0.412,-0.215,98,TRUE
+paper,BH,Bahrain,Asia,workplaces,-28,-0.456,-0.234,98,TRUE
+paper,BD,Bangladesh,Asia,grocery,-27,-0.409,-0.173,99,FALSE
+paper,BD,Bangladesh,Asia,parks,-28,-0.623,-0.322,98,TRUE
+paper,BD,Bangladesh,Asia,residential,-28,0.439,0.163,98,TRUE
+paper,BD,Bangladesh,Asia,retail,-28,-0.417,-0.151,98,TRUE
+paper,BD,Bangladesh,Asia,transit,-28,-0.404,-0.144,98,TRUE
+paper,BD,Bangladesh,Asia,workplaces,-22,-0.384,-0.161,104,FALSE
+paper,KH,Cambodia,Asia,grocery,-24,0.512,-0.144,102,FALSE
+paper,KH,Cambodia,Asia,parks,-28,0.484,-0.244,98,TRUE
+paper,KH,Cambodia,Asia,residential,-25,-0.518,0.201,101,FALSE
+paper,KH,Cambodia,Asia,retail,-24,0.504,-0.196,102,FALSE
+paper,KH,Cambodia,Asia,transit,-28,0.489,-0.124,98,TRUE
+paper,KH,Cambodia,Asia,workplaces,-27,0.521,-0.04,99,FALSE
+paper,GE,Georgia,Asia,grocery,5,-0.609,-0.548,89,FALSE
+paper,GE,Georgia,Asia,parks,-6,-0.548,-0.47,88,FALSE
+paper,GE,Georgia,Asia,residential,-8,0.592,0.561,86,FALSE
+paper,GE,Georgia,Asia,retail,-6,-0.606,-0.576,88,FALSE
+paper,GE,Georgia,Asia,transit,5,-0.622,-0.58,89,FALSE
+paper,GE,Georgia,Asia,workplaces,-2,-0.589,-0.562,92,FALSE
+paper,IN,India,Asia,grocery,28,0.598,0.068,98,TRUE
+paper,IN,India,Asia,parks,-28,-0.652,-0.426,98,TRUE
+paper,IN,India,Asia,residential,28,-0.418,0.117,98,TRUE
+paper,IN,India,Asia,retail,-28,-0.583,-0.235,98,TRUE
+paper,IN,India,Asia,transit,28,0.566,-0.023,98,TRUE
+paper,IN,India,Asia,workplaces,28,0.444,-0.077,98,TRUE
+paper,ID,Indonesia,Asia,grocery,-25,-0.337,-0.169,101,FALSE
+paper,ID,Indonesia,Asia,parks,-26,-0.495,-0.281,100,FALSE
+paper,ID,Indonesia,Asia,residential,-22,0.615,0.372,104,FALSE
+paper,ID,Indonesia,Asia,retail,-25,-0.492,-0.271,101,FALSE
+paper,ID,Indonesia,Asia,transit,-18,-0.55,-0.324,108,FALSE
+paper,ID,Indonesia,Asia,workplaces,-22,-0.571,-0.358,104,FALSE
+paper,IQ,Iraq,Asia,grocery,28,0.327,-0.145,98,TRUE
+paper,IQ,Iraq,Asia,parks,28,0.334,-0.183,98,TRUE
+paper,IQ,Iraq,Asia,residential,28,-0.304,0.224,98,TRUE
+paper,IQ,Iraq,Asia,retail,28,0.362,-0.165,98,TRUE
+paper,IQ,Iraq,Asia,transit,28,0.325,-0.168,98,TRUE
+paper,IQ,Iraq,Asia,workplaces,28,0.316,-0.19,98,TRUE
+paper,IL,Israel,Asia,grocery,-28,0.413,-0.321,98,TRUE
+paper,IL,Israel,Asia,parks,-1,-0.536,-0.49,125,FALSE
+paper,IL,Israel,Asia,residential,0,0.533,0.533,126,FALSE
+paper,IL,Israel,Asia,retail,1,-0.575,-0.54,125,FALSE
+paper,IL,Israel,Asia,transit,-1,-0.6,-0.592,125,FALSE
+paper,IL,Israel,Asia,workplaces,0,-0.529,-0.529,126,FALSE
+paper,JP,Japan,Asia,grocery,25,-0.372,-0.109,101,FALSE
+paper,JP,Japan,Asia,parks,-16,0.287,0.022,110,FALSE
+paper,JP,Japan,Asia,residential,14,0.68,0.411,112,FALSE
+paper,JP,Japan,Asia,retail,15,-0.678,-0.392,111,FALSE
+paper,JP,Japan,Asia,transit,15,-0.688,-0.422,111,FALSE
+paper,JP,Japan,Asia,workplaces,14,-0.736,-0.419,112,FALSE
+paper,JO,Jordan,Asia,grocery,4,-0.275,-0.176,122,FALSE
+paper,JO,Jordan,Asia,parks,3,-0.337,-0.289,123,FALSE
+paper,JO,Jordan,Asia,residential,3,0.367,0.3,123,FALSE
+paper,JO,Jordan,Asia,retail,4,-0.343,-0.285,122,FALSE
+paper,JO,Jordan,Asia,transit,4,-0.369,-0.298,122,FALSE
+paper,JO,Jordan,Asia,workplaces,3,-0.395,-0.312,123,FALSE
+paper,KZ,Kazakhstan,Asia,grocery,-28,-0.33,-0.179,98,TRUE
+paper,KZ,Kazakhstan,Asia,parks,28,0.436,0.057,98,TRUE
+paper,KZ,Kazakhstan,Asia,residential,28,-0.369,0.185,98,TRUE
+paper,KZ,Kazakhstan,Asia,retail,28,0.359,-0.236,98,TRUE
+paper,KZ,Kazakhstan,Asia,transit,28,0.355,-0.148,98,TRUE
+paper,KZ,Kazakhstan,Asia,workplaces,-23,-0.331,-0.232,103,FALSE
+paper,KW,Kuwait,Asia,grocery,1,-0.739,-0.723,125,FALSE
+paper,KW,Kuwait,Asia,parks,1,-0.693,-0.684,125,FALSE
+paper,KW,Kuwait,Asia,residential,-3,0.72,0.699,123,FALSE
+paper,KW,Kuwait,Asia,retail,-15,-0.725,-0.691,111,FALSE
+paper,KW,Kuwait,Asia,transit,0,-0.682,-0.682,126,FALSE
+paper,KW,Kuwait,Asia,workplaces,-4,-0.714,-0.703,122,FALSE
+paper,KG,Kyrgyzstan,Asia,grocery,28,0.361,-0.226,98,TRUE
+paper,KG,Kyrgyzstan,Asia,parks,28,0.41,-0.049,98,TRUE
+paper,KG,Kyrgyzstan,Asia,residential,28,-0.374,0.142,98,TRUE
+paper,KG,Kyrgyzstan,Asia,retail,28,0.387,-0.219,98,TRUE
+paper,KG,Kyrgyzstan,Asia,transit,28,0.326,-0.246,98,TRUE
+paper,KG,Kyrgyzstan,Asia,workplaces,28,0.314,-0.221,98,TRUE
+paper,LA,Laos,Asia,grocery,11,-0.42,-0.292,115,FALSE
+paper,LA,Laos,Asia,parks,11,-0.382,-0.249,115,FALSE
+paper,LA,Laos,Asia,residential,8,0.413,0.304,118,FALSE
+paper,LA,Laos,Asia,retail,10,-0.412,-0.296,116,FALSE
+paper,LA,Laos,Asia,transit,10,-0.404,-0.262,116,FALSE
+paper,LA,Laos,Asia,workplaces,-26,0.435,-0.258,100,FALSE
+paper,LB,Lebanon,Asia,grocery,-22,0.314,-0.17,104,FALSE
+paper,LB,Lebanon,Asia,parks,-28,0.295,-0.139,98,TRUE
+paper,LB,Lebanon,Asia,residential,-24,-0.309,0.251,102,FALSE
+paper,LB,Lebanon,Asia,retail,4,-0.298,-0.26,122,FALSE
+paper,LB,Lebanon,Asia,transit,7,-0.351,-0.28,119,FALSE
+paper,LB,Lebanon,Asia,workplaces,5,-0.303,-0.227,121,FALSE
+paper,MY,Malaysia,Asia,grocery,7,-0.599,-0.477,119,FALSE
+paper,MY,Malaysia,Asia,parks,6,-0.642,-0.533,120,FALSE
+paper,MY,Malaysia,Asia,residential,5,0.665,0.568,121,FALSE
+paper,MY,Malaysia,Asia,retail,6,-0.606,-0.527,120,FALSE
+paper,MY,Malaysia,Asia,transit,7,-0.665,-0.554,119,FALSE
+paper,MY,Malaysia,Asia,workplaces,4,-0.653,-0.592,122,FALSE
+paper,MN,Mongolia,Asia,grocery,17,0.31,0.126,109,FALSE
+paper,MN,Mongolia,Asia,parks,17,0.297,0.105,109,FALSE
+paper,MN,Mongolia,Asia,residential,10,-0.292,-0.108,116,FALSE
+paper,MN,Mongolia,Asia,retail,16,0.276,0.096,110,FALSE
+paper,MN,Mongolia,Asia,transit,16,0.285,0.103,110,FALSE
+paper,MN,Mongolia,Asia,workplaces,26,0.301,0.156,100,FALSE
+paper,MM,Myanmar (Burma),Asia,grocery,2,-0.444,-0.429,124,FALSE
+paper,MM,Myanmar (Burma),Asia,parks,-1,-0.476,-0.433,125,FALSE
+paper,MM,Myanmar (Burma),Asia,residential,2,0.438,0.433,124,FALSE
+paper,MM,Myanmar (Burma),Asia,retail,2,-0.442,-0.43,124,FALSE
+paper,MM,Myanmar (Burma),Asia,transit,2,-0.437,-0.428,124,FALSE
+paper,MM,Myanmar (Burma),Asia,workplaces,-3,-0.416,-0.403,123,FALSE
+paper,NP,Nepal,Asia,grocery,28,0.365,0.017,98,TRUE
+paper,NP,Nepal,Asia,parks,28,0.337,-0.002,98,TRUE
+paper,NP,Nepal,Asia,residential,28,-0.329,0.027,98,TRUE
+paper,NP,Nepal,Asia,retail,28,0.34,0.014,98,TRUE
+paper,NP,Nepal,Asia,transit,28,0.356,0.011,98,TRUE
+paper,NP,Nepal,Asia,workplaces,28,0.322,-0.027,98,TRUE
+paper,OM,Oman,Asia,grocery,-26,-0.435,-0.274,100,FALSE
+paper,OM,Oman,Asia,parks,-22,-0.519,-0.314,104,FALSE
+paper,OM,Oman,Asia,residential,-24,0.627,0.322,102,FALSE
+paper,OM,Oman,Asia,retail,-28,-0.407,-0.188,98,TRUE
+paper,OM,Oman,Asia,transit,-28,-0.438,-0.223,98,TRUE
+paper,OM,Oman,Asia,workplaces,-24,-0.456,-0.241,102,FALSE
+paper,PK,Pakistan,Asia,grocery,28,0.386,-0.099,98,TRUE
+paper,PK,Pakistan,Asia,parks,28,0.372,-0.142,98,TRUE
+paper,PK,Pakistan,Asia,residential,28,-0.356,0.138,98,TRUE
+paper,PK,Pakistan,Asia,retail,28,0.421,-0.105,98,TRUE
+paper,PK,Pakistan,Asia,transit,28,0.401,-0.111,98,TRUE
+paper,PK,Pakistan,Asia,workplaces,-22,-0.3,-0.172,104,FALSE
+paper,PH,Philippines,Asia,grocery,28,0.228,-0.187,98,TRUE
+paper,PH,Philippines,Asia,parks,-26,-0.404,-0.313,100,FALSE
+paper,PH,Philippines,Asia,residential,-6,0.309,0.264,120,FALSE
+paper,PH,Philippines,Asia,retail,-25,-0.344,-0.267,101,FALSE
+paper,PH,Philippines,Asia,transit,28,0.267,-0.21,98,TRUE
+paper,PH,Philippines,Asia,workplaces,27,0.274,-0.212,99,FALSE
+paper,QA,Qatar,Asia,grocery,-28,-0.53,-0.079,98,TRUE
+paper,QA,Qatar,Asia,parks,-28,-0.607,-0.282,98,TRUE
+paper,QA,Qatar,Asia,residential,-27,0.694,0.392,99,FALSE
+paper,QA,Qatar,Asia,retail,-28,-0.585,-0.259,98,TRUE
+paper,QA,Qatar,Asia,transit,-28,-0.618,-0.252,98,TRUE
+paper,QA,Qatar,Asia,workplaces,-28,-0.681,-0.385,98,TRUE
+paper,SA,Saudi Arabia,Asia,grocery,-23,-0.549,-0.291,103,FALSE
+paper,SA,Saudi Arabia,Asia,parks,-24,-0.637,-0.336,102,FALSE
+paper,SA,Saudi Arabia,Asia,residential,-25,0.662,0.343,101,FALSE
+paper,SA,Saudi Arabia,Asia,retail,-23,-0.555,-0.242,103,FALSE
+paper,SA,Saudi Arabia,Asia,transit,-23,-0.623,-0.291,103,FALSE
+paper,SA,Saudi Arabia,Asia,workplaces,-25,-0.628,-0.3,101,FALSE
+paper,SG,Singapore,Asia,grocery,-3,-0.497,-0.475,123,FALSE
+paper,SG,Singapore,Asia,parks,2,-0.752,-0.71,124,FALSE
+paper,SG,Singapore,Asia,residential,-2,0.711,0.682,124,FALSE
+paper,SG,Singapore,Asia,retail,1,-0.754,-0.738,125,FALSE
+paper,SG,Singapore,Asia,transit,-5,-0.748,-0.741,121,FALSE
+paper,SG,Singapore,Asia,workplaces,-2,-0.716,-0.674,124,FALSE
+paper,KR,South Korea,Asia,grocery,-5,-0.367,-0.36,121,FALSE
+paper,KR,South Korea,Asia,parks,-19,-0.358,-0.209,107,FALSE
+paper,KR,South Korea,Asia,residential,1,0.384,0.33,125,FALSE
+paper,KR,South Korea,Asia,retail,1,-0.501,-0.486,125,FALSE
+paper,KR,South Korea,Asia,transit,1,-0.441,-0.421,125,FALSE
+paper,KR,South Korea,Asia,workplaces,3,-0.327,-0.266,123,FALSE
+paper,LK,Sri Lanka,Asia,grocery,-28,-0.396,-0.293,98,TRUE
+paper,LK,Sri Lanka,Asia,parks,-22,-0.402,-0.353,104,FALSE
+paper,LK,Sri Lanka,Asia,residential,-27,0.439,0.257,99,FALSE
+paper,LK,Sri Lanka,Asia,retail,-22,-0.402,-0.299,104,FALSE
+paper,LK,Sri Lanka,Asia,transit,-22,-0.401,-0.316,104,FALSE
+paper,LK,Sri Lanka,Asia,workplaces,-27,-0.434,-0.235,99,FALSE
+paper,TW,Taiwan,Asia,grocery,25,-0.25,-0.105,101,FALSE
+paper,TW,Taiwan,Asia,parks,-21,0.184,-0.001,105,FALSE
+paper,TW,Taiwan,Asia,residential,13,0.315,0.238,113,FALSE
+paper,TW,Taiwan,Asia,retail,-22,0.295,-0.147,104,FALSE
+paper,TW,Taiwan,Asia,transit,-24,0.41,-0.187,102,FALSE
+paper,TW,Taiwan,Asia,workplaces,-12,0.295,0.028,114,FALSE
+paper,TJ,Tajikistan,Asia,grocery,-12,-0.683,-0.585,114,FALSE
+paper,TJ,Tajikistan,Asia,parks,-10,-0.678,-0.55,116,FALSE
+paper,TJ,Tajikistan,Asia,residential,-8,0.701,0.58,118,FALSE
+paper,TJ,Tajikistan,Asia,retail,-11,-0.701,-0.587,115,FALSE
+paper,TJ,Tajikistan,Asia,transit,-12,-0.714,-0.597,114,FALSE
+paper,TJ,Tajikistan,Asia,workplaces,-8,-0.654,-0.588,118,FALSE
+paper,TH,Thailand,Asia,grocery,7,-0.599,-0.482,119,FALSE
+paper,TH,Thailand,Asia,parks,14,-0.664,-0.457,112,FALSE
+paper,TH,Thailand,Asia,residential,13,0.693,0.426,113,FALSE
+paper,TH,Thailand,Asia,retail,12,-0.701,-0.475,114,FALSE
+paper,TH,Thailand,Asia,transit,13,-0.734,-0.464,113,FALSE
+paper,TH,Thailand,Asia,workplaces,11,-0.581,-0.364,115,FALSE
+paper,TR,Turkey,Asia,grocery,-5,-0.29,-0.241,121,FALSE
+paper,TR,Turkey,Asia,parks,-5,-0.483,-0.426,121,FALSE
+paper,TR,Turkey,Asia,residential,-5,0.621,0.597,121,FALSE
+paper,TR,Turkey,Asia,retail,-5,-0.593,-0.568,121,FALSE
+paper,TR,Turkey,Asia,transit,-5,-0.62,-0.593,121,FALSE
+paper,TR,Turkey,Asia,workplaces,2,-0.644,-0.621,124,FALSE
+paper,AE,United Arab Emirates,Asia,grocery,-26,-0.573,-0.303,100,FALSE
+paper,AE,United Arab Emirates,Asia,parks,-28,-0.684,-0.471,98,TRUE
+paper,AE,United Arab Emirates,Asia,residential,-27,0.677,0.441,99,FALSE
+paper,AE,United Arab Emirates,Asia,retail,-28,-0.641,-0.318,98,TRUE
+paper,AE,United Arab Emirates,Asia,transit,-28,-0.691,-0.316,98,TRUE
+paper,AE,United Arab Emirates,Asia,workplaces,-28,-0.646,-0.36,98,TRUE
+paper,VN,Vietnam,Asia,grocery,12,-0.489,-0.23,114,FALSE
+paper,VN,Vietnam,Asia,parks,-25,0.52,-0.165,101,FALSE
+paper,VN,Vietnam,Asia,residential,15,0.539,0.255,111,FALSE
+paper,VN,Vietnam,Asia,retail,12,-0.549,-0.267,114,FALSE
+paper,VN,Vietnam,Asia,transit,14,-0.481,-0.254,112,FALSE
+paper,VN,Vietnam,Asia,workplaces,15,-0.481,-0.182,111,FALSE
+paper,YE,Yemen,Asia,grocery,-16,-0.209,0.064,110,FALSE
+paper,YE,Yemen,Asia,parks,-19,-0.503,-0.324,107,FALSE
+paper,YE,Yemen,Asia,residential,-5,0.645,0.57,121,FALSE
+paper,YE,Yemen,Asia,retail,-16,-0.376,-0.279,110,FALSE
+paper,YE,Yemen,Asia,transit,-28,-0.281,-0.111,98,TRUE
+paper,YE,Yemen,Asia,workplaces,-16,-0.549,-0.328,110,FALSE
+paper,AT,Austria,Europe,grocery,3,-0.583,-0.524,123,FALSE
+paper,AT,Austria,Europe,parks,-1,-0.538,-0.514,125,FALSE
+paper,AT,Austria,Europe,residential,5,0.696,0.623,121,FALSE
+paper,AT,Austria,Europe,retail,3,-0.73,-0.667,123,FALSE
+paper,AT,Austria,Europe,transit,3,-0.765,-0.697,123,FALSE
+paper,AT,Austria,Europe,workplaces,5,-0.691,-0.575,121,FALSE
+paper,BY,Belarus,Europe,grocery,-26,-0.557,-0.245,100,FALSE
+paper,BY,Belarus,Europe,parks,25,0.405,0.217,101,FALSE
+paper,BY,Belarus,Europe,residential,-23,0.556,0.231,103,FALSE
+paper,BY,Belarus,Europe,retail,-26,-0.717,-0.347,100,FALSE
+paper,BY,Belarus,Europe,transit,-24,-0.749,-0.422,102,FALSE
+paper,BY,Belarus,Europe,workplaces,-22,-0.69,-0.373,104,FALSE
+paper,BE,Belgium,Europe,grocery,1,-0.605,-0.584,125,FALSE
+paper,BE,Belgium,Europe,parks,-6,-0.384,-0.341,120,FALSE
+paper,BE,Belgium,Europe,residential,-2,0.725,0.658,124,FALSE
+paper,BE,Belgium,Europe,retail,-6,-0.75,-0.747,120,FALSE
+paper,BE,Belgium,Europe,transit,-2,-0.773,-0.72,124,FALSE
+paper,BE,Belgium,Europe,workplaces,-3,-0.671,-0.585,123,FALSE
+paper,BA,Bosnia and Herzegovina,Europe,grocery,-3,-0.375,-0.309,123,FALSE
+paper,BA,Bosnia and Herzegovina,Europe,parks,28,0.369,-0.073,98,TRUE
+paper,BA,Bosnia and Herzegovina,Europe,residential,-8,0.487,0.445,118,FALSE
+paper,BA,Bosnia and Herzegovina,Europe,retail,-4,-0.468,-0.409,122,FALSE
+paper,BA,Bosnia and Herzegovina,Europe,transit,-3,-0.496,-0.449,123,FALSE
+paper,BA,Bosnia and Herzegovina,Europe,workplaces,-1,-0.49,-0.486,125,FALSE
+paper,BG,Bulgaria,Europe,grocery,27,0.509,-0.185,99,FALSE
+paper,BG,Bulgaria,Europe,parks,26,0.504,-0.038,100,FALSE
+paper,BG,Bulgaria,Europe,residential,28,-0.445,0.207,98,TRUE
+paper,BG,Bulgaria,Europe,retail,27,0.547,-0.223,99,FALSE
+paper,BG,Bulgaria,Europe,transit,28,0.481,-0.262,98,TRUE
+paper,BG,Bulgaria,Europe,workplaces,28,0.378,-0.245,98,TRUE
+paper,HR,Croatia,Europe,grocery,4,-0.553,-0.475,122,FALSE
+paper,HR,Croatia,Europe,parks,2,-0.504,-0.501,124,FALSE
+paper,HR,Croatia,Europe,residential,0,0.657,0.657,126,FALSE
+paper,HR,Croatia,Europe,retail,2,-0.687,-0.661,124,FALSE
+paper,HR,Croatia,Europe,transit,3,-0.709,-0.686,123,FALSE
+paper,HR,Croatia,Europe,workplaces,2,-0.659,-0.636,124,FALSE
+paper,CZ,Czechia,Europe,grocery,3,-0.418,-0.36,123,FALSE
+paper,CZ,Czechia,Europe,parks,22,0.25,-0.21,104,FALSE
+paper,CZ,Czechia,Europe,residential,-1,0.574,0.571,125,FALSE
+paper,CZ,Czechia,Europe,retail,1,-0.596,-0.573,125,FALSE
+paper,CZ,Czechia,Europe,transit,-3,-0.596,-0.596,123,FALSE
+paper,CZ,Czechia,Europe,workplaces,0,-0.571,-0.571,126,FALSE
+paper,DK,Denmark,Europe,grocery,-12,-0.419,-0.171,114,FALSE
+paper,DK,Denmark,Europe,parks,-24,-0.264,0.168,102,FALSE
+paper,DK,Denmark,Europe,residential,-1,0.549,0.539,125,FALSE
+paper,DK,Denmark,Europe,retail,2,-0.479,-0.446,124,FALSE
+paper,DK,Denmark,Europe,transit,2,-0.636,-0.621,124,FALSE
+paper,DK,Denmark,Europe,workplaces,6,-0.509,-0.481,120,FALSE
+paper,EE,Estonia,Europe,grocery,3,-0.499,-0.451,123,FALSE
+paper,EE,Estonia,Europe,parks,-24,-0.24,-0.115,102,FALSE
+paper,EE,Estonia,Europe,residential,-1,0.566,0.49,125,FALSE
+paper,EE,Estonia,Europe,retail,1,-0.602,-0.577,125,FALSE
+paper,EE,Estonia,Europe,transit,-1,-0.614,-0.585,125,FALSE
+paper,EE,Estonia,Europe,workplaces,6,-0.534,-0.446,120,FALSE
+paper,FI,Finland,Europe,grocery,-4,-0.509,-0.381,122,FALSE
+paper,FI,Finland,Europe,parks,-28,-0.397,0.017,98,TRUE
+paper,FI,Finland,Europe,residential,-1,0.664,0.62,125,FALSE
+paper,FI,Finland,Europe,retail,3,-0.702,-0.611,123,FALSE
+paper,FI,Finland,Europe,transit,3,-0.723,-0.656,123,FALSE
+paper,FI,Finland,Europe,workplaces,6,-0.547,-0.471,120,FALSE
+paper,FR,France,Europe,grocery,4,-0.526,-0.417,122,FALSE
+paper,FR,France,Europe,parks,4,-0.434,-0.43,122,FALSE
+paper,FR,France,Europe,residential,0,0.519,0.519,126,FALSE
+paper,FR,France,Europe,retail,1,-0.57,-0.522,125,FALSE
+paper,FR,France,Europe,transit,4,-0.572,-0.539,122,FALSE
+paper,FR,France,Europe,workplaces,0,-0.472,-0.472,126,FALSE
+paper,DE,Germany,Europe,grocery,6,-0.393,-0.358,120,FALSE
+paper,DE,Germany,Europe,parks,-25,-0.325,-0.006,101,FALSE
+paper,DE,Germany,Europe,residential,-1,0.666,0.639,125,FALSE
+paper,DE,Germany,Europe,retail,2,-0.745,-0.7,124,FALSE
+paper,DE,Germany,Europe,transit,2,-0.761,-0.745,124,FALSE
+paper,DE,Germany,Europe,workplaces,6,-0.592,-0.534,120,FALSE
+paper,GR,Greece,Europe,grocery,10,-0.278,-0.122,116,FALSE
+paper,GR,Greece,Europe,parks,-14,-0.199,-0.172,112,FALSE
+paper,GR,Greece,Europe,residential,10,0.403,0.355,116,FALSE
+paper,GR,Greece,Europe,retail,9,-0.415,-0.345,117,FALSE
+paper,GR,Greece,Europe,transit,10,-0.415,-0.343,116,FALSE
+paper,GR,Greece,Europe,workplaces,10,-0.389,-0.306,116,FALSE
+paper,HU,Hungary,Europe,grocery,2,-0.518,-0.464,124,FALSE
+paper,HU,Hungary,Europe,parks,-17,-0.483,-0.267,109,FALSE
+paper,HU,Hungary,Europe,residential,-9,0.606,0.521,117,FALSE
+paper,HU,Hungary,Europe,retail,-5,-0.67,-0.613,121,FALSE
+paper,HU,Hungary,Europe,transit,-2,-0.661,-0.597,124,FALSE
+paper,HU,Hungary,Europe,workplaces,-2,-0.616,-0.542,124,FALSE
+paper,IE,Ireland,Europe,grocery,4,-0.649,-0.639,122,FALSE
+paper,IE,Ireland,Europe,parks,8,-0.223,-0.164,118,FALSE
+paper,IE,Ireland,Europe,residential,-2,0.639,0.627,124,FALSE
+paper,IE,Ireland,Europe,retail,7,-0.778,-0.725,119,FALSE
+paper,IE,Ireland,Europe,transit,-2,-0.741,-0.738,124,FALSE
+paper,IE,Ireland,Europe,workplaces,-2,-0.64,-0.609,124,FALSE
+paper,IT,Italy,Europe,grocery,3,-0.662,-0.614,123,FALSE
+paper,IT,Italy,Europe,parks,2,-0.739,-0.732,124,FALSE
+paper,IT,Italy,Europe,residential,5,0.812,0.726,121,FALSE
+paper,IT,Italy,Europe,retail,7,-0.798,-0.744,119,FALSE
+paper,IT,Italy,Europe,transit,3,-0.801,-0.753,123,FALSE
+paper,IT,Italy,Europe,workplaces,5,-0.791,-0.7,121,FALSE
+paper,LV,Latvia,Europe,grocery,3,-0.509,-0.448,123,FALSE
+paper,LV,Latvia,Europe,parks,-27,-0.209,-0.015,99,FALSE
+paper,LV,Latvia,Europe,residential,5,0.568,0.491,121,FALSE
+paper,LV,Latvia,Europe,retail,3,-0.643,-0.627,123,FALSE
+paper,LV,Latvia,Europe,transit,5,-0.635,-0.579,121,FALSE
+paper,LV,Latvia,Europe,workplaces,5,-0.579,-0.482,121,FALSE
+paper,LI,Liechtenstein,Europe,grocery,11,-0.437,-0.011,38,FALSE
+paper,LI,Liechtenstein,Europe,retail,3,-0.679,-0.48,53,FALSE
+paper,LI,Liechtenstein,Europe,transit,-25,0.488,-0.274,95,FALSE
+paper,LI,Liechtenstein,Europe,workplaces,-27,0.491,-0.184,70,FALSE
+paper,LT,Lithuania,Europe,grocery,-5,-0.458,-0.405,121,FALSE
+paper,LT,Lithuania,Europe,parks,-28,-0.298,-0.008,98,TRUE
+paper,LT,Lithuania,Europe,residential,-2,0.586,0.493,124,FALSE
+paper,LT,Lithuania,Europe,retail,-4,-0.729,-0.722,122,FALSE
+paper,LT,Lithuania,Europe,transit,-3,-0.726,-0.678,123,FALSE
+paper,LT,Lithuania,Europe,workplaces,-2,-0.577,-0.52,124,FALSE
+paper,LU,Luxembourg,Europe,grocery,4,-0.654,-0.494,122,FALSE
+paper,LU,Luxembourg,Europe,parks,-1,-0.481,-0.457,125,FALSE
+paper,LU,Luxembourg,Europe,residential,6,0.741,0.628,118,FALSE
+paper,LU,Luxembourg,Europe,retail,4,-0.739,-0.671,122,FALSE
+paper,LU,Luxembourg,Europe,transit,5,-0.767,-0.67,121,FALSE
+paper,LU,Luxembourg,Europe,workplaces,6,-0.725,-0.592,120,FALSE
+paper,MT,Malta,Europe,grocery,3,-0.505,-0.453,123,FALSE
+paper,MT,Malta,Europe,parks,0,-0.473,-0.473,126,FALSE
+paper,MT,Malta,Europe,residential,0,0.51,0.51,126,FALSE
+paper,MT,Malta,Europe,retail,3,-0.537,-0.512,123,FALSE
+paper,MT,Malta,Europe,transit,3,-0.55,-0.536,123,FALSE
+paper,MT,Malta,Europe,workplaces,3,-0.524,-0.504,123,FALSE
+paper,MD,Moldova,Europe,grocery,28,0.553,-0.059,98,TRUE
+paper,MD,Moldova,Europe,parks,27,0.594,0.093,99,FALSE
+paper,MD,Moldova,Europe,residential,28,-0.486,0.101,98,TRUE
+paper,MD,Moldova,Europe,retail,27,0.595,-0.058,99,FALSE
+paper,MD,Moldova,Europe,transit,28,0.509,-0.098,98,TRUE
+paper,MD,Moldova,Europe,workplaces,28,0.442,-0.131,98,TRUE
+paper,NL,Netherlands,Europe,grocery,4,-0.534,-0.398,122,FALSE
+paper,NL,Netherlands,Europe,parks,-27,-0.387,0.009,99,FALSE
+paper,NL,Netherlands,Europe,residential,-1,0.643,0.608,125,FALSE
+paper,NL,Netherlands,Europe,retail,1,-0.73,-0.681,125,FALSE
+paper,NL,Netherlands,Europe,transit,-2,-0.701,-0.675,124,FALSE
+paper,NL,Netherlands,Europe,workplaces,-2,-0.518,-0.473,124,FALSE
+paper,MK,North Macedonia,Europe,grocery,-4,-0.27,-0.235,122,FALSE
+paper,MK,North Macedonia,Europe,parks,28,0.354,0.043,98,TRUE
+paper,MK,North Macedonia,Europe,residential,-6,0.315,0.272,120,FALSE
+paper,MK,North Macedonia,Europe,retail,-7,-0.308,-0.248,119,FALSE
+paper,MK,North Macedonia,Europe,transit,-6,-0.33,-0.288,120,FALSE
+paper,MK,North Macedonia,Europe,workplaces,4,-0.315,-0.301,122,FALSE
+paper,NO,Norway,Europe,grocery,-4,-0.313,-0.279,119,FALSE
+paper,NO,Norway,Europe,parks,-24,-0.456,-0.106,102,FALSE
+paper,NO,Norway,Europe,residential,7,0.626,0.563,119,FALSE
+paper,NO,Norway,Europe,retail,3,-0.576,-0.496,123,FALSE
+paper,NO,Norway,Europe,transit,6,-0.685,-0.597,120,FALSE
+paper,NO,Norway,Europe,workplaces,7,-0.581,-0.473,119,FALSE
+paper,PL,Poland,Europe,grocery,27,0.434,-0.093,99,FALSE
+paper,PL,Poland,Europe,parks,28,0.487,0.082,98,TRUE
+paper,PL,Poland,Europe,residential,28,-0.461,0.208,98,TRUE
+paper,PL,Poland,Europe,retail,27,0.507,-0.175,99,FALSE
+paper,PL,Poland,Europe,transit,28,0.5,-0.238,98,TRUE
+paper,PL,Poland,Europe,workplaces,28,0.359,-0.23,98,TRUE
+paper,PT,Portugal,Europe,grocery,-4,-0.539,-0.479,122,FALSE
+paper,PT,Portugal,Europe,parks,-5,-0.498,-0.438,121,FALSE
+paper,PT,Portugal,Europe,residential,-1,0.567,0.534,125,FALSE
+paper,PT,Portugal,Europe,retail,-5,-0.597,-0.518,121,FALSE
+paper,PT,Portugal,Europe,transit,1,-0.593,-0.565,125,FALSE
+paper,PT,Portugal,Europe,workplaces,-1,-0.553,-0.533,125,FALSE
+paper,RO,Romania,Europe,grocery,-4,-0.576,-0.457,122,FALSE
+paper,RO,Romania,Europe,parks,-15,-0.503,-0.421,111,FALSE
+paper,RO,Romania,Europe,residential,-9,0.599,0.481,117,FALSE
+paper,RO,Romania,Europe,retail,-4,-0.592,-0.503,122,FALSE
+paper,RO,Romania,Europe,transit,-10,-0.612,-0.522,116,FALSE
+paper,RO,Romania,Europe,workplaces,-9,-0.602,-0.473,117,FALSE
+paper,RU,Russia,Europe,grocery,-28,-0.591,-0.258,98,TRUE
+paper,RU,Russia,Europe,parks,28,0.528,0.056,98,TRUE
+paper,RU,Russia,Europe,residential,-25,0.558,0.216,101,FALSE
+paper,RU,Russia,Europe,retail,-28,-0.662,-0.37,98,TRUE
+paper,RU,Russia,Europe,transit,-28,-0.646,-0.367,98,TRUE
+paper,RU,Russia,Europe,workplaces,-25,-0.542,-0.318,101,FALSE
+paper,RS,Serbia,Europe,grocery,-7,-0.501,-0.444,87,FALSE
+paper,RS,Serbia,Europe,parks,-14,-0.589,-0.425,80,FALSE
+paper,RS,Serbia,Europe,residential,-10,0.624,0.559,84,FALSE
+paper,RS,Serbia,Europe,retail,-7,-0.609,-0.558,87,FALSE
+paper,RS,Serbia,Europe,transit,-7,-0.615,-0.572,87,FALSE
+paper,RS,Serbia,Europe,workplaces,-1,-0.64,-0.611,93,FALSE
+paper,SK,Slovakia,Europe,grocery,3,-0.404,-0.342,123,FALSE
+paper,SK,Slovakia,Europe,parks,-21,-0.446,-0.182,105,FALSE
+paper,SK,Slovakia,Europe,residential,-1,0.564,0.557,125,FALSE
+paper,SK,Slovakia,Europe,retail,3,-0.608,-0.558,123,FALSE
+paper,SK,Slovakia,Europe,transit,1,-0.613,-0.59,125,FALSE
+paper,SK,Slovakia,Europe,workplaces,1,-0.573,-0.568,125,FALSE
+paper,SI,Slovenia,Europe,grocery,4,-0.545,-0.41,122,FALSE
+paper,SI,Slovenia,Europe,parks,1,-0.446,-0.442,125,FALSE
+paper,SI,Slovenia,Europe,residential,6,0.657,0.501,120,FALSE
+paper,SI,Slovenia,Europe,retail,4,-0.625,-0.523,122,FALSE
+paper,SI,Slovenia,Europe,transit,6,-0.678,-0.512,120,FALSE
+paper,SI,Slovenia,Europe,workplaces,6,-0.683,-0.486,120,FALSE
+paper,ES,Spain,Europe,grocery,2,-0.686,-0.612,124,FALSE
+paper,ES,Spain,Europe,parks,2,-0.702,-0.663,124,FALSE
+paper,ES,Spain,Europe,residential,6,0.699,0.679,120,FALSE
+paper,ES,Spain,Europe,retail,2,-0.742,-0.699,124,FALSE
+paper,ES,Spain,Europe,transit,3,-0.752,-0.711,123,FALSE
+paper,ES,Spain,Europe,workplaces,6,-0.726,-0.689,120,FALSE
+paper,SE,Sweden,Europe,grocery,28,0.329,0.101,98,TRUE
+paper,SE,Sweden,Europe,parks,-6,0.548,0.518,120,FALSE
+paper,SE,Sweden,Europe,residential,-14,0.476,0.291,112,FALSE
+paper,SE,Sweden,Europe,retail,27,0.492,0.001,99,FALSE
+paper,SE,Sweden,Europe,transit,-22,-0.378,-0.223,104,FALSE
+paper,SE,Sweden,Europe,workplaces,-14,-0.463,-0.387,112,FALSE
+paper,CH,Switzerland,Europe,grocery,4,-0.387,-0.335,121,FALSE
+paper,CH,Switzerland,Europe,parks,23,0.228,-0.045,103,FALSE
+paper,CH,Switzerland,Europe,residential,6,0.672,0.593,120,FALSE
+paper,CH,Switzerland,Europe,retail,9,-0.761,-0.627,117,FALSE
+paper,CH,Switzerland,Europe,transit,6,-0.703,-0.658,120,FALSE
+paper,CH,Switzerland,Europe,workplaces,6,-0.666,-0.557,120,FALSE
+paper,UA,Ukraine,Europe,grocery,28,0.579,0.002,98,TRUE
+paper,UA,Ukraine,Europe,parks,28,0.58,0.255,98,TRUE
+paper,UA,Ukraine,Europe,residential,28,-0.485,0.081,98,TRUE
+paper,UA,Ukraine,Europe,retail,27,0.552,-0.117,99,FALSE
+paper,UA,Ukraine,Europe,transit,28,0.544,-0.128,98,TRUE
+paper,UA,Ukraine,Europe,workplaces,28,0.436,-0.167,98,TRUE
+paper,GB,United Kingdom,Europe,grocery,4,-0.663,-0.559,122,FALSE
+paper,GB,United Kingdom,Europe,parks,-11,-0.383,-0.245,115,FALSE
+paper,GB,United Kingdom,Europe,residential,0,0.696,0.696,126,FALSE
+paper,GB,United Kingdom,Europe,retail,2,-0.758,-0.647,124,FALSE
+paper,GB,United Kingdom,Europe,transit,0,-0.746,-0.746,126,FALSE
+paper,GB,United Kingdom,Europe,workplaces,0,-0.714,-0.714,126,FALSE
+paper,AG,Antigua and Barbuda,North America,grocery,10,-0.273,-0.158,116,FALSE
+paper,AG,Antigua and Barbuda,North America,parks,11,-0.282,-0.204,115,FALSE
+paper,AG,Antigua and Barbuda,North America,residential,24,0.343,-0.018,56,FALSE
+paper,AG,Antigua and Barbuda,North America,retail,11,-0.25,-0.177,115,FALSE
+paper,AG,Antigua and Barbuda,North America,transit,10,-0.238,-0.178,116,FALSE
+paper,AG,Antigua and Barbuda,North America,workplaces,21,-0.253,-0.172,105,FALSE
+paper,BB,Barbados,North America,grocery,16,-0.463,-0.258,110,FALSE
+paper,BB,Barbados,North America,parks,12,-0.452,-0.331,114,FALSE
+paper,BB,Barbados,North America,residential,11,0.478,0.211,111,FALSE
+paper,BB,Barbados,North America,retail,15,-0.467,-0.299,111,FALSE
+paper,BB,Barbados,North America,transit,15,-0.478,-0.276,111,FALSE
+paper,BB,Barbados,North America,workplaces,12,-0.468,-0.282,114,FALSE
+paper,BZ,Belize,North America,grocery,-24,0.397,-0.2,102,FALSE
+paper,BZ,Belize,North America,parks,13,-0.357,-0.257,113,FALSE
+paper,BZ,Belize,North America,residential,15,0.345,0.169,104,FALSE
+paper,BZ,Belize,North America,retail,13,-0.376,-0.223,113,FALSE
+paper,BZ,Belize,North America,transit,13,-0.391,-0.225,113,FALSE
+paper,BZ,Belize,North America,workplaces,-26,0.343,-0.246,100,FALSE
+paper,CA,Canada,North America,grocery,-3,-0.642,-0.567,123,FALSE
+paper,CA,Canada,North America,parks,-20,-0.521,-0.217,106,FALSE
+paper,CA,Canada,North America,residential,-7,0.691,0.649,119,FALSE
+paper,CA,Canada,North America,retail,-5,-0.761,-0.651,121,FALSE
+paper,CA,Canada,North America,transit,-7,-0.775,-0.703,119,FALSE
+paper,CA,Canada,North America,workplaces,-7,-0.672,-0.634,119,FALSE
+paper,CR,Costa Rica,North America,grocery,10,-0.385,-0.326,116,FALSE
+paper,CR,Costa Rica,North America,parks,3,-0.423,-0.387,123,FALSE
+paper,CR,Costa Rica,North America,residential,8,0.417,0.34,118,FALSE
+paper,CR,Costa Rica,North America,retail,3,-0.381,-0.352,123,FALSE
+paper,CR,Costa Rica,North America,transit,10,-0.433,-0.379,116,FALSE
+paper,CR,Costa Rica,North America,workplaces,14,-0.407,-0.253,112,FALSE
+paper,DO,Dominican Republic,North America,grocery,28,0.443,-0.162,98,TRUE
+paper,DO,Dominican Republic,North America,parks,28,0.469,-0.155,98,TRUE
+paper,DO,Dominican Republic,North America,residential,28,-0.429,0.183,98,TRUE
+paper,DO,Dominican Republic,North America,retail,28,0.485,-0.154,98,TRUE
+paper,DO,Dominican Republic,North America,transit,28,0.463,-0.18,98,TRUE
+paper,DO,Dominican Republic,North America,workplaces,28,0.485,-0.141,98,TRUE
+paper,SV,El Salvador,North America,grocery,-28,-0.501,-0.375,98,TRUE
+paper,SV,El Salvador,North America,parks,-28,-0.535,-0.344,98,TRUE
+paper,SV,El Salvador,North America,residential,-28,0.489,0.286,98,TRUE
+paper,SV,El Salvador,North America,retail,-28,-0.512,-0.324,98,TRUE
+paper,SV,El Salvador,North America,transit,-28,-0.59,-0.429,98,TRUE
+paper,SV,El Salvador,North America,workplaces,-23,-0.423,-0.24,103,FALSE
+paper,GT,Guatemala,North America,grocery,-26,-0.38,-0.266,100,FALSE
+paper,GT,Guatemala,North America,parks,-26,-0.383,-0.252,100,FALSE
+paper,GT,Guatemala,North America,residential,-28,0.384,0.295,98,TRUE
+paper,GT,Guatemala,North America,retail,28,0.32,-0.161,98,TRUE
+paper,GT,Guatemala,North America,transit,-28,-0.314,-0.189,98,TRUE
+paper,GT,Guatemala,North America,workplaces,-23,-0.327,-0.198,103,FALSE
+paper,HT,Haiti,North America,grocery,-28,-0.288,-0.191,98,TRUE
+paper,HT,Haiti,North America,parks,-12,-0.339,-0.239,114,FALSE
+paper,HT,Haiti,North America,residential,2,0.275,0.265,124,FALSE
+paper,HT,Haiti,North America,retail,-25,-0.298,-0.166,101,FALSE
+paper,HT,Haiti,North America,transit,-28,-0.318,-0.16,98,TRUE
+paper,HT,Haiti,North America,workplaces,-15,-0.26,-0.233,111,FALSE
+paper,HN,Honduras,North America,grocery,28,0.273,-0.199,98,TRUE
+paper,HN,Honduras,North America,parks,-18,-0.273,-0.208,108,FALSE
+paper,HN,Honduras,North America,residential,27,-0.374,0.146,99,FALSE
+paper,HN,Honduras,North America,retail,28,0.381,-0.153,98,TRUE
+paper,HN,Honduras,North America,transit,-18,-0.322,-0.241,108,FALSE
+paper,HN,Honduras,North America,workplaces,28,0.482,-0.09,98,TRUE
+paper,JM,Jamaica,North America,grocery,4,-0.409,-0.358,122,FALSE
+paper,JM,Jamaica,North America,parks,4,-0.431,-0.405,122,FALSE
+paper,JM,Jamaica,North America,residential,-2,0.467,0.32,124,FALSE
+paper,JM,Jamaica,North America,retail,0,-0.404,-0.404,126,FALSE
+paper,JM,Jamaica,North America,transit,-3,-0.428,-0.4,123,FALSE
+paper,JM,Jamaica,North America,workplaces,-2,-0.421,-0.332,124,FALSE
+paper,MX,Mexico,North America,grocery,-23,-0.566,-0.351,103,FALSE
+paper,MX,Mexico,North America,parks,-26,-0.686,-0.423,100,FALSE
+paper,MX,Mexico,North America,residential,-28,0.681,0.469,98,TRUE
+paper,MX,Mexico,North America,retail,-26,-0.638,-0.378,100,FALSE
+paper,MX,Mexico,North America,transit,-28,-0.728,-0.451,98,TRUE
+paper,MX,Mexico,North America,workplaces,-28,-0.535,-0.331,98,TRUE
+paper,NI,Nicaragua,North America,grocery,-2,-0.229,-0.208,124,FALSE
+paper,NI,Nicaragua,North America,parks,-2,-0.197,-0.179,124,FALSE
+paper,NI,Nicaragua,North America,residential,20,0.182,0.126,106,FALSE
+paper,NI,Nicaragua,North America,retail,-2,-0.237,-0.215,124,FALSE
+paper,NI,Nicaragua,North America,transit,21,-0.22,-0.19,105,FALSE
+paper,NI,Nicaragua,North America,workplaces,1,-0.193,-0.152,125,FALSE
+paper,PA,Panama,North America,grocery,-6,-0.352,-0.315,120,FALSE
+paper,PA,Panama,North America,parks,-14,-0.352,-0.315,112,FALSE
+paper,PA,Panama,North America,residential,-14,0.32,0.302,112,FALSE
+paper,PA,Panama,North America,retail,-6,-0.351,-0.327,120,FALSE
+paper,PA,Panama,North America,transit,1,-0.345,-0.328,125,FALSE
+paper,PA,Panama,North America,workplaces,-4,-0.248,-0.247,122,FALSE
+paper,BS,The Bahamas,North America,grocery,3,-0.366,-0.263,123,FALSE
+paper,BS,The Bahamas,North America,parks,3,-0.404,-0.339,123,FALSE
+paper,BS,The Bahamas,North America,residential,9,0.434,0.399,117,FALSE
+paper,BS,The Bahamas,North America,retail,3,-0.41,-0.335,123,FALSE
+paper,BS,The Bahamas,North America,transit,9,-0.436,-0.326,117,FALSE
+paper,BS,The Bahamas,North America,workplaces,3,-0.414,-0.359,123,FALSE
+paper,TT,Trinidad and Tobago,North America,grocery,20,-0.514,-0.099,106,FALSE
+paper,TT,Trinidad and Tobago,North America,parks,15,-0.549,-0.27,111,FALSE
+paper,TT,Trinidad and Tobago,North America,residential,-27,-0.513,0.158,99,FALSE
+paper,TT,Trinidad and Tobago,North America,retail,20,-0.556,-0.188,106,FALSE
+paper,TT,Trinidad and Tobago,North America,transit,-27,0.533,-0.147,99,FALSE
+paper,TT,Trinidad and Tobago,North America,workplaces,16,-0.493,-0.134,110,FALSE
+paper,US,United States,North America,grocery,-4,-0.585,-0.454,122,FALSE
+paper,US,United States,North America,parks,-11,-0.347,-0.193,115,FALSE
+paper,US,United States,North America,residential,-8,0.665,0.58,118,FALSE
+paper,US,United States,North America,retail,-12,-0.668,-0.531,114,FALSE
+paper,US,United States,North America,transit,-8,-0.685,-0.595,118,FALSE
+paper,US,United States,North America,workplaces,-8,-0.668,-0.594,118,FALSE
+paper,AU,Australia,Oceania,grocery,15,-0.56,-0.166,111,FALSE
+paper,AU,Australia,Oceania,parks,14,-0.575,-0.391,112,FALSE
+paper,AU,Australia,Oceania,residential,17,0.676,0.38,109,FALSE
+paper,AU,Australia,Oceania,retail,15,-0.684,-0.404,111,FALSE
+paper,AU,Australia,Oceania,transit,16,-0.706,-0.392,110,FALSE
+paper,AU,Australia,Oceania,workplaces,17,-0.694,-0.329,109,FALSE
+paper,FJ,Fiji,Oceania,grocery,7,-0.367,-0.18,119,FALSE
+paper,FJ,Fiji,Oceania,parks,-28,0.35,-0.136,98,TRUE
+paper,FJ,Fiji,Oceania,residential,-28,-0.362,0.182,98,TRUE
+paper,FJ,Fiji,Oceania,retail,6,-0.371,-0.213,120,FALSE
+paper,FJ,Fiji,Oceania,transit,6,-0.359,-0.207,120,FALSE
+paper,FJ,Fiji,Oceania,workplaces,11,-0.342,-0.193,115,FALSE
+paper,NZ,New Zealand,Oceania,grocery,11,-0.579,-0.412,115,FALSE
+paper,NZ,New Zealand,Oceania,parks,6,-0.623,-0.501,120,FALSE
+paper,NZ,New Zealand,Oceania,residential,6,0.64,0.523,120,FALSE
+paper,NZ,New Zealand,Oceania,retail,10,-0.653,-0.525,116,FALSE
+paper,NZ,New Zealand,Oceania,transit,10,-0.669,-0.494,116,FALSE
+paper,NZ,New Zealand,Oceania,workplaces,7,-0.659,-0.514,119,FALSE
+paper,PG,Papua New Guinea,Oceania,grocery,-11,-0.191,-0.154,115,FALSE
+paper,PG,Papua New Guinea,Oceania,parks,12,-0.216,-0.12,114,FALSE
+paper,PG,Papua New Guinea,Oceania,residential,4,0.203,0.109,105,FALSE
+paper,PG,Papua New Guinea,Oceania,retail,7,-0.208,-0.138,119,FALSE
+paper,PG,Papua New Guinea,Oceania,transit,5,-0.185,-0.097,121,FALSE
+paper,PG,Papua New Guinea,Oceania,workplaces,5,-0.198,-0.142,121,FALSE
+paper,AR,Argentina,South America,grocery,28,0.36,-0.067,98,TRUE
+paper,AR,Argentina,South America,parks,-26,-0.547,-0.352,100,FALSE
+paper,AR,Argentina,South America,residential,26,-0.45,0.071,100,FALSE
+paper,AR,Argentina,South America,retail,28,0.343,-0.083,98,TRUE
+paper,AR,Argentina,South America,transit,28,0.392,-0.087,98,TRUE
+paper,AR,Argentina,South America,workplaces,28,0.459,0.002,98,TRUE
+paper,BO,Bolivia,South America,grocery,-27,-0.397,-0.2,99,FALSE
+paper,BO,Bolivia,South America,parks,-27,-0.372,-0.178,99,FALSE
+paper,BO,Bolivia,South America,residential,28,-0.399,0.134,98,TRUE
+paper,BO,Bolivia,South America,retail,-27,-0.373,-0.169,99,FALSE
+paper,BO,Bolivia,South America,transit,-27,-0.401,-0.184,99,FALSE
+paper,BO,Bolivia,South America,workplaces,28,0.471,-0.067,98,TRUE
+paper,BR,Brazil,South America,grocery,28,0.365,-0.003,98,TRUE
+paper,BR,Brazil,South America,parks,-25,-0.432,-0.198,101,FALSE
+paper,BR,Brazil,South America,residential,-28,0.371,0.214,98,TRUE
+paper,BR,Brazil,South America,retail,28,0.386,-0.11,98,TRUE
+paper,BR,Brazil,South America,transit,28,0.466,-0.062,98,TRUE
+paper,BR,Brazil,South America,workplaces,28,0.36,-0.09,98,TRUE
+paper,CL,Chile,South America,grocery,-6,-0.541,-0.483,120,FALSE
+paper,CL,Chile,South America,parks,-13,-0.586,-0.555,113,FALSE
+paper,CL,Chile,South America,residential,-1,0.556,0.524,125,FALSE
+paper,CL,Chile,South America,retail,-6,-0.484,-0.447,120,FALSE
+paper,CL,Chile,South America,transit,1,-0.613,-0.566,125,FALSE
+paper,CL,Chile,South America,workplaces,-3,-0.4,-0.359,123,FALSE
+paper,CO,Colombia,South America,grocery,28,0.439,-0.065,98,TRUE
+paper,CO,Colombia,South America,parks,28,0.488,-0.08,98,TRUE
+paper,CO,Colombia,South America,residential,28,-0.429,0.106,98,TRUE
+paper,CO,Colombia,South America,retail,28,0.512,-0.066,98,TRUE
+paper,CO,Colombia,South America,transit,28,0.578,-0.019,98,TRUE
+paper,CO,Colombia,South America,workplaces,28,0.491,-0.077,98,TRUE
+paper,EC,Ecuador,South America,grocery,28,0.267,-0.232,98,TRUE
+paper,EC,Ecuador,South America,parks,28,0.325,-0.234,98,TRUE
+paper,EC,Ecuador,South America,residential,-7,0.283,0.263,119,FALSE
+paper,EC,Ecuador,South America,retail,28,0.325,-0.231,98,TRUE
+paper,EC,Ecuador,South America,transit,28,0.349,-0.22,98,TRUE
+paper,EC,Ecuador,South America,workplaces,28,0.32,-0.209,98,TRUE
+paper,PY,Paraguay,South America,grocery,28,0.392,-0.239,98,TRUE
+paper,PY,Paraguay,South America,parks,27,0.324,-0.254,99,FALSE
+paper,PY,Paraguay,South America,residential,28,-0.354,0.243,98,TRUE
+paper,PY,Paraguay,South America,retail,28,0.386,-0.241,98,TRUE
+paper,PY,Paraguay,South America,transit,28,0.343,-0.265,98,TRUE
+paper,PY,Paraguay,South America,workplaces,28,0.358,-0.226,98,TRUE
+paper,PE,Peru,South America,grocery,-28,-0.41,-0.198,98,TRUE
+paper,PE,Peru,South America,parks,27,0.473,-0.18,99,FALSE
+paper,PE,Peru,South America,residential,28,-0.471,0.157,98,TRUE
+paper,PE,Peru,South America,retail,-28,-0.449,-0.274,98,TRUE
+paper,PE,Peru,South America,transit,27,0.484,-0.168,99,FALSE
+paper,PE,Peru,South America,workplaces,27,0.523,-0.122,99,FALSE
+paper,UY,Uruguay,South America,grocery,4,-0.578,-0.511,122,FALSE
+paper,UY,Uruguay,South America,parks,1,-0.623,-0.549,125,FALSE
+paper,UY,Uruguay,South America,residential,1,0.676,0.607,125,FALSE
+paper,UY,Uruguay,South America,retail,1,-0.677,-0.599,125,FALSE
+paper,UY,Uruguay,South America,transit,1,-0.631,-0.549,125,FALSE
+paper,UY,Uruguay,South America,workplaces,6,-0.599,-0.544,120,FALSE
+paper,VE,Venezuela,South America,grocery,27,0.314,-0.063,99,FALSE
+paper,VE,Venezuela,South America,parks,27,0.338,-0.049,99,FALSE
+paper,VE,Venezuela,South America,residential,28,-0.302,0.095,98,TRUE
+paper,VE,Venezuela,South America,retail,27,0.368,-0.025,99,FALSE
+paper,VE,Venezuela,South America,transit,28,0.383,-0.017,98,TRUE
+paper,VE,Venezuela,South America,workplaces,28,0.318,-0.05,98,TRUE
+smooth,AO,Angola,Africa,grocery,28,0.326,0.211,764,TRUE
+smooth,AO,Angola,Africa,parks,28,0.431,0.263,739,TRUE
+smooth,AO,Angola,Africa,residential,28,-0.463,-0.315,764,TRUE
+smooth,AO,Angola,Africa,retail,28,0.357,0.197,764,TRUE
+smooth,AO,Angola,Africa,transit,28,0.336,0.171,739,TRUE
+smooth,AO,Angola,Africa,workplaces,28,0.289,0.104,764,TRUE
+smooth,BJ,Benin,Africa,grocery,27,0.08,-0.019,765,FALSE
+smooth,BJ,Benin,Africa,parks,-2,-0.091,-0.089,759,FALSE
+smooth,BJ,Benin,Africa,residential,28,-0.176,-0.115,764,TRUE
+smooth,BJ,Benin,Africa,retail,-27,-0.163,-0.125,745,FALSE
+smooth,BJ,Benin,Africa,transit,-28,-0.118,-0.076,733,TRUE
+smooth,BJ,Benin,Africa,workplaces,-21,-0.316,-0.237,765,FALSE
+smooth,BW,Botswana,Africa,grocery,28,0.502,0.442,739,TRUE
+smooth,BW,Botswana,Africa,parks,-28,0.416,0.322,733,TRUE
+smooth,BW,Botswana,Africa,residential,28,-0.443,-0.327,764,TRUE
+smooth,BW,Botswana,Africa,retail,28,0.385,0.296,739,TRUE
+smooth,BW,Botswana,Africa,transit,-28,0.397,0.325,733,TRUE
+smooth,BW,Botswana,Africa,workplaces,28,0.173,-0.026,764,TRUE
+smooth,BF,Burkina Faso,Africa,grocery,28,0.111,0.063,764,TRUE
+smooth,BF,Burkina Faso,Africa,parks,28,0.102,0.06,739,TRUE
+smooth,BF,Burkina Faso,Africa,residential,-28,-0.125,-0.006,758,TRUE
+smooth,BF,Burkina Faso,Africa,retail,28,0.074,0.009,739,TRUE
+smooth,BF,Burkina Faso,Africa,transit,-16,0.042,0.033,745,FALSE
+smooth,BF,Burkina Faso,Africa,workplaces,-14,-0.114,-0.061,772,FALSE
+smooth,CM,Cameroon,Africa,grocery,-18,-0.093,-0.057,768,FALSE
+smooth,CM,Cameroon,Africa,parks,-28,-0.217,-0.152,758,TRUE
+smooth,CM,Cameroon,Africa,residential,28,-0.143,-0.071,764,TRUE
+smooth,CM,Cameroon,Africa,retail,-28,-0.178,-0.095,758,TRUE
+smooth,CM,Cameroon,Africa,transit,-18,-0.112,-0.062,768,FALSE
+smooth,CM,Cameroon,Africa,workplaces,-28,-0.21,-0.114,758,TRUE
+smooth,CV,Cape Verde,Africa,grocery,-28,-0.105,-0.064,733,TRUE
+smooth,CV,Cape Verde,Africa,parks,28,0.084,0.025,739,TRUE
+smooth,CV,Cape Verde,Africa,residential,28,-0.269,-0.099,761,TRUE
+smooth,CV,Cape Verde,Africa,retail,-28,-0.105,-0.054,733,TRUE
+smooth,CV,Cape Verde,Africa,transit,-28,-0.157,-0.115,733,TRUE
+smooth,CV,Cape Verde,Africa,workplaces,-17,-0.318,-0.247,766,FALSE
+smooth,CI,Côte d'Ivoire,Africa,grocery,-28,-0.133,-0.073,758,TRUE
+smooth,CI,Côte d'Ivoire,Africa,parks,-28,-0.22,-0.136,758,TRUE
+smooth,CI,Côte d'Ivoire,Africa,residential,28,-0.218,-0.078,764,TRUE
+smooth,CI,Côte d'Ivoire,Africa,retail,-28,-0.176,-0.095,758,TRUE
+smooth,CI,Côte d'Ivoire,Africa,transit,-28,-0.142,-0.086,758,TRUE
+smooth,CI,Côte d'Ivoire,Africa,workplaces,-28,-0.23,-0.172,758,TRUE
+smooth,EG,Egypt,Africa,grocery,28,0.258,0.237,764,TRUE
+smooth,EG,Egypt,Africa,parks,28,0.199,0.023,764,TRUE
+smooth,EG,Egypt,Africa,residential,27,-0.116,-0.055,765,FALSE
+smooth,EG,Egypt,Africa,retail,28,0.199,0.132,764,TRUE
+smooth,EG,Egypt,Africa,transit,28,0.238,0.158,764,TRUE
+smooth,EG,Egypt,Africa,workplaces,28,0.24,0.176,764,TRUE
+smooth,GA,Gabon,Africa,grocery,28,0.163,0.003,764,TRUE
+smooth,GA,Gabon,Africa,parks,28,0.157,0.135,647,TRUE
+smooth,GA,Gabon,Africa,residential,28,-0.246,-0.21,764,TRUE
+smooth,GA,Gabon,Africa,retail,-28,-0.16,-0.108,733,TRUE
+smooth,GA,Gabon,Africa,transit,-13,-0.115,-0.096,748,FALSE
+smooth,GA,Gabon,Africa,workplaces,-28,-0.322,-0.187,758,TRUE
+smooth,GH,Ghana,Africa,grocery,-28,-0.095,-0.053,758,TRUE
+smooth,GH,Ghana,Africa,parks,-20,-0.139,-0.105,766,FALSE
+smooth,GH,Ghana,Africa,residential,-24,0.197,0.172,762,FALSE
+smooth,GH,Ghana,Africa,retail,-28,-0.145,-0.087,758,TRUE
+smooth,GH,Ghana,Africa,transit,-28,-0.137,-0.12,758,TRUE
+smooth,GH,Ghana,Africa,workplaces,-8,-0.213,-0.193,778,FALSE
+smooth,GW,Guinea-Bissau,Africa,parks,27,-0.34,-0.131,238,FALSE
+smooth,GW,Guinea-Bissau,Africa,retail,-4,-0.76,-0.689,48,FALSE
+smooth,GW,Guinea-Bissau,Africa,workplaces,28,0.116,-0.034,739,TRUE
+smooth,KE,Kenya,Africa,grocery,28,0.178,0.084,764,TRUE
+smooth,KE,Kenya,Africa,parks,28,0.127,-0.046,764,TRUE
+smooth,KE,Kenya,Africa,residential,28,-0.162,-0.043,764,TRUE
+smooth,KE,Kenya,Africa,retail,28,0.158,0.025,764,TRUE
+smooth,KE,Kenya,Africa,transit,28,0.175,0.071,764,TRUE
+smooth,KE,Kenya,Africa,workplaces,28,0.171,-0.034,764,TRUE
+smooth,LY,Libya,Africa,grocery,28,0.363,0.278,741,TRUE
+smooth,LY,Libya,Africa,parks,28,0.401,0.303,739,TRUE
+smooth,LY,Libya,Africa,residential,-28,-0.473,-0.384,758,TRUE
+smooth,LY,Libya,Africa,retail,28,0.402,0.268,764,TRUE
+smooth,LY,Libya,Africa,transit,28,0.348,0.218,739,TRUE
+smooth,LY,Libya,Africa,workplaces,28,0.337,0.176,764,TRUE
+smooth,ML,Mali,Africa,grocery,28,0.183,0.07,764,TRUE
+smooth,ML,Mali,Africa,parks,28,0.131,0.066,739,TRUE
+smooth,ML,Mali,Africa,residential,-28,-0.099,-0.06,758,TRUE
+smooth,ML,Mali,Africa,retail,28,0.135,-0.008,764,TRUE
+smooth,ML,Mali,Africa,transit,28,0.089,0.024,739,TRUE
+smooth,ML,Mali,Africa,workplaces,-17,-0.144,-0.061,769,FALSE
+smooth,MU,Mauritius,Africa,grocery,-28,0.498,0.399,758,TRUE
+smooth,MU,Mauritius,Africa,parks,-28,0.517,0.377,758,TRUE
+smooth,MU,Mauritius,Africa,residential,-28,-0.422,-0.25,758,TRUE
+smooth,MU,Mauritius,Africa,retail,-28,0.462,0.345,758,TRUE
+smooth,MU,Mauritius,Africa,transit,-28,0.193,0.079,758,TRUE
+smooth,MU,Mauritius,Africa,workplaces,-28,0.329,0.223,758,TRUE
+smooth,MA,Morocco,Africa,grocery,28,0.195,0.093,764,TRUE
+smooth,MA,Morocco,Africa,parks,-28,0.197,0.112,758,TRUE
+smooth,MA,Morocco,Africa,residential,28,-0.122,-0.005,764,TRUE
+smooth,MA,Morocco,Africa,retail,28,0.153,0.056,764,TRUE
+smooth,MA,Morocco,Africa,transit,28,0.251,0.086,764,TRUE
+smooth,MA,Morocco,Africa,workplaces,28,0.139,-0.086,764,TRUE
+smooth,MZ,Mozambique,Africa,grocery,28,0.087,-0.033,764,TRUE
+smooth,MZ,Mozambique,Africa,parks,6,-0.113,-0.108,786,FALSE
+smooth,MZ,Mozambique,Africa,residential,28,-0.165,-0.044,764,TRUE
+smooth,MZ,Mozambique,Africa,retail,0,-0.08,-0.08,786,FALSE
+smooth,MZ,Mozambique,Africa,transit,0,-0.126,-0.126,786,FALSE
+smooth,MZ,Mozambique,Africa,workplaces,5,-0.392,-0.389,786,FALSE
+smooth,NA,Namibia,Africa,grocery,28,0.144,0.094,764,TRUE
+smooth,NA,Namibia,Africa,parks,22,-0.089,-0.073,745,FALSE
+smooth,NA,Namibia,Africa,residential,28,-0.296,-0.19,764,TRUE
+smooth,NA,Namibia,Africa,retail,28,0.081,0.003,764,TRUE
+smooth,NA,Namibia,Africa,transit,28,0.167,0.048,739,TRUE
+smooth,NA,Namibia,Africa,workplaces,0,-0.31,-0.31,786,FALSE
+smooth,NE,Niger,Africa,grocery,28,0.153,0.069,739,TRUE
+smooth,NE,Niger,Africa,parks,28,0.199,0.141,715,TRUE
+smooth,NE,Niger,Africa,residential,-28,-0.209,-0.087,758,TRUE
+smooth,NE,Niger,Africa,retail,28,0.155,0.078,739,TRUE
+smooth,NE,Niger,Africa,transit,28,0.142,0.083,739,TRUE
+smooth,NE,Niger,Africa,workplaces,28,0.178,-0.016,764,TRUE
+smooth,NG,Nigeria,Africa,grocery,-28,-0.188,-0.121,758,TRUE
+smooth,NG,Nigeria,Africa,parks,-28,-0.208,-0.136,758,TRUE
+smooth,NG,Nigeria,Africa,residential,-20,0.108,0.084,766,FALSE
+smooth,NG,Nigeria,Africa,retail,-28,-0.24,-0.156,758,TRUE
+smooth,NG,Nigeria,Africa,transit,-28,-0.146,-0.128,758,TRUE
+smooth,NG,Nigeria,Africa,workplaces,-10,-0.257,-0.232,776,FALSE
+smooth,RW,Rwanda,Africa,grocery,28,0.143,0.011,742,TRUE
+smooth,RW,Rwanda,Africa,parks,28,0.181,0.102,739,TRUE
+smooth,RW,Rwanda,Africa,residential,5,0.169,0.147,786,FALSE
+smooth,RW,Rwanda,Africa,retail,28,0.175,0.033,739,TRUE
+smooth,RW,Rwanda,Africa,transit,28,0.117,-0.054,764,TRUE
+smooth,RW,Rwanda,Africa,workplaces,28,0.124,-0.08,764,TRUE
+smooth,SN,Senegal,Africa,grocery,-7,-0.094,-0.087,779,FALSE
+smooth,SN,Senegal,Africa,parks,6,-0.027,-0.022,786,FALSE
+smooth,SN,Senegal,Africa,residential,28,-0.062,-0.025,764,TRUE
+smooth,SN,Senegal,Africa,retail,-8,-0.195,-0.185,778,FALSE
+smooth,SN,Senegal,Africa,transit,-8,-0.169,-0.163,778,FALSE
+smooth,SN,Senegal,Africa,workplaces,6,-0.183,-0.176,786,FALSE
+smooth,ZA,South Africa,Africa,grocery,28,0.116,0.08,764,TRUE
+smooth,ZA,South Africa,Africa,parks,28,0.215,0.126,764,TRUE
+smooth,ZA,South Africa,Africa,residential,4,0.282,0.278,786,FALSE
+smooth,ZA,South Africa,Africa,retail,28,0.079,-0.014,764,TRUE
+smooth,ZA,South Africa,Africa,transit,2,-0.065,-0.064,786,FALSE
+smooth,ZA,South Africa,Africa,workplaces,6,-0.134,-0.124,786,FALSE
+smooth,TZ,Tanzania,Africa,grocery,-28,0.327,0.239,758,TRUE
+smooth,TZ,Tanzania,Africa,parks,-28,0.392,0.28,758,TRUE
+smooth,TZ,Tanzania,Africa,residential,19,0.202,0.118,773,FALSE
+smooth,TZ,Tanzania,Africa,retail,-28,0.385,0.274,758,TRUE
+smooth,TZ,Tanzania,Africa,transit,-28,0.388,0.249,758,TRUE
+smooth,TZ,Tanzania,Africa,workplaces,-28,0.389,0.311,758,TRUE
+smooth,TG,Togo,Africa,grocery,-16,0.329,0.297,770,FALSE
+smooth,TG,Togo,Africa,parks,28,0.288,0.223,739,TRUE
+smooth,TG,Togo,Africa,residential,28,-0.364,-0.361,764,TRUE
+smooth,TG,Togo,Africa,retail,28,0.305,0.223,764,TRUE
+smooth,TG,Togo,Africa,transit,-28,0.331,0.236,733,TRUE
+smooth,TG,Togo,Africa,workplaces,28,0.195,0.012,764,TRUE
+smooth,UG,Uganda,Africa,grocery,28,0.165,0.098,764,TRUE
+smooth,UG,Uganda,Africa,parks,28,0.124,0.069,764,TRUE
+smooth,UG,Uganda,Africa,residential,7,0.171,0.139,785,FALSE
+smooth,UG,Uganda,Africa,retail,-28,0.084,0.027,758,TRUE
+smooth,UG,Uganda,Africa,transit,28,0.218,0.13,764,TRUE
+smooth,UG,Uganda,Africa,workplaces,28,0.13,0.025,764,TRUE
+smooth,ZM,Zambia,Africa,grocery,28,0.288,0.246,764,TRUE
+smooth,ZM,Zambia,Africa,parks,-18,0.203,0.173,743,FALSE
+smooth,ZM,Zambia,Africa,residential,3,0.183,0.179,786,FALSE
+smooth,ZM,Zambia,Africa,retail,28,0.255,0.183,764,TRUE
+smooth,ZM,Zambia,Africa,transit,28,0.22,0.143,764,TRUE
+smooth,ZM,Zambia,Africa,workplaces,-11,-0.145,-0.129,775,FALSE
+smooth,ZW,Zimbabwe,Africa,grocery,-28,0.403,0.331,758,TRUE
+smooth,ZW,Zimbabwe,Africa,parks,28,0.428,0.372,739,TRUE
+smooth,ZW,Zimbabwe,Africa,residential,-28,-0.341,-0.174,758,TRUE
+smooth,ZW,Zimbabwe,Africa,retail,-28,0.393,0.316,758,TRUE
+smooth,ZW,Zimbabwe,Africa,transit,-28,0.403,0.313,758,TRUE
+smooth,ZW,Zimbabwe,Africa,workplaces,-28,0.346,0.218,758,TRUE
+smooth,AF,Afghanistan,Asia,grocery,9,0.149,0.147,713,FALSE
+smooth,AF,Afghanistan,Asia,parks,28,0.324,0.206,719,TRUE
+smooth,AF,Afghanistan,Asia,residential,5,0.061,0.039,741,FALSE
+smooth,AF,Afghanistan,Asia,retail,-25,0.171,0.163,691,FALSE
+smooth,AF,Afghanistan,Asia,transit,28,0.257,0.107,719,TRUE
+smooth,AF,Afghanistan,Asia,workplaces,-28,0.132,0.09,713,TRUE
+smooth,BH,Bahrain,Asia,grocery,27,0.091,0.031,765,FALSE
+smooth,BH,Bahrain,Asia,parks,-15,-0.09,-0.071,771,FALSE
+smooth,BH,Bahrain,Asia,residential,6,0.203,0.198,786,FALSE
+smooth,BH,Bahrain,Asia,retail,6,-0.044,-0.04,786,FALSE
+smooth,BH,Bahrain,Asia,transit,28,0.136,0.02,764,TRUE
+smooth,BH,Bahrain,Asia,workplaces,-8,-0.132,-0.1,778,FALSE
+smooth,BD,Bangladesh,Asia,grocery,-28,-0.104,-0.064,758,TRUE
+smooth,BD,Bangladesh,Asia,parks,-28,-0.143,-0.14,758,TRUE
+smooth,BD,Bangladesh,Asia,residential,6,0.266,0.255,786,FALSE
+smooth,BD,Bangladesh,Asia,retail,-28,-0.172,-0.153,758,TRUE
+smooth,BD,Bangladesh,Asia,transit,-7,-0.165,-0.154,779,FALSE
+smooth,BD,Bangladesh,Asia,workplaces,-28,-0.193,-0.148,758,TRUE
+smooth,KH,Cambodia,Asia,grocery,8,-0.256,-0.221,784,FALSE
+smooth,KH,Cambodia,Asia,parks,2,-0.273,-0.27,786,FALSE
+smooth,KH,Cambodia,Asia,residential,7,0.543,0.519,785,FALSE
+smooth,KH,Cambodia,Asia,retail,6,-0.131,-0.112,786,FALSE
+smooth,KH,Cambodia,Asia,transit,6,-0.268,-0.248,786,FALSE
+smooth,KH,Cambodia,Asia,workplaces,9,-0.215,-0.163,783,FALSE
+smooth,GE,Georgia,Asia,grocery,-28,0.445,0.34,713,TRUE
+smooth,GE,Georgia,Asia,parks,-28,0.232,0.114,713,TRUE
+smooth,GE,Georgia,Asia,residential,-28,-0.276,-0.081,713,TRUE
+smooth,GE,Georgia,Asia,retail,-28,0.39,0.212,713,TRUE
+smooth,GE,Georgia,Asia,transit,-28,0.319,0.115,713,TRUE
+smooth,GE,Georgia,Asia,workplaces,28,0.298,0.147,719,TRUE
+smooth,IN,India,Asia,grocery,-6,-0.135,-0.126,780,FALSE
+smooth,IN,India,Asia,parks,-28,-0.219,-0.189,758,TRUE
+smooth,IN,India,Asia,residential,3,0.254,0.252,786,FALSE
+smooth,IN,India,Asia,retail,-6,-0.227,-0.221,780,FALSE
+smooth,IN,India,Asia,transit,-4,-0.227,-0.225,782,FALSE
+smooth,IN,India,Asia,workplaces,-8,-0.22,-0.213,778,FALSE
+smooth,ID,Indonesia,Asia,grocery,28,0.191,0.13,764,TRUE
+smooth,ID,Indonesia,Asia,parks,-28,0.082,-0.027,758,TRUE
+smooth,ID,Indonesia,Asia,residential,5,0.136,0.126,786,FALSE
+smooth,ID,Indonesia,Asia,retail,28,0.068,-0.028,764,TRUE
+smooth,ID,Indonesia,Asia,transit,3,-0.113,-0.112,786,FALSE
+smooth,ID,Indonesia,Asia,workplaces,-15,-0.198,-0.171,771,FALSE
+smooth,IQ,Iraq,Asia,grocery,28,0.288,0.126,764,TRUE
+smooth,IQ,Iraq,Asia,parks,28,0.35,0.114,764,TRUE
+smooth,IQ,Iraq,Asia,residential,28,-0.373,-0.255,764,TRUE
+smooth,IQ,Iraq,Asia,retail,28,0.291,0.096,764,TRUE
+smooth,IQ,Iraq,Asia,transit,28,0.337,0.12,764,TRUE
+smooth,IQ,Iraq,Asia,workplaces,28,0.141,-0.048,764,TRUE
+smooth,IL,Israel,Asia,grocery,-28,0.133,0.007,758,TRUE
+smooth,IL,Israel,Asia,parks,-6,-0.073,-0.068,780,FALSE
+smooth,IL,Israel,Asia,residential,5,0.127,0.122,786,FALSE
+smooth,IL,Israel,Asia,retail,-28,0.168,-0.018,758,TRUE
+smooth,IL,Israel,Asia,transit,6,-0.284,-0.268,786,FALSE
+smooth,IL,Israel,Asia,workplaces,7,-0.148,-0.126,785,FALSE
+smooth,JP,Japan,Asia,grocery,-28,0.111,0.055,758,TRUE
+smooth,JP,Japan,Asia,parks,-19,-0.342,-0.315,767,FALSE
+smooth,JP,Japan,Asia,residential,6,0.211,0.199,786,FALSE
+smooth,JP,Japan,Asia,retail,12,-0.231,-0.181,780,FALSE
+smooth,JP,Japan,Asia,transit,8,-0.257,-0.229,784,FALSE
+smooth,JP,Japan,Asia,workplaces,-6,-0.098,-0.09,780,FALSE
+smooth,JO,Jordan,Asia,grocery,-28,0.234,0.151,758,TRUE
+smooth,JO,Jordan,Asia,parks,4,-0.099,-0.095,786,FALSE
+smooth,JO,Jordan,Asia,residential,6,0.112,0.098,786,FALSE
+smooth,JO,Jordan,Asia,retail,-28,0.139,0.031,758,TRUE
+smooth,JO,Jordan,Asia,transit,-28,0.275,0.164,758,TRUE
+smooth,JO,Jordan,Asia,workplaces,28,0.22,0.088,764,TRUE
+smooth,KZ,Kazakhstan,Asia,grocery,28,0.483,0.206,764,TRUE
+smooth,KZ,Kazakhstan,Asia,parks,28,0.202,0.068,764,TRUE
+smooth,KZ,Kazakhstan,Asia,residential,28,-0.537,-0.337,764,TRUE
+smooth,KZ,Kazakhstan,Asia,retail,28,0.384,0.017,764,TRUE
+smooth,KZ,Kazakhstan,Asia,transit,28,0.487,0.264,764,TRUE
+smooth,KZ,Kazakhstan,Asia,workplaces,-10,-0.254,-0.174,776,FALSE
+smooth,KW,Kuwait,Asia,grocery,-19,-0.21,-0.186,767,FALSE
+smooth,KW,Kuwait,Asia,parks,-19,-0.244,-0.207,767,FALSE
+smooth,KW,Kuwait,Asia,residential,-8,0.226,0.22,778,FALSE
+smooth,KW,Kuwait,Asia,retail,-18,-0.258,-0.255,768,FALSE
+smooth,KW,Kuwait,Asia,transit,-8,-0.224,-0.219,778,FALSE
+smooth,KW,Kuwait,Asia,workplaces,-9,-0.216,-0.205,777,FALSE
+smooth,KG,Kyrgyzstan,Asia,grocery,28,0.181,-0.027,764,TRUE
+smooth,KG,Kyrgyzstan,Asia,parks,-28,0.277,0.107,758,TRUE
+smooth,KG,Kyrgyzstan,Asia,residential,28,-0.326,-0.176,764,TRUE
+smooth,KG,Kyrgyzstan,Asia,retail,28,0.153,-0.123,764,TRUE
+smooth,KG,Kyrgyzstan,Asia,transit,28,0.273,0.105,764,TRUE
+smooth,KG,Kyrgyzstan,Asia,workplaces,-5,-0.293,-0.285,781,FALSE
+smooth,LA,Laos,Asia,grocery,4,-0.063,-0.061,786,FALSE
+smooth,LA,Laos,Asia,parks,-28,-0.269,-0.203,758,TRUE
+smooth,LA,Laos,Asia,residential,3,0.428,0.425,786,FALSE
+smooth,LA,Laos,Asia,retail,5,-0.212,-0.207,786,FALSE
+smooth,LA,Laos,Asia,transit,6,-0.381,-0.362,786,FALSE
+smooth,LA,Laos,Asia,workplaces,-28,-0.362,-0.353,758,TRUE
+smooth,LB,Lebanon,Asia,grocery,28,0.178,0.104,764,TRUE
+smooth,LB,Lebanon,Asia,parks,10,-0.344,-0.321,782,FALSE
+smooth,LB,Lebanon,Asia,residential,-17,-0.072,-0.049,769,FALSE
+smooth,LB,Lebanon,Asia,retail,6,-0.065,-0.051,786,FALSE
+smooth,LB,Lebanon,Asia,transit,-28,0.192,0.114,747,TRUE
+smooth,LB,Lebanon,Asia,workplaces,-2,-0.138,-0.138,784,FALSE
+smooth,MY,Malaysia,Asia,grocery,28,0.297,0.24,764,TRUE
+smooth,MY,Malaysia,Asia,parks,28,0.119,0.017,764,TRUE
+smooth,MY,Malaysia,Asia,residential,5,0.305,0.296,786,FALSE
+smooth,MY,Malaysia,Asia,retail,28,0.097,-0.005,764,TRUE
+smooth,MY,Malaysia,Asia,transit,5,-0.184,-0.178,786,FALSE
+smooth,MY,Malaysia,Asia,workplaces,6,-0.102,-0.091,786,FALSE
+smooth,MN,Mongolia,Asia,grocery,28,0.529,0.429,739,TRUE
+smooth,MN,Mongolia,Asia,parks,28,0.227,0.125,739,TRUE
+smooth,MN,Mongolia,Asia,residential,-1,0.117,0.117,785,FALSE
+smooth,MN,Mongolia,Asia,retail,28,0.411,0.286,742,TRUE
+smooth,MN,Mongolia,Asia,transit,28,0.413,0.302,764,TRUE
+smooth,MN,Mongolia,Asia,workplaces,28,0.34,0.258,764,TRUE
+smooth,MM,Myanmar (Burma),Asia,grocery,-12,-0.206,-0.183,774,FALSE
+smooth,MM,Myanmar (Burma),Asia,parks,-10,-0.332,-0.318,776,FALSE
+smooth,MM,Myanmar (Burma),Asia,residential,8,0.533,0.513,784,FALSE
+smooth,MM,Myanmar (Burma),Asia,retail,-2,-0.3,-0.297,784,FALSE
+smooth,MM,Myanmar (Burma),Asia,transit,-12,-0.29,-0.263,774,FALSE
+smooth,MM,Myanmar (Burma),Asia,workplaces,5,-0.288,-0.284,786,FALSE
+smooth,NP,Nepal,Asia,grocery,28,0.165,-0.013,764,TRUE
+smooth,NP,Nepal,Asia,parks,28,0.149,-0.051,764,TRUE
+smooth,NP,Nepal,Asia,residential,3,0.144,0.141,786,FALSE
+smooth,NP,Nepal,Asia,retail,28,0.119,-0.086,764,TRUE
+smooth,NP,Nepal,Asia,transit,28,0.117,-0.066,764,TRUE
+smooth,NP,Nepal,Asia,workplaces,-7,-0.162,-0.156,779,FALSE
+smooth,OM,Oman,Asia,grocery,-28,-0.167,-0.094,758,TRUE
+smooth,OM,Oman,Asia,parks,-28,-0.266,-0.247,758,TRUE
+smooth,OM,Oman,Asia,residential,-28,0.201,0.171,758,TRUE
+smooth,OM,Oman,Asia,retail,-28,-0.225,-0.199,758,TRUE
+smooth,OM,Oman,Asia,transit,15,-0.291,-0.245,777,FALSE
+smooth,OM,Oman,Asia,workplaces,10,-0.192,-0.173,782,FALSE
+smooth,PK,Pakistan,Asia,grocery,28,0.127,0.018,764,TRUE
+smooth,PK,Pakistan,Asia,parks,-18,-0.083,-0.067,768,FALSE
+smooth,PK,Pakistan,Asia,residential,28,-0.127,-0.018,764,TRUE
+smooth,PK,Pakistan,Asia,retail,28,0.099,-0.042,764,TRUE
+smooth,PK,Pakistan,Asia,transit,28,0.089,-0.021,764,TRUE
+smooth,PK,Pakistan,Asia,workplaces,-11,-0.103,-0.076,775,FALSE
+smooth,PH,Philippines,Asia,grocery,28,0.362,0.168,764,TRUE
+smooth,PH,Philippines,Asia,parks,28,0.319,0.106,764,TRUE
+smooth,PH,Philippines,Asia,residential,28,-0.192,0.137,764,TRUE
+smooth,PH,Philippines,Asia,retail,28,0.339,0.084,764,TRUE
+smooth,PH,Philippines,Asia,transit,28,0.288,0.018,764,TRUE
+smooth,PH,Philippines,Asia,workplaces,28,0.352,0.09,764,TRUE
+smooth,QA,Qatar,Asia,grocery,-28,-0.296,-0.201,758,TRUE
+smooth,QA,Qatar,Asia,parks,-25,-0.189,-0.124,761,FALSE
+smooth,QA,Qatar,Asia,residential,-10,0.375,0.343,776,FALSE
+smooth,QA,Qatar,Asia,retail,-4,-0.35,-0.342,782,FALSE
+smooth,QA,Qatar,Asia,transit,-4,-0.379,-0.375,782,FALSE
+smooth,QA,Qatar,Asia,workplaces,-18,-0.406,-0.322,768,FALSE
+smooth,SA,Saudi Arabia,Asia,grocery,-28,-0.225,-0.152,758,TRUE
+smooth,SA,Saudi Arabia,Asia,parks,-28,-0.202,-0.115,758,TRUE
+smooth,SA,Saudi Arabia,Asia,residential,-23,0.357,0.319,763,FALSE
+smooth,SA,Saudi Arabia,Asia,retail,-28,-0.256,-0.176,758,TRUE
+smooth,SA,Saudi Arabia,Asia,transit,-23,-0.274,-0.238,763,FALSE
+smooth,SA,Saudi Arabia,Asia,workplaces,-25,-0.291,-0.216,761,FALSE
+smooth,SG,Singapore,Asia,grocery,28,-0.173,-0.095,764,TRUE
+smooth,SG,Singapore,Asia,parks,-28,0.12,-0.094,758,TRUE
+smooth,SG,Singapore,Asia,residential,6,0.228,0.215,786,FALSE
+smooth,SG,Singapore,Asia,retail,9,-0.178,-0.147,783,FALSE
+smooth,SG,Singapore,Asia,transit,8,-0.198,-0.172,784,FALSE
+smooth,SG,Singapore,Asia,workplaces,6,-0.142,-0.122,786,FALSE
+smooth,KR,South Korea,Asia,grocery,-28,0.401,0.289,758,TRUE
+smooth,KR,South Korea,Asia,parks,12,-0.095,-0.095,780,FALSE
+smooth,KR,South Korea,Asia,residential,18,0.111,0.078,774,FALSE
+smooth,KR,South Korea,Asia,retail,-28,0.428,0.266,758,TRUE
+smooth,KR,South Korea,Asia,transit,-28,0.141,-0.045,758,TRUE
+smooth,KR,South Korea,Asia,workplaces,-28,0.179,0.128,758,TRUE
+smooth,LK,Sri Lanka,Asia,grocery,28,0.228,0.072,764,TRUE
+smooth,LK,Sri Lanka,Asia,parks,28,0.135,-0.072,764,TRUE
+smooth,LK,Sri Lanka,Asia,residential,4,0.311,0.305,786,FALSE
+smooth,LK,Sri Lanka,Asia,retail,28,0.156,-0.037,764,TRUE
+smooth,LK,Sri Lanka,Asia,transit,0,-0.175,-0.175,786,FALSE
+smooth,LK,Sri Lanka,Asia,workplaces,-11,-0.234,-0.214,775,FALSE
+smooth,TW,Taiwan,Asia,grocery,14,-0.201,-0.177,778,FALSE
+smooth,TW,Taiwan,Asia,parks,5,-0.511,-0.495,786,FALSE
+smooth,TW,Taiwan,Asia,residential,26,0.534,0.413,766,FALSE
+smooth,TW,Taiwan,Asia,retail,23,-0.56,-0.521,769,FALSE
+smooth,TW,Taiwan,Asia,transit,28,-0.471,-0.372,764,TRUE
+smooth,TW,Taiwan,Asia,workplaces,12,-0.169,-0.127,780,FALSE
+smooth,TJ,Tajikistan,Asia,grocery,-12,-0.362,-0.345,774,FALSE
+smooth,TJ,Tajikistan,Asia,parks,-4,-0.106,-0.1,782,FALSE
+smooth,TJ,Tajikistan,Asia,residential,28,-0.083,0.063,764,TRUE
+smooth,TJ,Tajikistan,Asia,retail,-12,-0.26,-0.235,774,FALSE
+smooth,TJ,Tajikistan,Asia,transit,-5,-0.384,-0.368,781,FALSE
+smooth,TJ,Tajikistan,Asia,workplaces,-3,-0.276,-0.273,783,FALSE
+smooth,TH,Thailand,Asia,grocery,-28,0.491,0.41,758,TRUE
+smooth,TH,Thailand,Asia,parks,8,-0.197,-0.18,784,FALSE
+smooth,TH,Thailand,Asia,residential,5,0.113,0.109,786,FALSE
+smooth,TH,Thailand,Asia,retail,-28,0.182,0.065,758,TRUE
+smooth,TH,Thailand,Asia,transit,6,-0.334,-0.311,786,FALSE
+smooth,TH,Thailand,Asia,workplaces,-28,0.092,-0.016,758,TRUE
+smooth,TR,Turkey,Asia,grocery,-28,0.443,0.345,758,TRUE
+smooth,TR,Turkey,Asia,parks,12,-0.103,-0.084,780,FALSE
+smooth,TR,Turkey,Asia,residential,-28,-0.124,0.038,758,TRUE
+smooth,TR,Turkey,Asia,retail,-28,0.292,0.152,758,TRUE
+smooth,TR,Turkey,Asia,transit,-28,0.341,0.223,758,TRUE
+smooth,TR,Turkey,Asia,workplaces,28,0.347,0.224,764,TRUE
+smooth,AE,United Arab Emirates,Asia,grocery,28,0.159,0.051,764,TRUE
+smooth,AE,United Arab Emirates,Asia,parks,28,0.136,0.043,764,TRUE
+smooth,AE,United Arab Emirates,Asia,residential,28,-0.194,0.041,764,TRUE
+smooth,AE,United Arab Emirates,Asia,retail,28,0.162,0.014,764,TRUE
+smooth,AE,United Arab Emirates,Asia,transit,28,0.181,0.014,764,TRUE
+smooth,AE,United Arab Emirates,Asia,workplaces,28,0.103,-0.048,764,TRUE
+smooth,VN,Vietnam,Asia,grocery,15,-0.108,-0.073,777,FALSE
+smooth,VN,Vietnam,Asia,parks,11,-0.057,-0.035,781,FALSE
+smooth,VN,Vietnam,Asia,residential,12,0.127,0.107,780,FALSE
+smooth,VN,Vietnam,Asia,retail,7,-0.244,-0.22,785,FALSE
+smooth,VN,Vietnam,Asia,transit,13,-0.462,-0.418,779,FALSE
+smooth,VN,Vietnam,Asia,workplaces,5,-0.607,-0.585,610,FALSE
+smooth,YE,Yemen,Asia,grocery,28,0.293,0.136,764,TRUE
+smooth,YE,Yemen,Asia,parks,28,0.258,0.101,739,TRUE
+smooth,YE,Yemen,Asia,residential,-18,-0.268,-0.253,768,FALSE
+smooth,YE,Yemen,Asia,retail,28,0.288,0.13,764,TRUE
+smooth,YE,Yemen,Asia,transit,28,0.28,0.113,739,TRUE
+smooth,YE,Yemen,Asia,workplaces,28,0.147,0.024,764,TRUE
+smooth,AT,Austria,Europe,grocery,-28,0.157,0.088,758,TRUE
+smooth,AT,Austria,Europe,parks,25,-0.274,-0.215,767,FALSE
+smooth,AT,Austria,Europe,residential,18,0.235,0.208,774,FALSE
+smooth,AT,Austria,Europe,retail,12,-0.206,-0.16,780,FALSE
+smooth,AT,Austria,Europe,transit,10,-0.134,-0.108,782,FALSE
+smooth,AT,Austria,Europe,workplaces,-28,0.156,0.036,758,TRUE
+smooth,BY,Belarus,Europe,grocery,28,0.112,0.049,764,TRUE
+smooth,BY,Belarus,Europe,parks,-12,-0.436,-0.424,774,FALSE
+smooth,BY,Belarus,Europe,residential,-10,0.161,0.156,776,FALSE
+smooth,BY,Belarus,Europe,retail,-16,-0.344,-0.287,770,FALSE
+smooth,BY,Belarus,Europe,transit,-14,-0.129,-0.116,772,FALSE
+smooth,BY,Belarus,Europe,workplaces,-22,-0.124,-0.022,764,FALSE
+smooth,BE,Belgium,Europe,grocery,28,0.363,0.278,764,TRUE
+smooth,BE,Belgium,Europe,parks,21,-0.166,-0.155,771,FALSE
+smooth,BE,Belgium,Europe,residential,-28,-0.175,0.016,758,TRUE
+smooth,BE,Belgium,Europe,retail,-28,0.198,0.017,758,TRUE
+smooth,BE,Belgium,Europe,transit,-28,0.182,0.024,758,TRUE
+smooth,BE,Belgium,Europe,workplaces,-28,0.266,0.169,758,TRUE
+smooth,BA,Bosnia and Herzegovina,Europe,grocery,-26,0.131,0.081,760,FALSE
+smooth,BA,Bosnia and Herzegovina,Europe,parks,11,-0.31,-0.279,781,FALSE
+smooth,BA,Bosnia and Herzegovina,Europe,residential,-28,-0.181,-0.097,758,TRUE
+smooth,BA,Bosnia and Herzegovina,Europe,retail,-28,0.098,-0.054,758,TRUE
+smooth,BA,Bosnia and Herzegovina,Europe,transit,13,-0.141,-0.094,779,FALSE
+smooth,BA,Bosnia and Herzegovina,Europe,workplaces,28,0.276,0.079,764,TRUE
+smooth,BG,Bulgaria,Europe,grocery,-28,0.261,0.202,758,TRUE
+smooth,BG,Bulgaria,Europe,parks,9,-0.235,-0.224,783,FALSE
+smooth,BG,Bulgaria,Europe,residential,7,0.185,0.175,785,FALSE
+smooth,BG,Bulgaria,Europe,retail,7,-0.242,-0.224,785,FALSE
+smooth,BG,Bulgaria,Europe,transit,-28,0.21,0.092,758,TRUE
+smooth,BG,Bulgaria,Europe,workplaces,-6,-0.101,-0.098,780,FALSE
+smooth,HR,Croatia,Europe,grocery,-28,0.221,0.144,758,TRUE
+smooth,HR,Croatia,Europe,parks,19,-0.229,-0.197,773,FALSE
+smooth,HR,Croatia,Europe,residential,3,0.15,0.147,786,FALSE
+smooth,HR,Croatia,Europe,retail,7,-0.105,-0.092,785,FALSE
+smooth,HR,Croatia,Europe,transit,6,-0.132,-0.118,786,FALSE
+smooth,HR,Croatia,Europe,workplaces,28,0.179,0.093,764,TRUE
+smooth,CZ,Czechia,Europe,grocery,12,-0.057,-0.055,780,FALSE
+smooth,CZ,Czechia,Europe,parks,5,-0.395,-0.393,786,FALSE
+smooth,CZ,Czechia,Europe,residential,8,0.34,0.326,784,FALSE
+smooth,CZ,Czechia,Europe,retail,11,-0.314,-0.288,781,FALSE
+smooth,CZ,Czechia,Europe,transit,6,-0.231,-0.223,786,FALSE
+smooth,CZ,Czechia,Europe,workplaces,6,-0.079,-0.074,786,FALSE
+smooth,DK,Denmark,Europe,grocery,-5,-0.099,-0.095,781,FALSE
+smooth,DK,Denmark,Europe,parks,28,-0.347,-0.334,764,TRUE
+smooth,DK,Denmark,Europe,residential,3,0.134,0.131,786,FALSE
+smooth,DK,Denmark,Europe,retail,15,-0.09,-0.067,777,FALSE
+smooth,DK,Denmark,Europe,transit,6,-0.144,-0.135,786,FALSE
+smooth,DK,Denmark,Europe,workplaces,28,0.167,0.04,764,TRUE
+smooth,EE,Estonia,Europe,grocery,16,-0.093,-0.091,776,FALSE
+smooth,EE,Estonia,Europe,parks,-3,-0.456,-0.454,762,FALSE
+smooth,EE,Estonia,Europe,residential,0,0.337,0.337,786,FALSE
+smooth,EE,Estonia,Europe,retail,16,-0.282,-0.258,776,FALSE
+smooth,EE,Estonia,Europe,transit,6,-0.377,-0.373,786,FALSE
+smooth,EE,Estonia,Europe,workplaces,-28,0.185,0.101,758,TRUE
+smooth,FI,Finland,Europe,grocery,-4,-0.078,-0.074,782,FALSE
+smooth,FI,Finland,Europe,parks,13,-0.316,-0.311,779,FALSE
+smooth,FI,Finland,Europe,residential,6,0.311,0.296,786,FALSE
+smooth,FI,Finland,Europe,retail,6,-0.136,-0.122,786,FALSE
+smooth,FI,Finland,Europe,transit,6,-0.128,-0.108,786,FALSE
+smooth,FI,Finland,Europe,workplaces,28,0.147,0.021,764,TRUE
+smooth,FR,France,Europe,grocery,-28,0.221,0.19,758,TRUE
+smooth,FR,France,Europe,parks,19,-0.131,-0.113,773,FALSE
+smooth,FR,France,Europe,residential,-28,-0.117,0.064,758,TRUE
+smooth,FR,France,Europe,retail,7,-0.116,-0.092,785,FALSE
+smooth,FR,France,Europe,transit,-28,0.159,0.025,758,TRUE
+smooth,FR,France,Europe,workplaces,-28,0.226,0.072,758,TRUE
+smooth,DE,Germany,Europe,grocery,-28,0.178,0.103,758,TRUE
+smooth,DE,Germany,Europe,parks,28,-0.359,-0.318,764,TRUE
+smooth,DE,Germany,Europe,residential,12,0.237,0.214,780,FALSE
+smooth,DE,Germany,Europe,retail,16,-0.188,-0.151,776,FALSE
+smooth,DE,Germany,Europe,transit,11,-0.144,-0.119,781,FALSE
+smooth,DE,Germany,Europe,workplaces,-28,0.198,0.094,758,TRUE
+smooth,GR,Greece,Europe,grocery,-28,0.393,0.35,758,TRUE
+smooth,GR,Greece,Europe,parks,-28,0.05,-0.008,758,TRUE
+smooth,GR,Greece,Europe,residential,-28,-0.183,-0.054,758,TRUE
+smooth,GR,Greece,Europe,retail,-28,0.136,0.038,758,TRUE
+smooth,GR,Greece,Europe,transit,-28,0.183,0.08,758,TRUE
+smooth,GR,Greece,Europe,workplaces,-28,0.157,0.051,758,TRUE
+smooth,HU,Hungary,Europe,grocery,28,0.108,0.09,764,TRUE
+smooth,HU,Hungary,Europe,parks,3,-0.312,-0.311,786,FALSE
+smooth,HU,Hungary,Europe,residential,7,0.284,0.274,785,FALSE
+smooth,HU,Hungary,Europe,retail,-4,-0.124,-0.122,782,FALSE
+smooth,HU,Hungary,Europe,transit,6,-0.119,-0.112,786,FALSE
+smooth,HU,Hungary,Europe,workplaces,28,0.167,0.075,764,TRUE
+smooth,IE,Ireland,Europe,grocery,-28,0.328,0.178,758,TRUE
+smooth,IE,Ireland,Europe,parks,-28,0.118,0.024,758,TRUE
+smooth,IE,Ireland,Europe,residential,-28,-0.334,-0.123,758,TRUE
+smooth,IE,Ireland,Europe,retail,-28,0.419,0.229,758,TRUE
+smooth,IE,Ireland,Europe,transit,-28,0.26,0.078,758,TRUE
+smooth,IE,Ireland,Europe,workplaces,-28,0.393,0.21,758,TRUE
+smooth,IT,Italy,Europe,grocery,-28,0.275,0.174,758,TRUE
+smooth,IT,Italy,Europe,parks,23,-0.27,-0.246,769,FALSE
+smooth,IT,Italy,Europe,residential,6,0.312,0.294,786,FALSE
+smooth,IT,Italy,Europe,retail,6,-0.202,-0.185,786,FALSE
+smooth,IT,Italy,Europe,transit,6,-0.157,-0.134,786,FALSE
+smooth,IT,Italy,Europe,workplaces,-28,0.197,0.058,758,TRUE
+smooth,LV,Latvia,Europe,grocery,8,-0.201,-0.198,784,FALSE
+smooth,LV,Latvia,Europe,parks,15,-0.359,-0.354,777,FALSE
+smooth,LV,Latvia,Europe,residential,3,0.319,0.319,786,FALSE
+smooth,LV,Latvia,Europe,retail,8,-0.433,-0.421,784,FALSE
+smooth,LV,Latvia,Europe,transit,7,-0.454,-0.445,785,FALSE
+smooth,LV,Latvia,Europe,workplaces,6,-0.154,-0.14,786,FALSE
+smooth,LI,Liechtenstein,Europe,grocery,16,-0.551,-0.12,37,FALSE
+smooth,LI,Liechtenstein,Europe,retail,6,-0.842,-0.666,48,FALSE
+smooth,LI,Liechtenstein,Europe,transit,-28,0.149,0.062,713,TRUE
+smooth,LI,Liechtenstein,Europe,workplaces,-19,0.138,0.114,719,FALSE
+smooth,LT,Lithuania,Europe,grocery,-28,0.239,0.156,758,TRUE
+smooth,LT,Lithuania,Europe,parks,21,-0.34,-0.314,771,FALSE
+smooth,LT,Lithuania,Europe,residential,11,0.202,0.187,781,FALSE
+smooth,LT,Lithuania,Europe,retail,6,-0.153,-0.149,786,FALSE
+smooth,LT,Lithuania,Europe,transit,6,-0.077,-0.074,786,FALSE
+smooth,LT,Lithuania,Europe,workplaces,-28,0.262,0.188,758,TRUE
+smooth,LU,Luxembourg,Europe,grocery,-23,0.254,0.209,763,FALSE
+smooth,LU,Luxembourg,Europe,parks,28,-0.266,-0.25,739,TRUE
+smooth,LU,Luxembourg,Europe,residential,10,0.121,0.084,782,FALSE
+smooth,LU,Luxembourg,Europe,retail,-28,0.191,0.004,758,TRUE
+smooth,LU,Luxembourg,Europe,transit,-28,0.122,-0.004,758,TRUE
+smooth,LU,Luxembourg,Europe,workplaces,-27,0.322,0.16,759,FALSE
+smooth,MT,Malta,Europe,grocery,28,0.146,0.102,764,TRUE
+smooth,MT,Malta,Europe,parks,23,-0.212,-0.172,748,FALSE
+smooth,MT,Malta,Europe,residential,8,0.128,0.094,784,FALSE
+smooth,MT,Malta,Europe,retail,-28,0.16,0.006,758,TRUE
+smooth,MT,Malta,Europe,transit,14,-0.082,-0.05,778,FALSE
+smooth,MT,Malta,Europe,workplaces,-28,0.179,0.057,758,TRUE
+smooth,MD,Moldova,Europe,grocery,-2,-0.051,-0.05,784,FALSE
+smooth,MD,Moldova,Europe,parks,11,-0.288,-0.274,781,FALSE
+smooth,MD,Moldova,Europe,residential,-28,-0.17,-0.11,758,TRUE
+smooth,MD,Moldova,Europe,retail,7,-0.126,-0.115,785,FALSE
+smooth,MD,Moldova,Europe,transit,6,-0.1,-0.089,786,FALSE
+smooth,MD,Moldova,Europe,workplaces,28,0.272,0.09,764,TRUE
+smooth,NL,Netherlands,Europe,grocery,-28,0.136,0.062,758,TRUE
+smooth,NL,Netherlands,Europe,parks,-16,-0.35,-0.331,770,FALSE
+smooth,NL,Netherlands,Europe,residential,6,0.09,0.079,786,FALSE
+smooth,NL,Netherlands,Europe,retail,6,-0.186,-0.181,786,FALSE
+smooth,NL,Netherlands,Europe,transit,-28,0.09,-0.013,758,TRUE
+smooth,NL,Netherlands,Europe,workplaces,-28,0.213,0.064,758,TRUE
+smooth,MK,North Macedonia,Europe,grocery,28,0.158,0.119,764,TRUE
+smooth,MK,North Macedonia,Europe,parks,11,-0.162,-0.144,756,FALSE
+smooth,MK,North Macedonia,Europe,residential,-28,-0.125,0.004,758,TRUE
+smooth,MK,North Macedonia,Europe,retail,-28,0.095,-0.061,758,TRUE
+smooth,MK,North Macedonia,Europe,transit,-28,0.168,0.024,758,TRUE
+smooth,MK,North Macedonia,Europe,workplaces,28,0.228,0.041,764,TRUE
+smooth,NO,Norway,Europe,grocery,12,-0.173,-0.159,780,FALSE
+smooth,NO,Norway,Europe,parks,-15,-0.414,-0.395,771,FALSE
+smooth,NO,Norway,Europe,residential,4,0.157,0.151,786,FALSE
+smooth,NO,Norway,Europe,retail,7,-0.089,-0.078,785,FALSE
+smooth,NO,Norway,Europe,transit,7,-0.186,-0.166,785,FALSE
+smooth,NO,Norway,Europe,workplaces,28,0.246,0.179,764,TRUE
+smooth,PL,Poland,Europe,grocery,-28,0.048,0.006,758,TRUE
+smooth,PL,Poland,Europe,parks,-6,-0.364,-0.36,780,FALSE
+smooth,PL,Poland,Europe,residential,5,0.344,0.335,786,FALSE
+smooth,PL,Poland,Europe,retail,-4,-0.302,-0.3,782,FALSE
+smooth,PL,Poland,Europe,transit,4,-0.213,-0.208,786,FALSE
+smooth,PL,Poland,Europe,workplaces,28,0.113,-0.019,764,TRUE
+smooth,PT,Portugal,Europe,grocery,-28,0.363,0.25,758,TRUE
+smooth,PT,Portugal,Europe,parks,9,-0.159,-0.146,783,FALSE
+smooth,PT,Portugal,Europe,residential,-28,-0.155,-0.003,758,TRUE
+smooth,PT,Portugal,Europe,retail,-28,0.253,0.121,758,TRUE
+smooth,PT,Portugal,Europe,transit,-28,0.295,0.154,758,TRUE
+smooth,PT,Portugal,Europe,workplaces,-28,0.343,0.193,758,TRUE
+smooth,RO,Romania,Europe,grocery,-28,0.081,0.019,758,TRUE
+smooth,RO,Romania,Europe,parks,4,-0.254,-0.249,786,FALSE
+smooth,RO,Romania,Europe,residential,6,0.209,0.205,786,FALSE
+smooth,RO,Romania,Europe,retail,6,-0.241,-0.232,786,FALSE
+smooth,RO,Romania,Europe,transit,6,-0.229,-0.224,786,FALSE
+smooth,RO,Romania,Europe,workplaces,28,0.121,0.023,764,TRUE
+smooth,RU,Russia,Europe,grocery,16,-0.068,-0.052,776,FALSE
+smooth,RU,Russia,Europe,parks,-3,-0.217,-0.216,783,FALSE
+smooth,RU,Russia,Europe,residential,8,0.205,0.19,784,FALSE
+smooth,RU,Russia,Europe,retail,6,-0.193,-0.181,786,FALSE
+smooth,RU,Russia,Europe,transit,13,-0.076,-0.048,779,FALSE
+smooth,RU,Russia,Europe,workplaces,28,0.189,0.055,764,TRUE
+smooth,RS,Serbia,Europe,grocery,28,0.347,0.247,719,TRUE
+smooth,RS,Serbia,Europe,parks,-18,-0.186,-0.179,723,FALSE
+smooth,RS,Serbia,Europe,residential,0,0.115,0.115,741,FALSE
+smooth,RS,Serbia,Europe,retail,28,0.154,0.027,719,TRUE
+smooth,RS,Serbia,Europe,transit,28,0.241,0.116,719,TRUE
+smooth,RS,Serbia,Europe,workplaces,28,0.269,0.074,719,TRUE
+smooth,SK,Slovakia,Europe,grocery,28,0.155,0.13,764,TRUE
+smooth,SK,Slovakia,Europe,parks,0,-0.365,-0.365,786,FALSE
+smooth,SK,Slovakia,Europe,residential,7,0.278,0.267,785,FALSE
+smooth,SK,Slovakia,Europe,retail,6,-0.207,-0.198,786,FALSE
+smooth,SK,Slovakia,Europe,transit,6,-0.137,-0.13,786,FALSE
+smooth,SK,Slovakia,Europe,workplaces,28,0.062,0.003,764,TRUE
+smooth,SI,Slovenia,Europe,grocery,-28,0.228,0.152,758,TRUE
+smooth,SI,Slovenia,Europe,parks,19,-0.248,-0.219,760,FALSE
+smooth,SI,Slovenia,Europe,residential,6,0.247,0.242,786,FALSE
+smooth,SI,Slovenia,Europe,retail,6,-0.128,-0.119,786,FALSE
+smooth,SI,Slovenia,Europe,transit,6,-0.121,-0.107,786,FALSE
+smooth,SI,Slovenia,Europe,workplaces,28,0.197,0.119,764,TRUE
+smooth,ES,Spain,Europe,grocery,-28,0.231,0.152,758,TRUE
+smooth,ES,Spain,Europe,parks,9,-0.111,-0.109,783,FALSE
+smooth,ES,Spain,Europe,residential,6,0.088,0.086,786,FALSE
+smooth,ES,Spain,Europe,retail,-28,0.162,-0.035,758,TRUE
+smooth,ES,Spain,Europe,transit,-28,0.184,0.034,758,TRUE
+smooth,ES,Spain,Europe,workplaces,28,0.204,0.014,764,TRUE
+smooth,SE,Sweden,Europe,grocery,-28,-0.343,-0.285,758,TRUE
+smooth,SE,Sweden,Europe,parks,-28,-0.482,-0.408,758,TRUE
+smooth,SE,Sweden,Europe,residential,-10,0.525,0.466,776,FALSE
+smooth,SE,Sweden,Europe,retail,-7,-0.415,-0.4,779,FALSE
+smooth,SE,Sweden,Europe,transit,-9,-0.568,-0.545,777,FALSE
+smooth,SE,Sweden,Europe,workplaces,-7,-0.123,-0.104,779,FALSE
+smooth,CH,Switzerland,Europe,grocery,-28,0.121,0.1,758,TRUE
+smooth,CH,Switzerland,Europe,parks,28,-0.282,-0.245,764,TRUE
+smooth,CH,Switzerland,Europe,residential,7,0.153,0.135,785,FALSE
+smooth,CH,Switzerland,Europe,retail,-28,0.172,0.006,758,TRUE
+smooth,CH,Switzerland,Europe,transit,6,-0.111,-0.099,786,FALSE
+smooth,CH,Switzerland,Europe,workplaces,-28,0.209,0.143,758,TRUE
+smooth,UA,Ukraine,Europe,grocery,-28,0.085,0.035,706,TRUE
+smooth,UA,Ukraine,Europe,parks,0,-0.342,-0.342,734,FALSE
+smooth,UA,Ukraine,Europe,residential,0,0.1,0.1,734,FALSE
+smooth,UA,Ukraine,Europe,retail,6,-0.179,-0.169,734,FALSE
+smooth,UA,Ukraine,Europe,transit,3,-0.131,-0.13,734,FALSE
+smooth,UA,Ukraine,Europe,workplaces,28,0.09,0.06,712,TRUE
+smooth,GB,United Kingdom,Europe,grocery,-28,0.362,0.198,758,TRUE
+smooth,GB,United Kingdom,Europe,parks,24,-0.235,-0.17,768,FALSE
+smooth,GB,United Kingdom,Europe,residential,-28,-0.371,-0.208,758,TRUE
+smooth,GB,United Kingdom,Europe,retail,-28,0.395,0.199,758,TRUE
+smooth,GB,United Kingdom,Europe,transit,-28,0.356,0.171,758,TRUE
+smooth,GB,United Kingdom,Europe,workplaces,-28,0.418,0.268,758,TRUE
+smooth,AG,Antigua and Barbuda,North America,grocery,28,0.378,0.285,739,TRUE
+smooth,AG,Antigua and Barbuda,North America,parks,-28,0.368,0.221,733,TRUE
+smooth,AG,Antigua and Barbuda,North America,residential,-28,-0.306,-0.244,718,TRUE
+smooth,AG,Antigua and Barbuda,North America,retail,-28,0.358,0.226,733,TRUE
+smooth,AG,Antigua and Barbuda,North America,transit,-28,0.31,0.148,733,TRUE
+smooth,AG,Antigua and Barbuda,North America,workplaces,28,0.23,0.117,758,TRUE
+smooth,BB,Barbados,North America,grocery,-28,0.447,0.34,758,TRUE
+smooth,BB,Barbados,North America,parks,-28,0.523,0.386,733,TRUE
+smooth,BB,Barbados,North America,residential,-28,-0.42,-0.269,758,TRUE
+smooth,BB,Barbados,North America,retail,-28,0.476,0.347,758,TRUE
+smooth,BB,Barbados,North America,transit,-28,0.426,0.302,733,TRUE
+smooth,BB,Barbados,North America,workplaces,-28,0.323,0.216,758,TRUE
+smooth,BZ,Belize,North America,grocery,28,0.368,0.32,739,TRUE
+smooth,BZ,Belize,North America,parks,28,0.343,0.271,739,TRUE
+smooth,BZ,Belize,North America,residential,-28,-0.209,-0.11,754,TRUE
+smooth,BZ,Belize,North America,retail,28,0.363,0.291,739,TRUE
+smooth,BZ,Belize,North America,transit,28,0.318,0.195,739,TRUE
+smooth,BZ,Belize,North America,workplaces,28,0.203,0.081,764,TRUE
+smooth,CA,Canada,North America,grocery,9,-0.19,-0.179,783,FALSE
+smooth,CA,Canada,North America,parks,-11,-0.384,-0.381,775,FALSE
+smooth,CA,Canada,North America,residential,6,0.248,0.238,786,FALSE
+smooth,CA,Canada,North America,retail,7,-0.195,-0.175,785,FALSE
+smooth,CA,Canada,North America,transit,12,-0.267,-0.244,780,FALSE
+smooth,CA,Canada,North America,workplaces,-28,0.209,0.07,758,TRUE
+smooth,CR,Costa Rica,North America,grocery,28,0.354,0.227,764,TRUE
+smooth,CR,Costa Rica,North America,parks,28,0.318,0.109,764,TRUE
+smooth,CR,Costa Rica,North America,residential,28,-0.294,-0.083,764,TRUE
+smooth,CR,Costa Rica,North America,retail,28,0.354,0.182,764,TRUE
+smooth,CR,Costa Rica,North America,transit,28,0.355,0.169,764,TRUE
+smooth,CR,Costa Rica,North America,workplaces,28,0.366,0.2,764,TRUE
+smooth,DO,Dominican Republic,North America,grocery,28,0.11,-0.01,764,TRUE
+smooth,DO,Dominican Republic,North America,parks,-13,-0.095,-0.087,773,FALSE
+smooth,DO,Dominican Republic,North America,residential,28,-0.159,0.059,764,TRUE
+smooth,DO,Dominican Republic,North America,retail,28,0.106,-0.062,764,TRUE
+smooth,DO,Dominican Republic,North America,transit,28,0.141,-0.032,764,TRUE
+smooth,DO,Dominican Republic,North America,workplaces,-11,-0.181,-0.125,775,FALSE
+smooth,SV,El Salvador,North America,grocery,28,0.191,0.113,764,TRUE
+smooth,SV,El Salvador,North America,parks,28,0.195,0.06,764,TRUE
+smooth,SV,El Salvador,North America,residential,28,-0.241,-0.113,764,TRUE
+smooth,SV,El Salvador,North America,retail,28,0.202,0.095,764,TRUE
+smooth,SV,El Salvador,North America,transit,28,0.184,0.097,764,TRUE
+smooth,SV,El Salvador,North America,workplaces,24,0.185,0.08,768,FALSE
+smooth,GT,Guatemala,North America,grocery,28,0.428,0.336,764,TRUE
+smooth,GT,Guatemala,North America,parks,28,0.432,0.282,764,TRUE
+smooth,GT,Guatemala,North America,residential,28,-0.333,-0.168,764,TRUE
+smooth,GT,Guatemala,North America,retail,28,0.442,0.314,764,TRUE
+smooth,GT,Guatemala,North America,transit,28,0.427,0.294,764,TRUE
+smooth,GT,Guatemala,North America,workplaces,28,0.477,0.356,764,TRUE
+smooth,HT,Haiti,North America,grocery,28,0.117,0.048,764,TRUE
+smooth,HT,Haiti,North America,parks,-18,0.127,0.087,768,FALSE
+smooth,HT,Haiti,North America,residential,19,0.073,0.041,773,FALSE
+smooth,HT,Haiti,North America,retail,28,0.152,0.05,739,TRUE
+smooth,HT,Haiti,North America,transit,2,-0.061,-0.06,762,FALSE
+smooth,HT,Haiti,North America,workplaces,19,-0.126,-0.09,773,FALSE
+smooth,HN,Honduras,North America,grocery,28,0.162,0.041,764,TRUE
+smooth,HN,Honduras,North America,parks,28,0.135,-0.024,764,TRUE
+smooth,HN,Honduras,North America,residential,28,-0.332,-0.18,764,TRUE
+smooth,HN,Honduras,North America,retail,28,0.168,0.006,764,TRUE
+smooth,HN,Honduras,North America,transit,28,0.17,0.012,764,TRUE
+smooth,HN,Honduras,North America,workplaces,28,0.183,0.037,764,TRUE
+smooth,JM,Jamaica,North America,grocery,28,0.164,0.033,764,TRUE
+smooth,JM,Jamaica,North America,parks,28,0.149,0.045,764,TRUE
+smooth,JM,Jamaica,North America,residential,28,-0.339,-0.227,764,TRUE
+smooth,JM,Jamaica,North America,retail,28,0.099,-0.034,764,TRUE
+smooth,JM,Jamaica,North America,transit,28,0.161,0.009,764,TRUE
+smooth,JM,Jamaica,North America,workplaces,-5,-0.204,-0.198,781,FALSE
+smooth,MX,Mexico,North America,grocery,28,0.199,0.119,764,TRUE
+smooth,MX,Mexico,North America,parks,28,0.12,-0.036,764,TRUE
+smooth,MX,Mexico,North America,residential,28,-0.168,0.067,764,TRUE
+smooth,MX,Mexico,North America,retail,28,0.173,0.036,764,TRUE
+smooth,MX,Mexico,North America,transit,28,0.169,0.02,764,TRUE
+smooth,MX,Mexico,North America,workplaces,28,0.194,0.059,764,TRUE
+smooth,NI,Nicaragua,North America,grocery,28,0.129,0.026,764,TRUE
+smooth,NI,Nicaragua,North America,parks,28,0.109,-0.049,764,TRUE
+smooth,NI,Nicaragua,North America,residential,-13,0.086,0.076,773,FALSE
+smooth,NI,Nicaragua,North America,retail,28,0.133,0,764,TRUE
+smooth,NI,Nicaragua,North America,transit,28,0.083,-0.035,764,TRUE
+smooth,NI,Nicaragua,North America,workplaces,-18,-0.079,-0.062,768,FALSE
+smooth,PA,Panama,North America,grocery,-3,-0.108,-0.107,783,FALSE
+smooth,PA,Panama,North America,parks,-4,-0.189,-0.187,782,FALSE
+smooth,PA,Panama,North America,residential,-6,0.234,0.226,780,FALSE
+smooth,PA,Panama,North America,retail,-4,-0.139,-0.137,782,FALSE
+smooth,PA,Panama,North America,transit,-6,-0.158,-0.155,780,FALSE
+smooth,PA,Panama,North America,workplaces,-12,-0.148,-0.132,774,FALSE
+smooth,BS,The Bahamas,North America,grocery,28,0.212,0.065,764,TRUE
+smooth,BS,The Bahamas,North America,parks,28,0.23,0.057,764,TRUE
+smooth,BS,The Bahamas,North America,residential,-28,-0.332,-0.216,758,TRUE
+smooth,BS,The Bahamas,North America,retail,28,0.246,0.062,764,TRUE
+smooth,BS,The Bahamas,North America,transit,28,0.22,0.093,739,TRUE
+smooth,BS,The Bahamas,North America,workplaces,28,0.238,-0.026,764,TRUE
+smooth,TT,Trinidad and Tobago,North America,grocery,-28,0.604,0.524,758,TRUE
+smooth,TT,Trinidad and Tobago,North America,parks,-28,0.307,0.188,758,TRUE
+smooth,TT,Trinidad and Tobago,North America,residential,-28,-0.395,-0.242,758,TRUE
+smooth,TT,Trinidad and Tobago,North America,retail,-28,0.386,0.29,758,TRUE
+smooth,TT,Trinidad and Tobago,North America,transit,28,0.33,0.253,764,TRUE
+smooth,TT,Trinidad and Tobago,North America,workplaces,28,0.188,0.111,764,TRUE
+smooth,US,United States,North America,grocery,25,-0.192,-0.128,767,FALSE
+smooth,US,United States,North America,parks,22,-0.402,-0.331,770,FALSE
+smooth,US,United States,North America,residential,-6,0.124,0.12,780,FALSE
+smooth,US,United States,North America,retail,6,-0.122,-0.112,786,FALSE
+smooth,US,United States,North America,transit,6,-0.134,-0.124,786,FALSE
+smooth,US,United States,North America,workplaces,28,0.255,0.032,764,TRUE
+smooth,AU,Australia,Oceania,grocery,-28,0.388,0.215,758,TRUE
+smooth,AU,Australia,Oceania,parks,28,0.094,0.034,764,TRUE
+smooth,AU,Australia,Oceania,residential,6,0.245,0.212,786,FALSE
+smooth,AU,Australia,Oceania,retail,7,-0.104,-0.058,785,FALSE
+smooth,AU,Australia,Oceania,transit,10,-0.391,-0.346,782,FALSE
+smooth,AU,Australia,Oceania,workplaces,7,-0.234,-0.197,785,FALSE
+smooth,FJ,Fiji,Oceania,grocery,28,0.308,0.218,749,TRUE
+smooth,FJ,Fiji,Oceania,parks,28,0.165,0.009,764,TRUE
+smooth,FJ,Fiji,Oceania,residential,4,0.398,0.388,786,FALSE
+smooth,FJ,Fiji,Oceania,retail,28,0.182,0.063,740,TRUE
+smooth,FJ,Fiji,Oceania,transit,4,-0.296,-0.29,786,FALSE
+smooth,FJ,Fiji,Oceania,workplaces,-9,-0.13,-0.115,777,FALSE
+smooth,NZ,New Zealand,Oceania,grocery,-28,0.49,0.312,758,TRUE
+smooth,NZ,New Zealand,Oceania,parks,28,0.256,0.12,764,TRUE
+smooth,NZ,New Zealand,Oceania,residential,0,0.327,0.327,786,FALSE
+smooth,NZ,New Zealand,Oceania,retail,-28,0.093,-0.074,758,TRUE
+smooth,NZ,New Zealand,Oceania,transit,5,-0.417,-0.413,786,FALSE
+smooth,NZ,New Zealand,Oceania,workplaces,0,-0.275,-0.275,786,FALSE
+smooth,PG,Papua New Guinea,Oceania,grocery,28,0.493,0.47,739,TRUE
+smooth,PG,Papua New Guinea,Oceania,parks,-21,-0.193,-0.165,740,FALSE
+smooth,PG,Papua New Guinea,Oceania,residential,28,-0.136,-0.062,761,TRUE
+smooth,PG,Papua New Guinea,Oceania,retail,28,0.412,0.347,739,TRUE
+smooth,PG,Papua New Guinea,Oceania,transit,28,0.423,0.373,739,TRUE
+smooth,PG,Papua New Guinea,Oceania,workplaces,28,0.205,0.159,761,TRUE
+smooth,AR,Argentina,South America,grocery,28,0.267,0.143,764,TRUE
+smooth,AR,Argentina,South America,parks,28,0.232,0.06,764,TRUE
+smooth,AR,Argentina,South America,residential,28,-0.153,0.051,764,TRUE
+smooth,AR,Argentina,South America,retail,28,0.243,0.062,764,TRUE
+smooth,AR,Argentina,South America,transit,28,0.23,0.045,764,TRUE
+smooth,AR,Argentina,South America,workplaces,28,0.27,0.045,764,TRUE
+smooth,BO,Bolivia,South America,grocery,28,0.249,0.137,764,TRUE
+smooth,BO,Bolivia,South America,parks,28,0.206,0.064,764,TRUE
+smooth,BO,Bolivia,South America,residential,28,-0.13,0.015,764,TRUE
+smooth,BO,Bolivia,South America,retail,28,0.228,0.093,764,TRUE
+smooth,BO,Bolivia,South America,transit,28,0.22,0.084,764,TRUE
+smooth,BO,Bolivia,South America,workplaces,28,0.176,0.008,764,TRUE
+smooth,BR,Brazil,South America,grocery,28,0.159,0.078,764,TRUE
+smooth,BR,Brazil,South America,parks,-28,-0.088,-0.073,758,TRUE
+smooth,BR,Brazil,South America,residential,-11,0.143,0.094,775,FALSE
+smooth,BR,Brazil,South America,retail,-25,-0.146,-0.095,761,FALSE
+smooth,BR,Brazil,South America,transit,-28,-0.138,-0.066,758,TRUE
+smooth,BR,Brazil,South America,workplaces,28,0.185,0.049,764,TRUE
+smooth,CL,Chile,South America,grocery,28,0.08,0.035,764,TRUE
+smooth,CL,Chile,South America,parks,28,0.025,-0.018,764,TRUE
+smooth,CL,Chile,South America,residential,6,0.084,0.077,786,FALSE
+smooth,CL,Chile,South America,retail,28,0.042,-0.034,764,TRUE
+smooth,CL,Chile,South America,transit,28,0.063,-0.017,764,TRUE
+smooth,CL,Chile,South America,workplaces,28,0.063,-0.006,764,TRUE
+smooth,CO,Colombia,South America,grocery,28,0.176,0.043,764,TRUE
+smooth,CO,Colombia,South America,parks,28,0.167,0.002,764,TRUE
+smooth,CO,Colombia,South America,residential,28,-0.148,0.11,764,TRUE
+smooth,CO,Colombia,South America,retail,28,0.173,-0.014,764,TRUE
+smooth,CO,Colombia,South America,transit,28,0.161,-0.036,764,TRUE
+smooth,CO,Colombia,South America,workplaces,28,0.177,-0.081,764,TRUE
+smooth,EC,Ecuador,South America,grocery,28,0.151,0.04,764,TRUE
+smooth,EC,Ecuador,South America,parks,28,0.124,-0.065,764,TRUE
+smooth,EC,Ecuador,South America,residential,-8,0.121,0.108,778,FALSE
+smooth,EC,Ecuador,South America,retail,28,0.13,-0.021,764,TRUE
+smooth,EC,Ecuador,South America,transit,28,0.118,-0.027,764,TRUE
+smooth,EC,Ecuador,South America,workplaces,28,0.114,-0.039,764,TRUE
+smooth,PY,Paraguay,South America,grocery,28,0.256,0.139,764,TRUE
+smooth,PY,Paraguay,South America,parks,28,0.102,-0.035,764,TRUE
+smooth,PY,Paraguay,South America,residential,28,-0.218,-0.05,764,TRUE
+smooth,PY,Paraguay,South America,retail,28,0.175,0.046,764,TRUE
+smooth,PY,Paraguay,South America,transit,28,0.191,0.025,764,TRUE
+smooth,PY,Paraguay,South America,workplaces,-28,-0.215,-0.094,758,TRUE
+smooth,PE,Peru,South America,grocery,-28,-0.254,-0.201,758,TRUE
+smooth,PE,Peru,South America,parks,-28,-0.309,-0.251,758,TRUE
+smooth,PE,Peru,South America,residential,-23,0.321,0.275,763,FALSE
+smooth,PE,Peru,South America,retail,-28,-0.316,-0.248,758,TRUE
+smooth,PE,Peru,South America,transit,-27,-0.331,-0.263,759,FALSE
+smooth,PE,Peru,South America,workplaces,-28,-0.335,-0.264,758,TRUE
+smooth,UY,Uruguay,South America,grocery,28,0.354,0.278,764,TRUE
+smooth,UY,Uruguay,South America,parks,-28,0.32,0.205,758,TRUE
+smooth,UY,Uruguay,South America,residential,-28,-0.23,-0.069,758,TRUE
+smooth,UY,Uruguay,South America,retail,28,0.195,0.097,764,TRUE
+smooth,UY,Uruguay,South America,transit,-28,0.299,0.207,758,TRUE
+smooth,UY,Uruguay,South America,workplaces,28,0.079,-0.036,764,TRUE
+smooth,VE,Venezuela,South America,grocery,28,0.427,0.277,764,TRUE
+smooth,VE,Venezuela,South America,parks,28,0.411,0.202,764,TRUE
+smooth,VE,Venezuela,South America,residential,28,-0.426,-0.218,764,TRUE
+smooth,VE,Venezuela,South America,retail,28,0.41,0.212,764,TRUE
+smooth,VE,Venezuela,South America,transit,28,0.318,0.055,764,TRUE
+smooth,VE,Venezuela,South America,workplaces,28,0.405,0.232,764,TRUE

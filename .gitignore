@@ -2,9 +2,6 @@
 # Unzip data/raw/full-mobility-report.zip inside data/raw/ to get it; the unzipped folder stays local.
 data/raw/Round_1_Problem_3_Group_5_and_6/
 
-# Script outputs
-replication/out/
-
 # Patches are applied, not stored
 *.patch
 

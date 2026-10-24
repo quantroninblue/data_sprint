@@ -1,0 +1,109 @@
+continent,variable,window,n_countries,median,q1,q3
+Africa,grocery,paper_train,29,-11,-26,-1
+Africa,grocery,paper_validation,29,-2,-9,7
+Africa,grocery,extension,29,44,16,79
+Africa,parks,paper_train,29,-15,-29,-3
+Africa,parks,paper_validation,29,-7,-16,3
+Africa,parks,extension,29,32,-1,83
+Africa,residential,paper_train,29,11,2,19
+Africa,residential,paper_validation,29,8,5,12
+Africa,residential,extension,29,6,0,14
+Africa,retail,paper_train,29,-22,-44,-5
+Africa,retail,paper_validation,29,-11,-20,-2
+Africa,retail,extension,29,20,-1,50
+Africa,transit,paper_train,29,-29,-50,-8
+Africa,transit,paper_validation,29,-20,-32,-7
+Africa,transit,extension,29,19,-4,48
+Africa,workplaces,paper_train,29,-13,-31,1
+Africa,workplaces,paper_validation,29,-11,-19,-4
+Africa,workplaces,extension,29,2,-11,30
+Asia,grocery,paper_train,36,-9,-29,2
+Asia,grocery,paper_validation,36,-1,-11,6
+Asia,grocery,extension,36,16,0,44
+Asia,parks,paper_train,36,-19,-40,-2
+Asia,parks,paper_validation,36,-9,-22,6
+Asia,parks,extension,36,-2,-21,30
+Asia,residential,paper_train,36,12,3,19
+Asia,residential,paper_validation,36,7,3,12
+Asia,residential,extension,36,6,1,11
+Asia,retail,paper_train,36,-30,-56,-8
+Asia,retail,paper_validation,36,-17,-27,-8
+Asia,retail,extension,36,-6,-18,11
+Asia,transit,paper_train,36,-35,-58,-11
+Asia,transit,paper_validation,36,-25,-39,-14
+Asia,transit,extension,36,-12,-28,10
+Asia,workplaces,paper_train,36,-21,-42,-1
+Asia,workplaces,paper_validation,36,-18,-26,-9
+Asia,workplaces,extension,36,-8,-22,5
+Europe,grocery,paper_train,37,-5,-21,3
+Europe,grocery,paper_validation,37,2,-3,8
+Europe,grocery,extension,37,11,1,23
+Europe,parks,paper_train,37,8,-15,33
+Europe,parks,paper_validation,37,91,57,144
+Europe,parks,extension,37,34,3,80
+Europe,residential,paper_train,37,9,2,17
+Europe,residential,paper_validation,37,2,-1,4
+Europe,residential,extension,37,3,-1,7
+Europe,retail,paper_train,37,-30,-59,-6
+Europe,retail,paper_validation,37,-3,-11,4
+Europe,retail,extension,37,-8,-21,3
+Europe,transit,paper_train,37,-35,-54,-12
+Europe,transit,paper_validation,37,-16,-24,-6
+Europe,transit,extension,37,-14,-29,-1
+Europe,workplaces,paper_train,37,-29,-47,-7
+Europe,workplaces,paper_validation,37,-27,-33,-10
+Europe,workplaces,extension,37,-16,-26,-7
+North America,grocery,paper_train,19,-20,-35,-2
+North America,grocery,paper_validation,19,-15,-25,-6
+North America,grocery,extension,19,11,-4,29
+North America,parks,paper_train,19,-31,-51,-5
+North America,parks,paper_validation,19,-25,-39,-11
+North America,parks,extension,19,2,-18,33
+North America,residential,paper_train,19,16.5,6,24
+North America,residential,paper_validation,19,13,10,17
+North America,residential,extension,19,5,1,8
+North America,retail,paper_train,19,-39,-60,-17
+North America,retail,paper_validation,19,-29,-45,-18
+North America,retail,extension,19,-4,-18,12
+North America,transit,paper_train,19,-52,-68,-22
+North America,transit,paper_validation,19,-45,-55,-34
+North America,transit,extension,19,-17,-32,2
+North America,workplaces,paper_train,19,-36,-52,-10
+North America,workplaces,paper_validation,19,-31,-38,-25
+North America,workplaces,extension,19,-13,-25,0
+Oceania,grocery,paper_train,4,-3,-12,5
+Oceania,grocery,paper_validation,4,-1,-7,10
+Oceania,grocery,extension,4,12,5,50
+Oceania,parks,paper_train,4,-14,-32,-7
+Oceania,parks,paper_validation,4,-10,-20.5,-5
+Oceania,parks,extension,4,-12,-20,1
+Oceania,residential,paper_train,4,9,2,15
+Oceania,residential,paper_validation,4,6,4,9
+Oceania,residential,extension,4,6,3,11
+Oceania,retail,paper_train,4,-17,-31,-1
+Oceania,retail,paper_validation,4,-9,-16,0.25
+Oceania,retail,extension,4,6,-7,29
+Oceania,transit,paper_train,4,-32,-50,-8
+Oceania,transit,paper_validation,4,-29,-42,-18
+Oceania,transit,extension,4,-28,-41,3
+Oceania,workplaces,paper_train,4,-8,-24,11
+Oceania,workplaces,paper_validation,4,-6,-15.5,6
+Oceania,workplaces,extension,4,-3,-13,16
+South America,grocery,paper_train,10,-30,-45.25,-5
+South America,grocery,paper_validation,10,-20,-29,-13
+South America,grocery,extension,10,18,0,36
+South America,parks,paper_train,10,-54,-69,-32
+South America,parks,paper_validation,10,-41,-56,-35
+South America,parks,extension,10,-15,-31,6
+South America,residential,paper_train,10,20,11,28
+South America,residential,paper_validation,10,17,13,22
+South America,residential,extension,10,8,4,11
+South America,retail,paper_train,10,-57,-73,-28
+South America,retail,paper_validation,10,-44,-55,-32
+South America,retail,extension,10,-7,-26,8
+South America,transit,paper_train,10,-55,-68,-32
+South America,transit,paper_validation,10,-48,-54,-39
+South America,transit,extension,10,-10,-25,7
+South America,workplaces,paper_train,10,-36,-56,-9.75
+South America,workplaces,paper_validation,10,-28,-40,-13
+South America,workplaces,extension,10,1,-15,22

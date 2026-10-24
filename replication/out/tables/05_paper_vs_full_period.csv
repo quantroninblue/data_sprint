@@ -1,0 +1,7 @@
+category,n,sign_flips,corr_paper_vs_full
+Retail & recreation,131,68,0.196
+Grocery & pharmacy,130,77,0.051
+Parks,130,65,-0.112
+Transit stations,130,59,0.268
+Workplaces,131,73,-0.116
+Residential,129,54,0.27

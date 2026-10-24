@@ -1,0 +1,13 @@
+spec,variable,n_countries,pct_at_boundary,median_lag,median_tau
+paper,grocery,130,23.8,2,-0.388
+paper,parks,130,23.1,-2,-0.385
+paper,residential,129,22.5,-1,0.467
+paper,retail,131,22.9,1,-0.442
+paper,transit,130,26.9,1,-0.43
+paper,workplaces,131,21.4,0,-0.421
+smooth,grocery,130,78.5,16,0.162
+smooth,parks,130,55.4,11,-0.089
+smooth,residential,129,44.2,6,0.09
+smooth,retail,131,63.4,6,0.097
+smooth,transit,130,56.9,6,0.086
+smooth,workplaces,131,62.6,6,0.132

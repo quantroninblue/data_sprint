@@ -1,0 +1,13 @@
+spec,variable,mean_abs_tau_lag0,mean_abs_tau_best
+paper,grocery,0.268,0.425
+paper,parks,0.265,0.431
+paper,residential,0.355,0.487
+paper,retail,0.344,0.487
+paper,transit,0.356,0.495
+paper,workplaces,0.319,0.458
+smooth,grocery,0.153,0.231
+smooth,parks,0.173,0.235
+smooth,residential,0.171,0.232
+smooth,retail,0.147,0.227
+smooth,transit,0.15,0.225
+smooth,workplaces,0.131,0.216

@@ -1,0 +1,145 @@
+spec,variable,outcome,continent,n,W,p,p_holm
+paper,grocery,tau,Africa,27,0.8495,0.001125,0.02363
+paper,grocery,tau,Asia,35,0.845,1.779e-4,0.0044470000000000004
+paper,grocery,tau,Europe,37,0.6857,1.285e-7,4.113e-6
+paper,grocery,tau,North America,17,0.7929,0.001624,0.03249
+paper,grocery,tau,Oceania,4,0.892,0.3922,1
+paper,grocery,tau,South America,10,0.7676,0.005839,0.08174
+paper,grocery,lag,Africa,27,0.8284,4.429e-4,0.01417
+paper,grocery,lag,Asia,35,0.8759,9.436e-4,0.02548
+paper,grocery,lag,Europe,37,0.8589,2.561e-4,0.008708
+paper,grocery,lag,North America,17,0.9241,0.1735,1
+paper,grocery,lag,Oceania,4,0.8697,0.2964,1
+paper,grocery,lag,South America,10,0.7314,0.002118,0.05082
+paper,parks,tau,Africa,28,0.8484,8.665e-4,0.01906
+paper,parks,tau,Asia,35,0.8031,2.347e-5,6.805e-4
+paper,parks,tau,Europe,36,0.8408,1.177e-4,0.003061
+paper,parks,tau,North America,17,0.7394,3.349e-4,0.008037
+paper,parks,tau,Oceania,4,0.8769,0.3254,1
+paper,parks,tau,South America,10,0.7982,0.01378,0.1378
+paper,parks,lag,Africa,28,0.9002,0.01155,0.1617
+paper,parks,lag,Asia,35,0.8662,5.499e-4,0.0165
+paper,parks,lag,Europe,36,0.893,0.002211,0.05085
+paper,parks,lag,North America,17,0.9473,0.4154,1
+paper,parks,lag,Oceania,4,0.7715,0.06011,0.7213
+paper,parks,lag,South America,10,0.7693,0.006139,0.09822
+paper,residential,tau,Africa,27,0.9584,0.3396,1
+paper,residential,tau,Asia,35,0.7704,5.654e-6,1.753e-4
+paper,residential,tau,Europe,36,0.6129,1.553e-8,5.59e-7
+paper,residential,tau,North America,17,0.809,0.002703,0.05135
+paper,residential,tau,Oceania,4,0.8772,0.3266,1
+paper,residential,tau,South America,10,0.8,0.01449,0.1378
+paper,residential,lag,Africa,27,0.8599,0.001819,0.04548
+paper,residential,lag,Asia,35,0.91,0.007416,0.1112
+paper,residential,lag,Europe,36,0.8821,0.001145,0.02977
+paper,residential,lag,North America,17,0.9154,0.1235,1
+paper,residential,lag,Oceania,4,0.8688,0.2929,1
+paper,residential,lag,South America,10,0.7634,0.005197,0.08834
+paper,retail,tau,Africa,28,0.8814,0.004318,0.06477
+paper,retail,tau,Asia,35,0.7879,1.192e-5,3.575e-4
+paper,retail,tau,Europe,37,0.6261,1.738e-8,6.083e-7
+paper,retail,tau,North America,17,0.8421,0.008149,0.1059
+paper,retail,tau,Oceania,4,0.8888,0.3775,1
+paper,retail,tau,South America,10,0.7912,0.01134,0.1248
+paper,retail,lag,Africa,28,0.8439,7.071e-4,0.0198
+paper,retail,lag,Asia,35,0.8992,0.003759,0.06995
+paper,retail,lag,Europe,37,0.8496,1.537e-4,0.005379
+paper,retail,lag,North America,17,0.9377,0.2922,1
+paper,retail,lag,Oceania,4,0.9119,0.4923,1
+paper,retail,lag,South America,10,0.733,0.002214,0.05085
+paper,transit,tau,Africa,27,0.9161,0.03179,0.2543
+paper,transit,tau,Asia,35,0.8113,3.431e-5,9.263e-4
+paper,transit,tau,Europe,37,0.6299,1.959e-8,6.66e-7
+paper,transit,tau,North America,17,0.8147,0.003248,0.05521
+paper,transit,tau,Oceania,4,0.89,0.383,1
+paper,transit,tau,South America,10,0.7495,0.00352,0.05632
+paper,transit,lag,Africa,27,0.9023,0.01508,0.196
+paper,transit,lag,Asia,35,0.8946,0.002838,0.0596
+paper,transit,lag,Europe,37,0.8749,6.333e-4,0.01837
+paper,transit,lag,North America,17,0.9019,0.07299,0.8029
+paper,transit,lag,Oceania,4,0.9051,0.4567,1
+paper,transit,lag,South America,10,0.6561,2.597e-4,0.008708
+paper,workplaces,tau,Africa,28,0.8958,0.009155,0.1099
+paper,workplaces,tau,Asia,35,0.8091,3.094e-5,8.662e-4
+paper,workplaces,tau,Europe,37,0.6573,4.821e-8,1.591e-6
+paper,workplaces,tau,North America,17,0.8114,0.002923,0.05262
+paper,workplaces,tau,Oceania,4,0.8788,0.3334,1
+paper,workplaces,tau,South America,10,0.6966,8.012e-4,0.01843
+paper,workplaces,lag,Africa,28,0.8759,0.003263,0.06525
+paper,workplaces,lag,Asia,35,0.8988,0.003681,0.06995
+paper,workplaces,lag,Europe,37,0.871,5.066e-4,0.01571
+paper,workplaces,lag,North America,17,0.9448,0.3793,1
+paper,workplaces,lag,Oceania,4,0.9456,0.6889,1
+paper,workplaces,lag,South America,10,0.5517,1.478e-5,5.319e-4
+smooth,grocery,tau,Africa,27,0.955,0.2827,1
+smooth,grocery,tau,Asia,35,0.9449,0.07903,1
+smooth,grocery,tau,Europe,37,0.9184,0.00995,0.3284
+smooth,grocery,tau,North America,17,0.9472,0.4132,1
+smooth,grocery,tau,Oceania,4,0.8748,0.3169,1
+smooth,grocery,tau,South America,10,0.8783,0.1247,1
+smooth,grocery,lag,Africa,27,0.6543,9.543e-7,3.149e-5
+smooth,grocery,lag,Asia,35,0.7618,3.958e-6,1.187e-4
+smooth,grocery,lag,Europe,37,0.7342,7.9e-7,2.686e-5
+smooth,grocery,lag,North America,17,0.5655,4.915e-6,1.327e-4
+smooth,grocery,lag,Oceania,4,0.7286,0.02386,0.1193
+smooth,grocery,lag,South America,10,0.3657,1.004e-7,3.613e-6
+smooth,parks,tau,Africa,28,0.9564,0.2863,1
+smooth,parks,tau,Asia,35,0.9518,0.1289,1
+smooth,parks,tau,Europe,36,0.9328,0.03038,0.7916
+smooth,parks,tau,North America,17,0.9169,0.1309,1
+smooth,parks,tau,Oceania,4,0.909,0.4769,1
+smooth,parks,tau,South America,10,0.9578,0.7605,1
+smooth,parks,lag,Africa,28,0.7103,3.991e-6,1.187e-4
+smooth,parks,lag,Asia,35,0.8418,1.514e-4,0.002422
+smooth,parks,lag,Europe,36,0.92,0.01257,0.08798
+smooth,parks,lag,North America,17,0.7339,2.872e-4,0.003733
+smooth,parks,lag,Oceania,4,0.6298,0.001241,0.01365
+smooth,parks,lag,South America,10,0.5942,4.713e-5,9.898e-4
+smooth,residential,tau,Africa,27,0.9332,0.08297,1
+smooth,residential,tau,Asia,35,0.9629,0.2792,1
+smooth,residential,tau,Europe,36,0.9217,0.01408,0.4365
+smooth,residential,tau,North America,17,0.8564,0.01346,0.4307
+smooth,residential,tau,Oceania,4,0.8524,0.234,1
+smooth,residential,tau,South America,10,0.9519,0.6912,1
+smooth,residential,lag,Africa,27,0.728,9.764e-6,2.343e-4
+smooth,residential,lag,Asia,35,0.8942,0.002773,0.02495
+smooth,residential,lag,Europe,36,0.766,3.674e-6,1.139e-4
+smooth,residential,lag,North America,17,0.7843,0.001247,0.01365
+smooth,residential,lag,Oceania,4,0.8068,0.115,0.4486
+smooth,residential,lag,South America,10,0.8028,0.01567,0.09404
+smooth,retail,tau,Africa,28,0.9165,0.02852,0.7916
+smooth,retail,tau,Asia,35,0.9413,0.0612,1
+smooth,retail,tau,Europe,37,0.9447,0.06539,1
+smooth,retail,tau,North America,17,0.9309,0.2256,1
+smooth,retail,tau,Oceania,4,0.9935,0.9745,1
+smooth,retail,tau,South America,10,0.9025,0.2331,1
+smooth,retail,lag,Africa,28,0.7,2.848e-6,9.114e-5
+smooth,retail,lag,Asia,35,0.8198,5.106e-5,9.898e-4
+smooth,retail,lag,Europe,37,0.8106,2.149e-5,4.727e-4
+smooth,retail,lag,North America,17,0.6649,4.756e-5,9.898e-4
+smooth,retail,lag,Oceania,4,0.8413,0.1992,0.4486
+smooth,retail,lag,South America,10,0.5164,5.668e-6,1.474e-4
+smooth,transit,tau,Africa,27,0.8918,0.008713,0.2962
+smooth,transit,tau,Asia,35,0.9068,0.006038,0.2113
+smooth,transit,tau,Europe,37,0.9298,0.02209,0.6405
+smooth,transit,tau,North America,17,0.9268,0.1923,1
+smooth,transit,tau,Oceania,4,0.7366,0.02868,0.7916
+smooth,transit,tau,South America,10,0.8581,0.07243,1
+smooth,transit,lag,Africa,27,0.7462,1.826e-5,4.199e-4
+smooth,transit,lag,Asia,35,0.8685,6.232e-4,0.007479
+smooth,transit,lag,Europe,37,0.7819,5.74e-6,1.474e-4
+smooth,transit,lag,North America,17,0.6777,6.538e-5,0.001112
+smooth,transit,lag,Oceania,4,0.8053,0.1121,0.4486
+smooth,transit,lag,South America,10,0.5971,5.112e-5,9.898e-4
+smooth,workplaces,tau,Africa,28,0.9055,0.01543,0.4628
+smooth,workplaces,tau,Asia,35,0.9302,0.02827,0.7916
+smooth,workplaces,tau,Europe,37,0.9018,0.00331,0.1192
+smooth,workplaces,tau,North America,17,0.8822,0.03457,0.8296
+smooth,workplaces,tau,Oceania,4,0.8472,0.2171,1
+smooth,workplaces,tau,South America,10,0.9065,0.2577,1
+smooth,workplaces,lag,Africa,28,0.8138,1.889e-4,0.002834
+smooth,workplaces,lag,Asia,35,0.9078,0.00644,0.05152
+smooth,workplaces,lag,Europe,37,0.7164,3.969e-7,1.389e-5
+smooth,workplaces,lag,North America,17,0.7269,2.374e-4,0.003323
+smooth,workplaces,lag,Oceania,4,0.9493,0.7115,0.7115
+smooth,workplaces,lag,South America,10,0.5093,4.672e-6,1.308e-4
