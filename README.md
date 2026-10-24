@@ -9,7 +9,8 @@ data_sprint/
 ├── README.md
 ├── chat.md                     shared team log (newest message at the bottom)
 ├── docs/
-│   └── problem-brief.docx      the task brief
+│   ├── problem-brief.docx      the task brief
+│   └── eda-figures-and-tables.md   what each EDA figure and table shows, how it is calculated, how to justify it
 ├── data/
 │   ├── raw/                    upstream material, never edited
 │   │   ├── full-mobility-report.zip   full Google mobility CSV (1.1 GB unzipped)
@@ -54,6 +55,7 @@ data_sprint/
 
 ## Change log
 
+- 2026-10-24: added `docs/eda-figures-and-tables.md`: for every EDA figure and table, what it shows, how it is calculated, how to justify it in the report, plus limitations and a suggested main-text/appendix split.
 - 2026-10-24: added EDA scripts `02`-`09` in `replication/`: shared dark theme and helpers (`02`), descriptive tables and plots (`03`), Kendall cross-correlation and lag plots (`04`-`05`), world maps (`06`), normality plots and tests (`07`: histograms, QQ, Shapiro-Wilk per country, skewness/kurtosis, autocorrelation), the country : population : infections table with rankings, scatter plots and maps (`08`), and continent boxplots with Shapiro-Wilk, Kruskal-Wallis and Dunn-Holm (`09`). Run in order after `01`. R packages: tidyverse, scales, ggridges, ragg, sf, rnaturalearth, rnaturalearthdata (optional: pcaPP for faster Kendall, ggrepel for point labels). Clustering is not included yet.
 - 2026-10-24: added `dashboard/`, a React + Vite mock-up of the results dashboard. `dashboard/scripts/build_data.py` turns `data/processed/2026-10-24-panel-clean.csv` into the JSON files the app reads (preliminary cross-correlations, continent tests, k-means clusters, rolling windows; model forecasts are simulated).
 - 2026-10-24: `replication/01_data_import.R` builds the country-day panel from `data/interim`: parses `DD-MM-YYYY` dates, joins cases and population on ISO2, adds continent, saves `replication/out/panel.rds`.
