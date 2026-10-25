@@ -23,9 +23,7 @@ data_sprint/
 ├── requirements.txt              Python packages
 ├── docs/
 │   ├── problem-brief.docx        the task brief
-│   ├── work-summary.md           replication summary, findings and deck outline
-│   ├── analysis-plan.md          the replicate / reanalyse / extend plan
-│   └── eda-figures-and-tables.md what each EDA figure and table shows and how it is calculated
+│   └── contributions.md          what each teammate built and found
 ├── data/
 │   ├── raw/                      upstream material, never edited
 │   │   ├── full-mobility-report.zip   the organisers' Google mobility file (1.1 GB unzipped)
@@ -97,13 +95,15 @@ python analysis/03_reanalysis/14_figures.py
 
 ## Team
 
-| Workstream | Folder |
-| --- | --- |
-| Replication of the paper, as published and corrected | `analysis/01_replication/` (Devashish) |
-| Exploratory analysis and repo structure | `analysis/02_eda/` (Teerth, Satore) |
-| Reanalysis: placebo test, fixed correlation, new models | `analysis/03_reanalysis/` (Sherin) |
-| Analysis plan and notebook | `docs/analysis-plan.md`, `analysis/04_notebook/` (Meetanshi) |
-| Dashboard and visualisation | `dashboard/` (Neel) |
+| Teammate | Contribution | Folder |
+| --- | --- | --- |
+| Devashish | Replication of the paper, as published and corrected | `analysis/01_replication/` |
+| Teerth | Exploratory analysis, data importer, original repo structure | `analysis/02_eda/` |
+| Sherin | Reanalysis: exact replication, placebo test, fixed correlation, new models | `analysis/03_reanalysis/` |
+| Meetanshi | Analysis plan and R Markdown notebook | `analysis/04_notebook/` |
+| Abhroneel | Dashboard and final repo clean-up | `dashboard/` |
+
+Each person's work and findings are described in [`docs/contributions.md`](docs/contributions.md).
 
 ## Sources
 

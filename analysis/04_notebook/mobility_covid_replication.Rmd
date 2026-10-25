@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
 
 # About this file
 
-This file follows the plan in `docs/analysis-plan.md` and has three layers:
+This file follows the plan in `docs/contributions.md` (Meetanshi's section) and has three layers:
 
 1. **Replicate**: same data and methods as the paper. Do we get their numbers?
 2. **Reanalyse**: the paper's two questions answered with better methods.
@@ -157,7 +157,7 @@ The authors' supplement lists 122 countries. Our merge keeps the countries that 
 
 ## Our variables (the reanalysis panel)
 
-These variables fix the problems listed in `docs/analysis-plan.md`. The reasons are in the comments.
+These variables fix the problems listed in `docs/contributions.md` (Meetanshi's section). The reasons are in the comments.
 
 ```{r variables}
 cats <- c("retail_and_recreation", "grocery_and_pharmacy", "parks",
