@@ -2,11 +2,17 @@
 # Unzip data/raw/full-mobility-report.zip inside data/raw/ to get it; the unzipped folder stays local.
 data/raw/Round_1_Problem_3_Group_5_and_6/
 
+# Files the R Markdown notebook downloads on its first run
+analysis/04_notebook/data/
+
 # Patches are applied, not stored
 *.patch
 
-# R and OS clutter
+# R, Python and OS clutter
 .Rhistory
 .RData
 .Rproj.user/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
 .DS_Store

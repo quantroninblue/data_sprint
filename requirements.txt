@@ -1,0 +1,7 @@
+# Python packages for analysis/03_reanalysis/ and dashboard/scripts/build_data.py
+numpy
+scipy
+pandas
+statsmodels
+linearmodels
+matplotlib

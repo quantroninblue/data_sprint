@@ -1,7 +1,7 @@
 # EDA guide: what each figure and table shows, how it was calculated, and how to justify it
 
-Scope: everything written by `replication/02_eda_setup.R` to `09_eda_continent_tests.R`.
-Figures are in `replication/out/figures/`, tables in `replication/out/tables/`.
+Scope: everything written by `analysis/02_eda/02_eda_setup.R` to `09_eda_continent_tests.R`.
+Figures are in `outputs/02_eda/figures/`, tables in `outputs/02_eda/tables/`.
 Numbers quoted below come from the tables committed in the repo (run of 24 Oct 2026). Re-run before quoting them in the final report, and check them against the CSV, not against this file.
 
 Contents: [1. Data preparation](#1-data-preparation-shared-by-every-script) · [2. Script 03](#2-script-03-descriptives) · [3. Scripts 04-05](#3-scripts-04-05-kendall-cross-correlation) · [4. Script 06](#4-script-06-world-maps) · [5. Script 07](#5-script-07-normality-and-autocorrelation) · [6. Script 08](#6-script-08-country--population--infections) · [7. Script 09](#7-script-09-continent-tests) · [8. What to put in the report](#8-what-to-put-in-the-report) · [9. Limitations to state](#9-limitations-we-must-state)

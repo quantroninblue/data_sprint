@@ -1,63 +1,113 @@
-# data_sprint
+# Community movement and COVID-19: a replication
 
-Replication of Sulyok & Walker (2020), "Community movement and COVID-19: a global study using Google's Community Mobility Reports" (*Epidemiology and Infection* 148, e284), with a better analysis and visuals. The brief allows us to change the visualization, model, presentation and analysis, but the data sources and main theme must stay the same.
+Data Sprint, Round 1, Problem 3, Group 5.
 
-## Layout
+We replicate Sulyok & Walker (2020), "Community movement and COVID-19: a global study using Google's Community Mobility Reports" (*Epidemiology and Infection* 148, e284), and then test whether its conclusions hold with better methods. The brief allows us to change the visualisation, model, presentation and analysis; the data sources (Google Community Mobility Reports and JHU CSSE case counts) and the main theme stay the same.
+
+**Dashboard:** https://quantroninblue.github.io/data_sprint/ shows the paper's published findings side by side with ours.
+
+## Key findings
+
+- **The correlations replicate.** Our continent medians match the paper's Table 1 to within about 0.02, and with the authors' own 2020 data snapshots we reproduce their Table S1 exactly for all 122 countries.
+- **Most of that correlation is shared timing.** Pairing one country's mobility with another country's cases gives correlations as strong as the real pairs (median |τ| about 0.51 against 0.48).
+- **The "best lag" is often an artefact.** About 25% of best lags sit at the ±27–28 day edge of the search window (7% expected by chance), and picking the best lag inflates mean |τ| by about 45%.
+- **A fair measure still finds a link.** Using case growth with the shared daily trend removed, mobility leads case growth by about 16 days (τ ≈ +0.13), while wrong-country pairs score 0. Panel local projections put the effect at about +29% weekly growth roughly 17 days after a 1 SD rise in mobility in 2020, and about half that from Sep 2020 to Apr 2022.
+- **Mobility does not improve forecasts.** With the coding errors in the authors' model fixed, adding mobility makes out-of-sample forecasts worse (RMSE 7,689 / 22,676 / 49,202 cases a day for date only / + same-day mobility / + lagged mobility). A real-time forecasting test finds no gain over case momentum alone (DM p = 0.20).
+- **Coverage.** We analyse 134 countries. The authors' shared code drops North America and keeps 106 countries; the published tables list 122.
+
+## Repository layout
 
 ```
 data_sprint/
 ├── README.md
-├── chat.md                     shared team log (newest message at the bottom)
+├── requirements.txt              Python packages
 ├── docs/
-│   ├── problem-brief.docx      the task brief
-│   └── eda-figures-and-tables.md   what each EDA figure and table shows, how it is calculated, how to justify it
+│   ├── problem-brief.docx        the task brief
+│   ├── work-summary.md           replication summary, findings and deck outline
+│   ├── analysis-plan.md          the replicate / reanalyse / extend plan
+│   └── eda-figures-and-tables.md what each EDA figure and table shows and how it is calculated
 ├── data/
-│   ├── raw/                    upstream material, never edited
-│   │   ├── full-mobility-report.zip   full Google mobility CSV (1.1 GB unzipped)
-│   │   ├── jhu-covid-19/              JHU case data (datasets/covid19 copy)
+│   ├── raw/                      upstream material, never edited
+│   │   ├── full-mobility-report.zip   the organisers' Google mobility file (1.1 GB unzipped)
+│   │   ├── jhu-covid-19/              JHU case data (copy of github.com/datasets/covid-19)
 │   │   └── sulyok-repo/               the original authors' code and data
-│   ├── interim/                trimmed inputs, one file per source
-│   │   ├── 2026-10-24-gmr-national.csv                 Google mobility, national rows only
-│   │   ├── 2026-10-24-countries-aggregated.csv         JHU cumulative cases/deaths by country
-│   │   ├── 2026-10-24-time-series-covid-combined.csv   JHU cases by province (sum to get countries)
-│   │   └── 2026-10-24-reference.csv                    JHU lookup with population
+│   ├── interim/
+│   │   └── 2026-10-24-gmr-national.csv   Google mobility, national rows only
 │   └── processed/
-│       └── 2026-10-24-panel-clean.csv                  cleaned country-day analysis panel
-├── replication/                scripts, run from the repo root in numeric order
-│   ├── 01_data_import.R        builds replication/out/panel.rds from data/interim
-│   ├── 02_eda_setup.R          shared EDA theme (black, blue/red), helpers, derived panel
-│   ├── 03_eda_descriptives.R   descriptive tables, distributions, timelines, heatmaps
-│   ├── 04_eda_kendall_compute.R  Kendall tau cross-correlation, lags -28..+28 (paper window and full period)
-│   ├── 05_eda_kendall_plots.R  lag distribution, CCF curves, heatmaps, tau inflation, sign checks
-│   ├── 06_eda_maps.R           world maps of tau and lag
-│   ├── 07_eda_normality.R      normality plots and tests (histograms, QQ, Shapiro-Wilk, skewness/kurtosis, ACF)
-│   ├── 08_eda_country_table.R  country : population : infections table and plots
-│   ├── 09_eda_continent_tests.R  tau and lag by continent: Shapiro-Wilk, Kruskal-Wallis, Dunn (Holm), boxplots
-│   └── out/                    script output (gitignored)
-└── dashboard/                  React mock-up of the results dashboard (see dashboard/README.md)
+│       └── 2026-10-24-panel-clean.csv    cleaned country-day panel (134 countries)
+├── analysis/
+│   ├── 01_replication/           R: the paper as published and corrected
+│   ├── 02_eda/                   R: exploratory analysis, Kendall cross-correlations, maps, continent tests
+│   ├── 03_reanalysis/            Python: placebo test, fixed correlation, local projections, forecasting
+│   └── 04_notebook/              R Markdown: replicate / reanalyse / extend in one notebook
+├── outputs/                      everything the analysis writes, one folder per analysis step
+│   ├── 01_replication/           tables/, figures/, cleaning and replication logs
+│   ├── 02_eda/                   figures/, tables/, intermediate .rds files
+│   ├── 03_reanalysis/            result CSVs and figures/
+│   └── 04_notebook/              data behind notebook Figs 1, 9 and 12
+└── dashboard/                    React app that presents the results (see dashboard/README.md)
 ```
+
+## How to reproduce
+
+Run everything from the repo root. Each step reads `data/` and writes only to its own folder in `outputs/`, so the steps are independent apart from the order inside each one. All outputs are committed, so you only need to rerun a step to check it.
+
+**Requirements:** R 4.3 or newer, Python 3.11 or newer (`pip install -r requirements.txt`) and, for the dashboard, Node.js 20 or newer.
+
+**1. Replication (R, about 10 minutes)**
+
+```r
+source("analysis/01_replication/00_install_packages.R")  # once; dlnm 2.4.7 from the CRAN archive
+source("analysis/01_replication/01_clean_merge.R")       # writes data/processed/2026-10-24-panel-clean.csv
+source("analysis/01_replication/02_replicate_paper.R")   # as published + corrected
+```
+
+**2. EDA (R)**: packages `tidyverse`, `janitor`, `scales`, `ggridges`, `ragg`, `sf`, `rnaturalearth`, `rnaturalearthdata` (optional: `pcaPP` for faster Kendall's τ, `ggrepel` for labels).
+
+```r
+source("analysis/02_eda/01_data_import.R")   # builds outputs/02_eda/panel.rds
+# then 03 to 09 in order; each one sources 02_eda_setup.R itself
+source("analysis/02_eda/03_eda_descriptives.R")
+```
+
+**3. Reanalysis (Python, about 15 minutes):** open `analysis/03_reanalysis/correlation_and_model.ipynb` and run all cells, or run the scripts directly:
+
+```bash
+python analysis/03_reanalysis/10_corr_replicate.py
+python analysis/03_reanalysis/11_corr_fixed.py          # and again with --full
+python analysis/03_reanalysis/12_model_lp.py            # and again with --full, --ext
+python analysis/03_reanalysis/13_model_forecast.py
+python analysis/03_reanalysis/14_figures.py
+```
+
+**4. Notebook (R Markdown):** knit `analysis/04_notebook/mobility_covid_replication.Rmd` in RStudio. On its first run it downloads about 28 MB of source data into `analysis/04_notebook/data/` (gitignored). Packages: `dplyr`, `tidyr`, `readr`, `ggplot2`, `patchwork`, `scales`, `zoo`, `maps`, `tseries`, `mclust`, `mgcv`, `dlnm`, `fixest`. `Rscript analysis/04_notebook/figs_1_9_12.R` reruns only the three figures the dashboard uses.
+
+**5. Dashboard:** `python3 -I dashboard/scripts/build_data.py` rebuilds its data from `outputs/` (needs `Rscript` on PATH). Then `cd dashboard && npm install && npm run dev` serves it at http://localhost:5173.
 
 ## Data notes
 
-- **Mobility** covers 135 countries, 15 Feb 2020 to 15 Oct 2022. Dates are `DD-MM-YYYY`.
-- **Cases** run 22 Jan 2020 to 16 Apr 2022. `countries-aggregated.csv` uses `DD-MM-YYYY` dates; `time-series-covid-combined.csv` uses `YYYY-MM-DD`. Counts are cumulative; revisions cause small negative daily changes.
-- Join mobility to cases on ISO2 through `reference.csv`, not on country names. Seven countries are named differently in the two sources, and Aruba, Hong Kong, Puerto Rico and Réunion have no country-level cases.
-- Namibia's ISO2 code is the text `NA`. Read CSVs with `na = ""` so R doesn't turn it into a missing value.
-- **`processed/2026-10-24-panel-clean.csv`** has 105,741 rows for 134 countries, 15 Feb 2020 to 16 Apr 2022. The `window` column splits it as in the paper: `paper_train` (to 19 Jun 2020), `paper_validation` (20 Jun to 8 Sep 2020) and `extension` (9 Sep 2020 onward).
-- The full mobility CSV is not tracked. To use it, unzip `data/raw/full-mobility-report.zip` inside `data/raw/`; the unzipped folder is gitignored.
+- **Mobility** covers 135 countries, 15 Feb 2020 to 15 Oct 2022. `data/interim/2026-10-24-gmr-national.csv` keeps the rows of the full Google file with no `sub_region_1`, `sub_region_2` or `metro_area`.
+- **Cases** run 22 Jan 2020 to 16 Apr 2022 and are cumulative; revisions cause small negative daily changes, which are clipped to 0.
+- All dates are ISO (`YYYY-MM-DD`). Don't open the CSVs in Excel and save them: Excel rewrites the dates, and `01_clean_merge.R` stops if it finds non-ISO dates.
+- Join mobility to cases on ISO2 through `data/raw/jhu-covid-19/data/reference.csv`, not on country names. Seven countries are named differently in the two sources, and Aruba, Hong Kong, Puerto Rico and Réunion have no country-level cases.
+- Namibia's ISO2 code is the text `NA`. Read CSVs with `na = ""` (R) or `keep_default_na=False` (pandas) so it isn't turned into a missing value.
+- **`data/processed/2026-10-24-panel-clean.csv`** has 105,741 rows for 134 countries, 15 Feb 2020 to 16 Apr 2022. Its `window` column splits it as in the paper: `paper_train` (to 19 Jun 2020), `paper_validation` (20 Jun to 8 Sep 2020) and `extension` (9 Sep 2020 onward).
+- Lag sign follows the paper: τ(lag) compares mobility on day t with cases on day t − lag, so a negative lag means mobility moves first.
+- The unzipped full mobility CSV is not tracked. To rebuild the national extract, unzip `data/raw/full-mobility-report.zip` inside `data/raw/`.
 
-## Working conventions
+## Team
 
-- Run scripts from the repo root with relative paths, e.g. `setwd("C:/data_sprint")`.
-- Number scripts in run order (`02_...R`, `03_...R`) and write outputs to `replication/out/`.
-- Changes arrive as patch files: apply with `git am <file>.patch`, then push. Patch files are gitignored.
-- Add a line to the change log below with every change.
+| Workstream | Folder |
+| --- | --- |
+| Replication of the paper, as published and corrected | `analysis/01_replication/` (Devashish) |
+| Exploratory analysis and repo structure | `analysis/02_eda/` (Teerth, Satore) |
+| Reanalysis: placebo test, fixed correlation, new models | `analysis/03_reanalysis/` (Sherin) |
+| Analysis plan and notebook | `docs/analysis-plan.md`, `analysis/04_notebook/` (Meetanshi) |
+| Dashboard and visualisation | `dashboard/` (Neel) |
 
-## Change log
+## Sources
 
-- 2026-10-24: the dashboard is published on GitHub Pages at https://quantroninblue.github.io/data_sprint/. `.github/workflows/pages.yml` rebuilds and deploys it on every push to `main` that changes `dashboard/`.
-- 2026-10-24: added `docs/eda-figures-and-tables.md`: for every EDA figure and table, what it shows, how it is calculated, how to justify it in the report, plus limitations and a suggested main-text/appendix split.
-- 2026-10-24: added EDA scripts `02`-`09` in `replication/`: shared dark theme and helpers (`02`), descriptive tables and plots (`03`), Kendall cross-correlation and lag plots (`04`-`05`), world maps (`06`), normality plots and tests (`07`: histograms, QQ, Shapiro-Wilk per country, skewness/kurtosis, autocorrelation), the country : population : infections table with rankings, scatter plots and maps (`08`), and continent boxplots with Shapiro-Wilk, Kruskal-Wallis and Dunn-Holm (`09`). Run in order after `01`. R packages: tidyverse, scales, ggridges, ragg, sf, rnaturalearth, rnaturalearthdata (optional: pcaPP for faster Kendall, ggrepel for point labels). Clustering is not included yet.
-- 2026-10-24: added `dashboard/`, a React + Vite mock-up of the results dashboard. `dashboard/scripts/build_data.py` turns `data/processed/2026-10-24-panel-clean.csv` into the JSON files the app reads (preliminary cross-correlations, continent tests, k-means clusters, rolling windows; model forecasts are simulated).
-- 2026-10-24: `replication/01_data_import.R` builds the country-day panel from `data/interim`: parses `DD-MM-YYYY` dates, joins cases and population on ISO2, adds continent, saves `replication/out/panel.rds`.
-- 2026-10-24: restructured the repo into `docs/`, `data/{raw,interim,processed}/` and `replication/`. Removed the duplicate panel copy under `replication/Deva_data/`, the scratch `Data_explorer.R` (superseded by `01_data_import.R`) and the committed patch file. Importer paths updated.
+- Sulyok M, Walker M (2020). Community movement and COVID-19: a global study using Google's Community Mobility Reports. *Epidemiology and Infection* 148, e284. https://doi.org/10.1017/S0950268820002757
+- Authors' code and data: https://github.com/msulyok/GoogleMobilityDataCOVID
+- Google COVID-19 Community Mobility Reports: https://www.google.com/covid19/mobility/
+- JHU CSSE case data via https://github.com/datasets/covid-19

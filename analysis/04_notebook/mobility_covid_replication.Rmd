@@ -1,0 +1,924 @@
+---
+title: "Community Movement and COVID-19: Replication and Reanalysis"
+subtitle: "Replicating Sulyok & Walker (2020), Epidemiology and Infection 148, e284"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: show
+    df_print: kable
+---
+
+```{r setup, include = FALSE}
+# Global chunk options: show code, hide package start-up messages,
+# and make every figure the same default size.
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE,
+                      fig.width = 10, fig.height = 6, dpi = 110)
+```
+
+# About this file
+
+This file follows the plan in `docs/analysis-plan.md` and has three layers:
+
+1. **Replicate**: same data and methods as the paper. Do we get their numbers?
+2. **Reanalyse**: the paper's two questions answered with better methods.
+   * **Q1.** Is mobility linked to case numbers, and how does that vary across countries?
+   * **Q2.** Does mobility data improve case modelling?
+3. **Extend**: a new question, clustering countries by the shape of their mobility curves.
+
+**How to run it.** Open the file in RStudio and click **Knit**. The first run downloads about 28 MB of data into a `data/` folder next to this file; later runs reuse it. The full knit takes a few minutes, mostly in Section 4.4 (the paper's GAMMs).
+
+## Sources used (flagged as required)
+
+| What | Source | How we use it |
+|---|---|---|
+| The paper | Sulyok M, Walker M (2020). *Epidemiology and Infection* 148, e284. <https://doi.org/10.1017/S0950268820002757> | Methods and results we replicate |
+| Authors' code and data | <https://github.com/msulyok/GoogleMobilityDataCOVID> (files `COVIDmobilityfinal1309withvalidationtweedie.Rmd`, `CMRfinalcorrectedjustmodelling0611.Rmd`, `CaseNumbers1407JHUreal.csv`, `Global_Mobility_Report(2)compressed.zip`, supplementary Word file) | Mobility data (their saved copy of Google's report), continent codes, and their R code, which we adapt in Sections 4.1 and 4.4. Every adapted chunk says so. |
+| Google Community Mobility Reports | <https://www.google.com/covid19/mobility/> | Original mobility data (via the authors' saved copy, since Google no longer publishes the 2020 file in that form) |
+| JHU CSSE case data | <https://github.com/datasets/covid-19> (cleaned copy of JHU CSSE) | Daily confirmed cases and country population |
+| Team prep repo | <https://github.com/Satore-spector/Data-Sprint-Preparation> (`03_time_series/02_stationarity.R`, `04_panel/02_pooled_fe_re.R`) | ADF/KPSS pattern and the fixest panel pattern |
+| fixest documentation | <https://lrberge.github.io/fixest/> | `feols()`, clustered and Driscoll–Kraay standard errors |
+| dlnm documentation | Gasparrini A (2011), *J Stat Softw* 43(8); <https://github.com/gasparrini/dlnm> | `crossbasis()` for the paper's distributed-lag model |
+| Prewhitening | Box GEP, Jenkins GM, Reinsel GC, *Time Series Analysis* (ch. 11); Hyndman & Athanasopoulos, *Forecasting: Principles and Practice*, <https://otexts.com/fpp3/> | The prewhitening method in Section 5.1 |
+| Spurious correlation | Yule GU (1926), *J R Stat Soc* 89(1); Granger CWJ, Newbold P (1974), *J Econometrics* 2(2) | Why correlating trending series misleads |
+| Mobility vs transmission | Nouvellet P et al. (2021), *Nature Communications* 12, 1090 | Why we expect the mobility link to weaken after spring 2020 |
+
+# Setup
+
+```{r packages}
+# Packages. All are on CRAN; install any you are missing with install.packages().
+library(dplyr)      # data wrangling
+library(tidyr)      # reshaping (long <-> wide)
+library(readr)      # fast CSV reading
+library(ggplot2)    # plots
+library(patchwork)  # putting several ggplots side by side
+library(scales)     # nicer axis labels
+library(zoo)        # rollmeanr() for 7-day rolling averages
+library(tseries)    # adf.test() and kpss.test() for stationarity
+library(mgcv)       # the paper's GAMMs
+library(dlnm)       # crossbasis() for the paper's distributed-lag model
+library(mclust)     # the paper's model-based clustering
+library(fixest)     # our panel regressions
+library(maps)       # world map outlines
+
+set.seed(2020)      # same seed as the authors, so random steps are reproducible
+
+# One colour per continent, used in every chart (Okabe-Ito, colour-blind safe).
+cont_cols <- c(AF = "#E69F00", AS = "#56B4E9", EU = "#009E73",
+               NA_ = "#CC79A7", OC = "#D55E00", SA = "#0072B2")
+cont_labs <- c(AF = "Africa", AS = "Asia", EU = "Europe",
+               NA_ = "North America", OC = "Oceania", SA = "South America")
+
+theme_set(theme_minimal(base_size = 12) +
+            theme(plot.title = element_text(face = "bold"),
+                  plot.caption = element_text(colour = "grey40", hjust = 0)))
+src_cap <- "Source: Google CMR (authors' Sept 2020 copy); JHU CSSE via datasets/covid-19."
+```
+
+# Data
+
+## Download
+
+```{r download}
+# Download each file once into data/. Later knits reuse the local copy.
+dir.create("data", showWarnings = FALSE)
+get_file <- function(url, dest) {
+  if (!file.exists(dest)) download.file(url, dest, mode = "wb")
+  dest
+}
+
+# Google mobility, September 2020 version, saved by the authors.
+# Source: https://github.com/msulyok/GoogleMobilityDataCOVID
+gm_zip <- get_file(
+  "https://raw.githubusercontent.com/msulyok/GoogleMobilityDataCOVID/master/Global_Mobility_Report%282%29compressed.zip",
+  "data/gmr_sep2020.zip")
+
+# Continent codes (from GeoNames) as used by the authors, same repo.
+cont_file <- get_file(
+  "https://raw.githubusercontent.com/msulyok/GoogleMobilityDataCOVID/master/CaseNumbers1407JHUreal.csv",
+  "data/authors_casenumbers.csv")
+
+# JHU confirmed cases and population. Source: https://github.com/datasets/covid-19
+cases_file <- get_file(
+  "https://raw.githubusercontent.com/datasets/covid-19/main/data/countries-aggregated.csv",
+  "data/countries-aggregated.csv")
+ref_file <- get_file(
+  "https://raw.githubusercontent.com/datasets/covid-19/main/data/reference.csv",
+  "data/reference.csv")
+```
+
+## Read and merge
+
+```{r read}
+# Mobility: keep national rows only (no sub-region or metro area).
+# na = "" matters: Namibia's country code is "NA", which R would otherwise read as missing.
+gmr_raw <- read_csv(unz(gm_zip, "Global_Mobility_Report(2).csv"),
+                    na = "", guess_max = 100000, show_col_types = FALSE)
+gmr <- gmr_raw %>%
+  filter(is.na(sub_region_1), is.na(sub_region_2), is.na(metro_area)) %>%
+  rename_with(~ sub("_percent_change_from_baseline", "", .x)) %>%
+  select(iso2 = country_region_code, country = country_region, date,
+         retail_and_recreation, grocery_and_pharmacy, parks,
+         transit_stations, workplaces, residential)
+
+# Cases: cumulative confirmed -> daily new cases.
+# Like the authors, negative daily values (data corrections) are set to 0.
+pop <- read_csv(ref_file, na = "", show_col_types = FALSE) %>%
+  filter(is.na(Province_State)) %>%
+  select(jhu_country = Country_Region, iso2, population = Population)
+
+cases <- read_csv(cases_file, show_col_types = FALSE) %>%
+  rename(jhu_country = Country, date = Date) %>%
+  arrange(jhu_country, date) %>%
+  group_by(jhu_country) %>%
+  mutate(new_cases = pmax(Confirmed - lag(Confirmed), 0)) %>%
+  ungroup() %>%
+  inner_join(pop, by = "jhu_country")
+
+# Continents from the authors' file. "NA" (North America) is renamed NA_
+# so R doesn't treat it as missing.
+continents <- read_csv(cont_file, na = "", show_col_types = FALSE) %>%
+  distinct(iso2 = geo, continent = Continent) %>%
+  mutate(continent = ifelse(continent == "NA", "NA_", continent))
+
+panel <- gmr %>%
+  inner_join(cases %>% select(iso2, date, new_cases, Confirmed, population),
+             by = c("iso2", "date")) %>%
+  inner_join(continents, by = "iso2") %>%     # same country set as the authors
+  arrange(country, date)
+
+cat("Countries:", n_distinct(panel$country),
+    "| Dates:", format(min(panel$date)), "to", format(max(panel$date)), "\n")
+```
+
+The authors' supplement lists 122 countries. Our merge keeps the countries that have both mobility and case data and a continent in the authors' file. Small differences come from later revisions to the JHU data.
+
+## Our variables (the reanalysis panel)
+
+These variables fix the problems listed in `docs/analysis-plan.md`. The reasons are in the comments.
+
+```{r variables}
+cats <- c("retail_and_recreation", "grocery_and_pharmacy", "parks",
+          "transit_stations", "workplaces", "residential")
+
+panel <- panel %>%
+  group_by(country) %>%
+  mutate(
+    # 7-day average of new cases. WHY: removes the weekend reporting dip.
+    cases7 = rollmeanr(new_cases, 7, fill = NA),
+    # Same for mobility. WHY: Google values also have a weekday cycle.
+    across(all_of(cats), ~ rollmeanr(.x, 7, fill = NA), .names = "{.col}_7"),
+    # Mobility index = average of the four "out and about" categories.
+    # WHY: they move almost identically, so one index gives a stable coefficient.
+    # We use a simple average (not PCA) because it stays in % points and is easy to explain.
+    mob = rowMeans(across(c(retail_and_recreation_7, grocery_and_pharmacy_7,
+                            transit_stations_7, workplaces_7))),
+    # Weekly growth of cases: log(this week's average) - log(last week's).
+    # WHY: removes the trend and the size of the country. 0.10 = about 10% growth per week.
+    # Growth is only defined once a country averages at least 10 cases a day,
+    # because growth rates from tiny numbers are mostly noise.
+    growth = ifelse(lag(cases7, 7) >= 10,
+                    log(cases7 + 1) - log(lag(cases7, 7) + 1), NA),
+    cases_per_m = Confirmed / population * 1e6
+  ) %>%
+  ungroup()
+
+# Check: our simple index vs the first principal component of the same four categories.
+pc_dat <- na.omit(panel[, c("retail_and_recreation_7", "grocery_and_pharmacy_7",
+                            "transit_stations_7", "workplaces_7", "mob")])
+pc1 <- prcomp(pc_dat[, 1:4], scale. = TRUE)$x[, 1]
+cat("Correlation between simple index and PC1:", round(abs(cor(pc1, pc_dat$mob)), 3), "\n")
+```
+
+## Stationarity checks
+
+**Why:** correlating two series that both trend over time gives large values even when they're unrelated (spurious correlation). Before correlating, we check which version of each series still trends. We use two tests because each has a blind spot:
+
+* **ADF**: null = the series trends (has a unit root). A small p-value suggests it doesn't.
+* **KPSS**: null = the series is stationary. A large p-value suggests it is.
+
+A series "passes" if ADF p < 0.05 **and** KPSS p > 0.05. The pattern follows `03_time_series/02_stationarity.R` in the team repo.
+
+```{r stationarity}
+# Run both tests on one series; return TRUE if it looks stationary.
+is_stationary <- function(x) {
+  x <- na.omit(x)
+  if (length(x) < 40) return(NA)                # too short to test
+  adf  <- suppressWarnings(adf.test(x)$p.value)
+  kpss <- suppressWarnings(kpss.test(x)$p.value)
+  adf < 0.05 & kpss > 0.05
+}
+
+stat_tab <- panel %>%
+  filter(date <= as.Date("2020-06-19")) %>%   # the paper's window
+  group_by(country) %>%
+  summarise(`Daily new cases (paper)` = is_stationary(new_cases),
+            `Retail mobility (paper)` = is_stationary(retail_and_recreation),
+            `Case growth (ours)`      = is_stationary(growth),
+            `Mobility index (ours)`   = is_stationary(mob)) %>%
+  summarise(across(-country, ~ percent(mean(.x, na.rm = TRUE), accuracy = 1)))
+knitr::kable(stat_tab, caption = "Share of countries where the series passes both tests")
+```
+
+**Reading it:** the paper's raw series fail in most countries, so their correlations are at high risk of being spurious. Growth passes far more often. The mobility index still trends in many countries, which is why Section 5.1 also **prewhitens** before correlating.
+
+# Context: what happened to mobility
+
+## Fig 1: the lockdown wave
+
+```{r fig1, fig.height = 12}
+# Countries sorted by continent, then by the date their mobility index first fell 20%.
+drop_date <- panel %>% group_by(country) %>%
+  summarise(first_drop = min(date[mob <= -20], na.rm = TRUE))
+
+heat <- panel %>%
+  filter(date <= as.Date("2020-06-19")) %>%
+  left_join(drop_date, by = "country") %>%
+  mutate(country = reorder(country, -as.numeric(first_drop)))
+
+ggplot(heat, aes(date, country, fill = mob)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "#B2182B", mid = "white", high = "#2166AC",
+                       midpoint = 0, limits = c(-80, 20), oob = squish,
+                       name = "Mobility index\n(% vs baseline)") +
+  geom_vline(xintercept = as.Date("2020-03-11"), linetype = "dashed") +
+  annotate("text", x = as.Date("2020-03-12"), y = 3, label = "WHO declares pandemic",
+           hjust = 0, size = 3.5) +
+  facet_grid(continent ~ ., scales = "free_y", space = "free_y",
+             labeller = labeller(continent = cont_labs)) +
+  labs(title = "Mobility collapsed almost everywhere within about two weeks of 11 March",
+       x = NULL, y = NULL, caption = src_cap) +
+  theme(axis.text.y = element_text(size = 6), strip.text.y = element_text(angle = 0))
+```
+
+## Fig 2: each category by continent
+
+```{r fig2, fig.height = 7}
+cat_long <- panel %>%
+  filter(date <= as.Date("2020-06-19")) %>%
+  select(country, continent, date, ends_with("_7")) %>%
+  pivot_longer(ends_with("_7"), names_to = "category", values_to = "value") %>%
+  mutate(category = gsub("_7$", "", category)) %>%
+  group_by(continent, category, date) %>%
+  summarise(med = median(value, na.rm = TRUE), .groups = "drop")
+
+ggplot(cat_long, aes(date, med, colour = continent)) +
+  geom_hline(yintercept = 0, colour = "grey60") +
+  geom_line(linewidth = 0.8) +
+  facet_wrap(~ category, labeller = as_labeller(function(x) gsub("_", " ", x))) +
+  scale_colour_manual(values = cont_cols, labels = cont_labs) +
+  labs(title = "Every category fell except residential, which rose: people stayed home",
+       subtitle = "Median across countries, 7-day average, % change vs Jan-Feb baseline",
+       x = NULL, y = "% change", colour = NULL, caption = src_cap)
+```
+
+# Part A: Replication
+
+## Cross-correlation, as in the paper
+
+**What they did:** for each country and category, Kendall's τ between mobility on day *t* and new cases shifted by *l* days, for every *l* from −28 to +28. They keep only the lag with the largest |τ|.
+
+**Lag sign (same convention as theirs):** at lag *l*, mobility on day *t* is paired with cases on day *t − l*. **Negative lag = mobility moves first**; positive lag = cases move first.
+
+> Adapted from `countryanalysis()` in the authors' `COVIDmobilityfinal1309withvalidationtweedie.Rmd` (<https://github.com/msulyok/GoogleMobilityDataCOVID>). We use `dplyr::lag/lead` instead of `Hmisc::Lag` (same shifting) and `cor()` instead of `cor.test()` (same τ, faster).
+>
+> **Bug in their code:** after converting lag positions to days, their script sets `residential <- workplaces - 29`, so residential lags come from the workplace column. We compute each category separately.
+
+```{r xcorr-functions}
+lags <- -28:28
+
+# Shift a vector by l days: l > 0 looks back (cases earlier), l < 0 looks ahead.
+shift_by <- function(x, l) if (l >= 0) lag(x, l) else lead(x, -l)
+
+# Kendall's tau between x and y shifted by every lag. Returns one tau per lag
+# (NA if there is not enough overlapping data at that lag).
+tau_profile <- function(x, y) {
+  sapply(lags, function(l) tryCatch(suppressWarnings(
+    cor(x, shift_by(y, l), method = "kendall", use = "complete.obs")),
+    error = function(e) NA_real_))
+}
+
+# The paper's summary: the tau with the largest absolute value, and its lag.
+best_lag <- function(x, y) {
+  tp <- tau_profile(x, y)
+  if (all(is.na(tp))) return(c(lag = NA, tau = NA))   # e.g. a category Google left blank
+  i  <- which.max(abs(tp))
+  c(lag = lags[i], tau = tp[i])
+}
+```
+
+```{r xcorr-replicate}
+# The paper's window: 15 Feb - 19 Jun 2020, raw daily new cases.
+paper_win <- panel %>% filter(date <= as.Date("2020-06-19"))
+
+# For each country (.x = that country's rows), run best_lag() on each category.
+repl <- paper_win %>%
+  group_by(country, continent) %>%
+  group_modify(~ bind_rows(lapply(cats, function(cc) {
+    r <- best_lag(.x[[cc]], .x$new_cases)
+    tibble(category = cc, lag = r[["lag"]], tau = r[["tau"]])
+  }))) %>%
+  ungroup() %>%
+  filter(!is.na(tau))
+
+head(repl)
+```
+
+## Fig 3 and Fig 4: their Fig 1 and Fig 2, redone
+
+```{r map-helper}
+# World map, with country names recoded to match Google's.
+# Recodes adapted from the authors' code (same repo), plus a few we needed.
+world <- map_data("world") %>%
+  mutate(country = recode(region, "USA" = "United States", "UK" = "United Kingdom",
+                          "Trinidad" = "Trinidad and Tobago", "Macedonia" = "North Macedonia",
+                          "Czech Republic" = "Czechia", "Antigua" = "Antigua and Barbuda",
+                          "Ivory Coast" = "Côte d'Ivoire", "Myanmar" = "Myanmar (Burma)"))
+
+# Draw a world map coloured by one value per country.
+map_plot <- function(df, value, fill_scale, title) {
+  ggplot(left_join(world, df, by = "country"), aes(long, lat, group = group)) +
+    geom_polygon(aes(fill = .data[[value]]), colour = "white", linewidth = 0.1) +
+    fill_scale + coord_quickmap(ylim = c(-55, 80)) +
+    labs(title = title, x = NULL, y = NULL) + theme_void() +
+    theme(plot.title = element_text(face = "bold"), legend.position = "bottom")
+}
+```
+
+```{r fig3, fig.height = 9}
+# Fig 3a: map of tau for retail & recreation, the paper's headline category.
+f3a <- map_plot(filter(repl, category == "retail_and_recreation"), "tau",
+                scale_fill_gradient2(low = "#B2182B", mid = "white", high = "#2166AC",
+                                     midpoint = 0, limits = c(-1, 1), name = "Kendall's τ",
+                                     na.value = "grey85"),
+                "Retail & recreation: strongest τ with cases")
+
+# Fig 3b: every country as a dot. With only 4-10 countries in some continents,
+# dots show the data honestly; box plots would hide how few points there are.
+f3b <- ggplot(repl, aes(continent, tau, colour = continent)) +
+  geom_hline(yintercept = 0, colour = "grey60") +
+  geom_jitter(width = 0.2, alpha = 0.7, size = 1.4) +
+  stat_summary(fun = median, geom = "crossbar", width = 0.6, colour = "black", linewidth = 0.3) +
+  facet_wrap(~ category, nrow = 2, labeller = as_labeller(function(x) gsub("_", " ", x))) +
+  scale_colour_manual(values = cont_cols, guide = "none") +
+  scale_x_discrete(labels = c(AF = "AF", AS = "AS", EU = "EU", NA_ = "NAm", OC = "OC", SA = "SA")) +
+  labs(x = NULL, y = "τ at the strongest lag")
+
+f3a / f3b + plot_layout(heights = c(1, 1.2)) +
+  plot_annotation(title = "Fig 3. Replicated: τ is mostly negative for out-and-about categories, positive for residential",
+                  subtitle = "Black bar = continent median", caption = src_cap)
+```
+
+```{r fig4, fig.height = 5}
+# How often does the "best lag" land on the edge of the search window (±27 or ±28)?
+edge_share <- mean(abs(repl$lag) >= 27)
+
+f4a <- map_plot(filter(repl, category == "retail_and_recreation"), "lag",
+                scale_fill_gradient2(low = "#5E3C99", mid = "white", high = "#E66101",
+                                     midpoint = 0, name = "Lag (days)", na.value = "grey85"),
+                "Retail & recreation: lag of strongest τ")
+
+f4b <- ggplot(repl, aes(lag, fill = abs(lag) >= 27)) +
+  geom_histogram(binwidth = 1, boundary = -28.5) +
+  scale_fill_manual(values = c(`FALSE` = "grey65", `TRUE` = "#D55E00"),
+                    labels = c("Inside window", "At the edge (±27/28)"), name = NULL) +
+  geom_hline(yintercept = nrow(repl) / 57, linetype = "dashed") +
+  annotate("text", x = 0, y = nrow(repl) / 57, vjust = -0.5, size = 3.5,
+           label = "expected if lags were spread evenly") +
+  labs(x = "Lag of strongest τ (days); negative = mobility moves first", y = "Country-category pairs") +
+  theme(legend.position = "bottom")
+
+f4a + f4b + plot_annotation(
+  title = sprintf("Fig 4. %s of 'best lags' sit at the edge of the ±28 window (7%% expected by chance)",
+                  percent(edge_share, accuracy = 1)),
+  caption = src_cap)
+```
+
+## Fig 5: does our replication match their Table 1?
+
+Their Table 1 medians and IQRs are typed in from the paper. Note: their Table 1 has a few IQRs that don't contain the median (e.g. Asia, grocery), so some of their numbers look like typos.
+
+```{r fig5, fig.height = 6}
+# Paper Table 1 (median and IQR of the strongest tau), typed in from the paper.
+paper_t1 <- tribble(
+  ~category,               ~continent, ~med,  ~lo,   ~hi,
+  "retail_and_recreation", "AF", -0.35, -0.47, -0.24,
+  "retail_and_recreation", "AS", -0.46, -0.59, -0.33,
+  "retail_and_recreation", "EU", -0.63, -0.73, -0.55,
+  "retail_and_recreation", "OC", -0.51, -0.66, -0.33,
+  "retail_and_recreation", "SA",  0.33, -0.43,  0.37,
+  "retail_and_recreation", "NA_",-0.38, -0.52, -0.25,
+  "transit_stations",      "AF", -0.35, -0.46, -0.23,
+  "transit_stations",      "AS", -0.42, -0.62,  0.28,
+  "transit_stations",      "EU", -0.65, -0.72, -0.59,
+  "transit_stations",      "OC", -0.51, -0.68, -0.32,
+  "transit_stations",      "SA",  0.37, -0.22,  0.45,
+  "transit_stations",      "NA_",-0.37, -0.51, -0.28,
+  "workplaces",            "AF", -0.32, -0.44, -0.18,
+  "workplaces",            "AS", -0.47, -0.63, -0.16,
+  "workplaces",            "EU", -0.58, -0.66, -0.50,
+  "workplaces",            "OC", -0.50, -0.67, -0.31,
+  "workplaces",            "SA",  0.34,  0.31,  0.47,
+  "workplaces",            "NA_",-0.37, -0.47, -0.23,
+  "residential",           "AF",  0.40,  0.26,  0.49,
+  "residential",           "AS",  0.53, -0.30,  0.66,
+  "residential",           "EU",  0.57,  0.54,  0.66,
+  "residential",           "OC",  0.42,  0.06,  0.65,
+  "residential",           "SA", -0.31, -0.42,  0.35,
+  "residential",           "NA_", 0.36,  0.28,  0.48) %>%
+  mutate(source = "Paper (Table 1)")
+
+ours_t1 <- repl %>%
+  filter(category %in% unique(paper_t1$category)) %>%
+  group_by(category, continent) %>%
+  summarise(med = median(tau), lo = quantile(tau, 0.25), hi = quantile(tau, 0.75),
+            .groups = "drop") %>%
+  mutate(source = "Our replication")
+
+bind_rows(paper_t1, ours_t1) %>%
+  ggplot(aes(med, continent, colour = source)) +
+  geom_vline(xintercept = 0, colour = "grey60") +
+  geom_pointrange(aes(xmin = lo, xmax = hi), position = position_dodge(width = 0.5)) +
+  facet_wrap(~ category, labeller = as_labeller(function(x) gsub("_", " ", x))) +
+  scale_colour_manual(values = c("Paper (Table 1)" = "grey50", "Our replication" = "#0072B2")) +
+  scale_y_discrete(labels = cont_labs) +
+  labs(title = "Fig 5. Our medians reproduce the paper's pattern and signs",
+       subtitle = "Median and interquartile range of the strongest τ, by continent",
+       x = "Kendall's τ", y = NULL, colour = NULL, caption = src_cap) +
+  theme(legend.position = "top")
+```
+
+## Their clustering
+
+**What they did:** model-based clustering (`mclust`) on the 12 scaled values per country (6 lags + 6 τ), with the number of groups picked by BIC. They found four clusters.
+
+```{r clustering}
+clus_dat <- repl %>%
+  pivot_wider(id_cols = c(country, continent), names_from = category,
+              values_from = c(lag, tau)) %>%
+  na.omit()
+
+mc <- Mclust(scale(select(clus_dat, starts_with("lag_"), starts_with("tau_"))))
+clus_dat$cluster <- factor(mc$classification)
+cat("mclust picked", mc$G, "clusters\n")
+
+# Median lag per cluster: are some clusters just "everything at -28" or "+28"?
+# Share of each country's six lags that sit at the window edge.
+clus_dat$edge <- rowMeans(abs(select(clus_dat, starts_with("lag_"))) >= 27)
+
+clus_dat %>%
+  group_by(cluster) %>%
+  summarise(countries = n(),
+            median_lag_retail = median(lag_retail_and_recreation),
+            median_lag_work   = median(lag_workplaces),
+            median_tau_retail = round(median(tau_retail_and_recreation), 2),
+            lags_at_edge = percent(mean(edge), 1)) %>%
+  knitr::kable()
+```
+
+**Reading it:** if a cluster's median lag is about −28 or +28, the clustering is grouping countries by where the search window ends, not by behaviour. The authors' own supplement shows two such clusters (29 of 122 countries).
+
+## The paper's three models
+
+**What they did:** Tweedie generalised additive mixed models (GAMMs) of daily new cases with a random intercept per country, fitted on data up to 19 June and validated on 20 June to 8 Sep 2020:
+
+1. smooth of date only;
+2. \+ smooths of five mobility categories on the same day (parks dropped);
+3. \+ distributed lags of 0–14 days for each category (`dlnm::crossbasis`).
+
+> Adapted from `CMRfinalcorrectedjustmodelling0611.Rmd` in the authors' repo. We keep their Tweedie power (p = 1.656) and their formula, including one oddity: in model 2 they wrote `s(workplaces + residential)`, which is a smooth of the **sum** of the two categories, not two separate smooths. We keep it to replicate faithfully.
+
+```{r their-models-data}
+mdat <- panel %>%
+  select(country, date, new_cases, all_of(cats)) %>%
+  na.omit() %>%
+  mutate(country = factor(country),
+         NumDate = as.numeric(date - min(date)))
+
+train <- filter(mdat, date <= as.Date("2020-06-19"))
+valid <- filter(mdat, date >  as.Date("2020-06-19"))
+
+# Distributed-lag terms: 0-14 day lags, linear in mobility, 5 df spline over the lag.
+# group = country so lags never cross from one country into the next.
+make_cb <- function(d, var) crossbasis(d[[var]], lag = 14, argvar = list(fun = "lin"),
+                                       arglag = list(df = 5), group = d$country)
+cb_vars <- c("grocery_and_pharmacy", "retail_and_recreation", "transit_stations",
+             "workplaces", "residential")
+for (v in cb_vars) assign(paste0("cb_", v), make_cb(train, v))
+
+# The first 14 days of each country have no full lag history (NA in the lag terms).
+# Models 1 and 2 drop those rows explicitly, as the authors did; model 3 drops them
+# automatically because of the NAs. So all three use the same rows.
+keep_rows <- !is.na(rowSums(cb_workplaces))
+train_m <- train[keep_rows, ]
+```
+
+```{r their-models-fit}
+# This chunk is the slow one (a few minutes).
+tw <- Tweedie(p = 1.656)   # the authors' estimated Tweedie power
+
+fit1 <- gamm(new_cases ~ s(NumDate), random = list(country = ~1),
+             data = train_m, family = tw)
+fit2 <- gamm(new_cases ~ s(NumDate) + s(retail_and_recreation) + s(grocery_and_pharmacy) +
+               s(transit_stations) + s(workplaces + residential),
+             random = list(country = ~1), data = train_m, family = tw)
+fit3 <- gamm(new_cases ~ s(NumDate) + cb_grocery_and_pharmacy + cb_retail_and_recreation +
+               cb_transit_stations + cb_workplaces + cb_residential,
+             random = list(country = ~1), data = train, family = tw)
+cat("Rows used: model 1 =", nrow(train_m), "| model 3 =", fit3$gam$df.residual + sum(fit3$gam$edf), "\n")
+```
+
+```{r their-models-validate}
+# Rebuild the lag terms on the validation data (as the authors did), then predict.
+for (v in cb_vars) assign(paste0("cb_", v), make_cb(valid, v))
+valid_rows <- !is.na(rowSums(cb_workplaces))
+valid$pred1 <- predict(fit1$gam, valid, type = "response")
+valid$pred2 <- predict(fit2$gam, valid, type = "response")
+valid$pred3 <- predict(fit3$gam, valid, type = "response")
+val <- valid[valid_rows, ]
+
+rmse <- function(p, o) sqrt(mean((p - o)^2))
+
+their_models <- tibble(
+  model = c("1. Date only", "2. + same-day mobility", "3. + lagged mobility"),
+  BIC = c(BIC(fit1$lme), BIC(fit2$lme), BIC(fit3$lme)),
+  pooled_RMSE = c(rmse(val$pred1, val$new_cases), rmse(val$pred2, val$new_cases),
+                  rmse(val$pred3, val$new_cases)))
+
+# Per-country RMSE: score each country separately, then take the median.
+their_pc <- val %>% group_by(country) %>%
+  summarise(m1 = rmse(pred1, new_cases), m2 = rmse(pred2, new_cases),
+            m3 = rmse(pred3, new_cases))
+their_models$median_country_RMSE <- c(median(their_pc$m1), median(their_pc$m2), median(their_pc$m3))
+
+knitr::kable(their_models, digits = 0,
+             caption = "Paper: BIC 79,802 / 79,096 / 80,286; pooled RMSE 6,840 / 6,795 / 6,690")
+```
+
+## Fig 6: their models, scored two ways
+
+```{r fig6, fig.height = 5}
+f6a <- their_models %>%
+  ggplot(aes(pooled_RMSE, reorder(model, -pooled_RMSE))) +
+  geom_col(fill = "grey60", width = 0.6) +
+  geom_text(aes(label = comma(pooled_RMSE, 1)), hjust = 1.1, colour = "white") +
+  labs(title = "Pooled RMSE (paper's metric)", x = "Cases/day", y = NULL)
+
+f6b <- their_pc %>%
+  pivot_longer(m1:m3, names_to = "model", values_to = "rmse") %>%
+  mutate(model = recode(model, m1 = "1. Date only", m2 = "2. + same-day mobility",
+                        m3 = "3. + lagged mobility")) %>%
+  ggplot(aes(rmse, model)) +
+  geom_boxplot(outlier.shape = NA, fill = "grey90") +
+  geom_jitter(height = 0.15, alpha = 0.3, size = 0.8) +
+  scale_x_log10(labels = comma) +
+  labs(title = "RMSE for each country (log scale)", x = "Cases/day", y = NULL)
+
+f6a + f6b + plot_annotation(
+  title = "Fig 6. Pooled error is dominated by a few huge countries; per country the ranking can change",
+  caption = src_cap)
+```
+
+# Part B: Reanalysis
+
+## Q1. Is mobility linked to cases, beyond shared timing?
+
+### Fig 7: the spurious-correlation ladder
+
+**Idea:** compute the paper's statistic (strongest |τ| over all lags) three ways, and each time compare real pairs with **placebo** pairs: one country's mobility against **another** country's cases. Placebo pairs share the calendar and the global shock but have no direct link, so their |τ| is the "spurious baseline". Only the gap between real and placebo counts as evidence.
+
+The three rungs:
+
+1. **Raw (the paper):** retail mobility vs daily new cases.
+2. **Growth:** mobility index vs weekly case growth.
+3. **Prewhitened growth:** as rung 2, after removing each series' own day-to-day memory.
+
+**Prewhitening, step by step (Box & Jenkins):** (1) fit an autoregressive (AR) model to the mobility series; (2) filter both series with that same model; (3) correlate what's left. The filtered values are the "surprises" in each series, so any correlation left reflects genuine co-movement.
+
+```{r prewhiten}
+# Prewhiten y using an AR model fitted to x. Returns the filtered x and y.
+prewhiten <- function(x, y) {
+  ok  <- !is.na(x) & !is.na(y)
+  fit <- ar(x[ok], order.max = 10)          # AR order chosen by AIC
+  phi <- fit$ar
+  if (length(phi) == 0) return(list(x = x, y = y))
+  # x_t - phi_1 x_{t-1} - ... - phi_p x_{t-p}, applied to both series
+  f <- function(s) as.numeric(stats::filter(s - mean(s[ok]), c(1, -phi),
+                                            method = "convolution", sides = 1))
+  list(x = f(x), y = f(y))
+}
+```
+
+```{r ladder}
+win <- panel %>% filter(date <= as.Date("2020-06-19"))
+countries <- unique(win$country)
+by_c <- split(win, win$country)
+
+# Strongest |tau| for one country's mobility vs a (possibly different) country's cases.
+# Both series are aligned by date first.
+rung_stat <- function(mob_c, case_c, rung) {
+  a <- by_c[[mob_c]]; b <- by_c[[case_c]]
+  d <- inner_join(select(a, date, retail_and_recreation, mob),
+                  select(b, date, new_cases, growth), by = "date")
+  if (rung == "1. Raw (paper)") {
+    x <- d$retail_and_recreation; y <- d$new_cases
+  } else {
+    x <- d$mob; y <- d$growth
+    if (sum(!is.na(x) & !is.na(y)) < 40) return(NA)   # need 40+ days with both series
+    if (rung == "3. Prewhitened growth") { pw <- prewhiten(x, y); x <- pw$x; y <- pw$y }
+  }
+  max(abs(tau_profile(x, y)), na.rm = TRUE)
+}
+
+rungs <- c("1. Raw (paper)", "2. Growth", "3. Prewhitened growth")
+n_placebo <- 3   # placebo partners per country
+
+ladder <- bind_rows(lapply(countries, function(cn) {
+  partners <- sample(setdiff(countries, cn), n_placebo)
+  bind_rows(lapply(rungs, function(r) tibble(
+    country = cn, rung = r,
+    real    = rung_stat(cn, cn, r),
+    placebo = mean(sapply(partners, function(p) rung_stat(cn, p, r)), na.rm = TRUE))))
+}))
+```
+
+```{r fig7, fig.height = 5}
+ladder_long <- ladder %>%
+  pivot_longer(c(real, placebo), names_to = "pair", values_to = "abs_tau") %>%
+  filter(is.finite(abs_tau)) %>%
+  mutate(pair = recode(pair, real = "Real pair (same country)",
+                       placebo = "Placebo (other country's cases)"))
+
+ladder_sum <- ladder %>% filter(is.finite(real), is.finite(placebo)) %>%
+  group_by(rung) %>%
+  summarise(countries = n(),
+            real = median(real), placebo = median(placebo),
+            real_beats_placebo = percent(mean(real > placebo), 1))
+
+ggplot(ladder_long, aes(abs_tau, pair, colour = pair)) +
+  geom_jitter(height = 0.15, alpha = 0.4, size = 1) +
+  stat_summary(fun = median, geom = "point", size = 4, shape = 18, colour = "black") +
+  facet_wrap(~ rung, ncol = 1) +
+  scale_colour_manual(values = c("#0072B2", "grey55"), guide = "none") +
+  labs(title = "Fig 7. Much of the paper's correlation also appears between unrelated countries",
+       subtitle = "Strongest |τ| over lags −28…+28 per country; diamond = median",
+       x = "|Kendall's τ|", y = NULL, caption = src_cap)
+
+knitr::kable(ladder_sum, digits = 2, caption = "Median strongest |τ|, real vs placebo")
+```
+
+**Reading it:** at rung 1 (the paper's method), placebo pairs already reach large |τ| values, so a big part of the paper's correlation is shared timing. The question is how much of the real-pair advantage survives at rungs 2 and 3.
+
+### Fig 8: the whole lag profile, trends removed
+
+Instead of keeping only the strongest lag, we keep **all** lags: τ between the prewhitened mobility index and prewhitened case growth, for each lag, with the median and interquartile range per continent.
+
+```{r fig8, fig.height = 6}
+profiles <- bind_rows(lapply(countries, function(cn) {
+  d <- by_c[[cn]]
+  if (sum(!is.na(d$mob) & !is.na(d$growth)) < 40) return(NULL)   # need 40+ days with both
+  pw <- prewhiten(d$mob, d$growth)
+  tibble(country = cn, continent = d$continent[1], lag = lags,
+         tau = tau_profile(pw$x, pw$y))
+}))
+
+profiles %>%
+  group_by(continent, lag) %>%
+  summarise(med = median(tau, na.rm = TRUE), lo = quantile(tau, 0.25, na.rm = TRUE),
+            hi = quantile(tau, 0.75, na.rm = TRUE), n = n_distinct(country), .groups = "drop") %>%
+  ggplot(aes(lag, med)) +
+  annotate("rect", xmin = -28, xmax = 0, ymin = -Inf, ymax = Inf, fill = "grey95") +
+  annotate("text", x = -14, y = Inf, vjust = 1.5, label = "mobility moves first", size = 3.2) +
+  annotate("text", x = 14, y = Inf, vjust = 1.5, label = "cases move first", size = 3.2) +
+  geom_hline(yintercept = 0, colour = "grey50") +
+  geom_ribbon(aes(ymin = lo, ymax = hi, fill = continent), alpha = 0.25) +
+  geom_line(aes(colour = continent), linewidth = 0.9) +
+  facet_wrap(~ continent, labeller = as_labeller(cont_labs)) +
+  scale_colour_manual(values = cont_cols, guide = "none") +
+  scale_fill_manual(values = cont_cols, guide = "none") +
+  labs(title = "Fig 8. Once trends are removed, the remaining co-movement is small",
+       subtitle = "Kendall's τ between prewhitened mobility index and prewhitened case growth; line = median, band = IQR",
+       x = "Lag (days)", y = "τ", caption = src_cap)
+```
+
+### Fig 9: which moved first?
+
+The paper's main interpretation is that mobility fell **before** cases rose. We test it directly: for each country, the first day the mobility index was 20% below baseline vs the first day cumulative cases reached 1 per million people.
+
+```{r fig9, fig.height = 13}
+timing <- panel %>% group_by(country, continent) %>%
+  summarise(mob_drop = suppressWarnings(min(date[mob <= -20], na.rm = TRUE)),
+            case_1pm = suppressWarnings(min(date[cases_per_m >= 1], na.rm = TRUE)),
+            .groups = "drop") %>%
+  filter(is.finite(mob_drop), is.finite(case_1pm)) %>%
+  mutate(gap = as.numeric(mob_drop - case_1pm),
+         first = ifelse(gap < 0, "Mobility fell first", "Cases came first"),
+         country = reorder(country, as.numeric(mob_drop)))
+
+share_mob_first <- mean(timing$gap < 0)
+
+ggplot(timing, aes(y = country)) +
+  geom_vline(xintercept = as.Date("2020-03-11"), linetype = "dashed") +
+  geom_segment(aes(x = case_1pm, xend = mob_drop, yend = country, colour = first)) +
+  geom_point(aes(x = case_1pm), shape = 21, fill = "white", size = 1.6) +
+  geom_point(aes(x = mob_drop), size = 1.6) +
+  facet_grid(continent ~ ., scales = "free_y", space = "free_y",
+             labeller = labeller(continent = cont_labs)) +
+  scale_colour_manual(values = c("Mobility fell first" = "#0072B2", "Cases came first" = "#D55E00")) +
+  labs(title = sprintf("Fig 9. Mobility fell before cases reached 1 per million in %s of countries",
+                       percent(share_mob_first, 1)),
+       subtitle = "White dot = cases reach 1 per million; black dot = mobility index 20% below baseline; dashed = WHO declaration",
+       x = NULL, y = NULL, colour = NULL, caption = src_cap) +
+  theme(axis.text.y = element_text(size = 6), legend.position = "top",
+        strip.text.y = element_text(angle = 0))
+```
+
+**Reading it:** many countries cut mobility around the WHO declaration, before their own case numbers took off. That supports the paper's "behaviour moved early" reading, and it also shows why a correlation can't establish direction: the shared shock moved mobility everywhere at once.
+
+## Q2. Does mobility improve case modelling?
+
+### The growth model
+
+Weekly case growth **h** days ahead, explained by today's mobility index, controlling for today's growth, with a separate intercept for each country:
+
+$$
+g_{i,t+h} = \alpha_i + \beta\, M_{i,t} + \gamma\, (M_{i,t} \times \text{after 19 June}) + \rho\, g_{i,t} + \varepsilon_{i,t}
+$$
+
+Why each part is there:
+
+* **h = 7, 14, 21 days ahead:** infection takes 1–2 weeks to appear in reported cases, and using future growth avoids same-day reverse causation.
+* **Today's growth (ρ):** the epidemic's own momentum, so mobility doesn't get credit for it.
+* **Country fixed effects (α):** absorb fixed differences such as testing capacity.
+* **After 19 June interaction (γ):** tests whether the link weakened after the first lockdowns.
+* **Standard errors clustered by country:** a country's errors are correlated over time.
+
+Pattern from `04_panel/02_pooled_fe_re.R` in the team repo and the fixest documentation.
+
+```{r growth-model}
+gm <- panel %>%
+  group_by(country) %>%
+  mutate(g_lead7 = lead(growth, 7), g_lead14 = lead(growth, 14), g_lead21 = lead(growth, 21)) %>%
+  ungroup() %>%
+  mutate(after = as.numeric(date > as.Date("2020-06-19")),
+         t_num = as.numeric(date - min(date)))   # day counter, for country-specific trends
+
+m7  <- feols(g_lead7  ~ mob + mob:after + after + growth | country, data = gm, cluster = ~country)
+m14 <- feols(g_lead14 ~ mob + mob:after + after + growth | country, data = gm, cluster = ~country)
+m21 <- feols(g_lead21 ~ mob + mob:after + after + growth | country, data = gm, cluster = ~country)
+
+etable(m7, m14, m21, headers = c("h = 7", "h = 14", "h = 21"))
+```
+
+**Robustness checks** (h = 14), each tackling one source of spurious correlation:
+
+```{r robustness}
+r_date  <- feols(g_lead14 ~ mob + mob:after + growth | country + date, data = gm,
+                 cluster = ~country)                       # date FE: absorb global shocks
+r_trend <- feols(g_lead14 ~ mob + mob:after + after + growth | country + country[t_num],
+                 data = gm, cluster = ~country)            # each country's own linear trend
+r_dk    <- feols(g_lead14 ~ mob + mob:after + after + growth | country, data = gm,
+                 panel.id = ~country + date, vcov = "DK")  # Driscoll-Kraay SEs
+
+etable(m14, r_date, r_trend, r_dk,
+       headers = c("Main", "+ date FE", "+ country trends", "Driscoll-Kraay SE"))
+```
+
+### Fig 10: the result in real units
+
+We turn the coefficients into: **if mobility is 10 points lower today, how much slower is weekly case growth h days later?**
+
+```{r fig10, fig.height = 5}
+# Effect of a 10-point DROP in mobility on growth, before and after 19 June, with 95% CI.
+effect_10 <- function(m, h, label) {
+  b <- coef(m); V <- vcov(m)
+  before <- -10 * b["mob"]
+  se_b   <- 10 * sqrt(V["mob", "mob"])
+  after  <- -10 * (b["mob"] + b["mob:after"])
+  se_a   <- 10 * sqrt(V["mob", "mob"] + V["mob:after", "mob:after"] + 2 * V["mob", "mob:after"])
+  tibble(model = label, h = h, period = c("Feb–19 Jun", "20 Jun–Sep"),
+         est = c(before, after), se = c(se_b, se_a))
+}
+
+eff <- bind_rows(effect_10(m7, 7, "Main"), effect_10(m14, 14, "Main"), effect_10(m21, 21, "Main"),
+                 effect_10(r_date, 14, "+ date FE"), effect_10(r_trend, 14, "+ country trends"),
+                 effect_10(r_dk, 14, "Driscoll-Kraay SE")) %>%
+  mutate(label = ifelse(model == "Main", paste0("h = ", h, " days"), paste0("h = 14, ", model)),
+         label = factor(label, levels = rev(unique(label))))
+
+ggplot(eff, aes(est * 100, label, colour = period)) +
+  geom_vline(xintercept = 0, colour = "grey50") +
+  geom_pointrange(aes(xmin = (est - 1.96 * se) * 100, xmax = (est + 1.96 * se) * 100),
+                  position = position_dodge(width = 0.5)) +
+  scale_colour_manual(values = c("Feb–19 Jun" = "#0072B2", "20 Jun–Sep" = "#E69F00")) +
+  labs(title = "Fig 10. Change in weekly case growth when mobility is 10 points lower",
+       subtitle = "Percentage points of weekly growth, 95% CI; negative = slower growth",
+       x = "Change in weekly growth (pp)", y = NULL, colour = NULL, caption = src_cap) +
+  theme(legend.position = "top")
+```
+
+### Fig 11: fair validation
+
+Same split as the paper: fit on data up to 19 June, forecast 20 June to 8 Sep. We compare a model **with** mobility to one **without**, on the growth scale, so every country counts equally. Training rows only use outcomes observed by 19 June (no peeking at the future).
+
+```{r fig11, fig.height = 5}
+h <- 14
+tr <- gm %>% filter(date + h <= as.Date("2020-06-19"))
+te <- gm %>% filter(date >= as.Date("2020-06-20"), !is.na(g_lead14), !is.na(mob), !is.na(growth))
+
+ours_no  <- feols(g_lead14 ~ growth | country, data = tr)
+ours_mob <- feols(g_lead14 ~ growth + mob | country, data = tr)
+
+te <- te %>% mutate(p_no = predict(ours_no, te), p_mob = predict(ours_mob, te)) %>%
+  filter(!is.na(p_no), !is.na(p_mob))
+
+ours_pc <- te %>% group_by(country) %>%
+  summarise(no = rmse(p_no, g_lead14), with = rmse(p_mob, g_lead14))
+
+# % change in each country's RMSE when mobility is added (negative = mobility helps).
+pct_change <- bind_rows(
+  tibble(model = "Paper: + same-day mobility (GAMM)", change = their_pc$m2 / their_pc$m1 - 1),
+  tibble(model = "Paper: + lagged mobility (GAMM)",   change = their_pc$m3 / their_pc$m1 - 1),
+  tibble(model = "Ours: + mobility (growth model)",   change = ours_pc$with / ours_pc$no - 1))
+
+pct_sum <- pct_change %>% group_by(model) %>%
+  summarise(countries_improved = percent(mean(change < 0), 1),
+            median_change = percent(median(change), 0.1))
+
+ggplot(pct_change, aes(change, model)) +
+  geom_vline(xintercept = 0, colour = "grey50") +
+  geom_boxplot(outlier.shape = NA, fill = "grey92") +
+  geom_jitter(height = 0.15, alpha = 0.35, size = 0.9) +
+  scale_x_continuous(labels = percent, limits = c(-1, 1), oob = squish) +
+  labs(title = "Fig 11. Does adding mobility improve each country's forecast?",
+       subtitle = "Change in per-country RMSE vs the same model without mobility; left of 0 = better",
+       x = "Change in RMSE", y = NULL, caption = src_cap)
+
+knitr::kable(pct_sum)
+```
+
+# Part C: Extension
+
+## Fig 12: lockdown styles
+
+**Question (new):** which countries had similar mobility curves? Instead of clustering noisy τ/lag values, we cluster the curves themselves: each country's weekly mobility index from mid-February to mid-June. k-means with 4 groups (same number as the paper).
+
+```{r fig12, fig.height = 8}
+curves <- panel %>%
+  filter(date <= as.Date("2020-06-19"), !is.na(mob)) %>%
+  mutate(week = as.numeric(date - min(date)) %/% 7) %>%
+  group_by(country, week) %>% summarise(mob = mean(mob), .groups = "drop") %>%
+  pivot_wider(names_from = week, values_from = mob) %>%
+  na.omit()
+
+km <- kmeans(select(curves, -country), centers = 4, nstart = 50)
+curves$style <- factor(km$cluster)
+
+# Name each style by its deepest weekly drop, so labels don't depend on random numbering.
+style_names <- curves %>% pivot_longer(-c(country, style), names_to = "week", values_to = "mob") %>%
+  group_by(style, week) %>% summarise(mob = mean(mob), .groups = "drop") %>%
+  group_by(style) %>% summarise(deepest = min(mob)) %>%
+  arrange(deepest) %>%
+  mutate(name = c("Deep lockdown", "Strong drop", "Moderate drop", "Mild drop"))
+curves <- left_join(curves, select(style_names, style, name), by = "style")
+
+style_cols <- c("Deep lockdown" = "#B2182B", "Strong drop" = "#EF8A62",
+                "Moderate drop" = "#67A9CF", "Mild drop" = "#2166AC")
+
+f12a <- map_plot(select(curves, country, name), "name",
+                 scale_fill_manual(values = style_cols, na.value = "grey85", name = NULL),
+                 "Countries grouped by the shape of their mobility curve")
+
+f12b <- curves %>% pivot_longer(-c(country, style, name), names_to = "week", values_to = "mob") %>%
+  mutate(week = as.numeric(week)) %>%
+  ggplot(aes(week, mob, group = country, colour = name)) +
+  geom_line(alpha = 0.25) +
+  stat_summary(aes(group = name), fun = mean, geom = "line", linewidth = 1.3) +
+  geom_hline(yintercept = 0, colour = "grey50") +
+  scale_colour_manual(values = style_cols, guide = "none") +
+  facet_wrap(~ name, nrow = 1) +
+  labs(x = "Weeks since 15 Feb 2020", y = "Mobility index (%)")
+
+f12a / f12b + plot_layout(heights = c(1.4, 1)) +
+  plot_annotation(title = "Fig 12. Four lockdown styles", caption = src_cap)
+```
+
+# Summary
+
+```{r summary-numbers, echo = FALSE}
+s <- ladder_sum
+```
+
+* **Replication:** we reproduce the paper's pattern of negative τ for out-and-about categories and positive τ for residential (Figs 3, 5). `r percent(edge_share, 1)` of the "best lags" sit at the ±27/28 edge of the search window (Fig 4), against about 7% expected by chance.
+* **Spurious correlation:** placebo pairs (unrelated countries) reach a median strongest |τ| of `r round(s$placebo[1], 2)` with the paper's method, against `r round(s$real[1], 2)` for real pairs (Fig 7). Much of the paper's correlation is shared timing.
+* **Trends removed:** after moving to growth and prewhitening, the gap between real and placebo pairs is what remains as evidence (Figs 7–8).
+* **Timing:** mobility fell before cases reached 1 per million in `r percent(share_mob_first, 1)` of countries (Fig 9), consistent with people reacting to global news rather than local cases.
+* **Modelling:** Fig 10 gives the link in real units and whether it weakened after June; Fig 11 shows, country by country, whether mobility actually improves forecasts.
+
+**What we don't claim:** causation. Mobility and cases feed back on each other and both responded to common shocks, so everything here is association and forecasting value.
+
+```{r session}
+sessionInfo()
+```

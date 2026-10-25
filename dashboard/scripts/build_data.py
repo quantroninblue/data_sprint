@@ -1,4 +1,4 @@
-"""Build the dashboard's JSON files: the paper's published findings side by side with ours.
+r"""Build the dashboard's JSON files: the paper's published findings side by side with ours.
 
 Three versions of the cross-correlation results:
   published : the paper's own numbers (Supplementary S1, Tables 1-2), extracted from the authors' files
@@ -25,10 +25,12 @@ import numpy as np
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PANEL_CSV = os.path.join(ROOT, "data", "processed", "2026-10-24-panel-clean.csv")
-REFERENCE_CSV = os.path.join(ROOT, "data", "interim", "2026-10-24-reference.csv")
+REFERENCE_CSV = os.path.join(ROOT, "data", "raw", "jhu-covid-19", "data", "reference.csv")
 SUPPLEMENT_DOCX = os.path.join(ROOT, "data", "raw", "sulyok-repo", "SupplemengtarymaterialsulyokGMDfinal2309corrected.docx")
-DEV_TABLES = os.path.join(ROOT, "Outputs", "tables")  # Devashish's replication
-EDA_OUT = os.path.join(ROOT, "replication", "out")  # Teerth's EDA
+DEV_TABLES = os.path.join(ROOT, "outputs", "01_replication", "tables")  # Devashish's replication
+EDA_OUT = os.path.join(ROOT, "outputs", "02_eda")  # Teerth's EDA
+REANALYSIS_OUT = os.path.join(ROOT, "outputs", "03_reanalysis")  # Sherin's reanalysis
+RMD_OUT = os.path.join(ROOT, "outputs", "04_notebook")  # CSVs exported from a run of the R Markdown notebook
 OUT = os.path.join(ROOT, "dashboard", "public", "data")
 
 CATS = ["retail", "grocery", "parks", "transit", "workplaces", "residential"]
@@ -242,7 +244,7 @@ SHORT_CAT = {"retail": "retail", "grocery": "grocery", "parks": "parks", "transi
 
 
 def fair_test(name_to_iso):
-    read = lambda f: list(csv.DictReader(open(os.path.join(EDA_OUT, f), newline="", encoding="utf-8")))
+    read = lambda f: list(csv.DictReader(open(os.path.join(REANALYSIS_OUT, f), newline="", encoding="utf-8")))
     cont = lambda c: "NA" if c == "NorthAm" else c
 
     # Paper's method: |tau| profile for real pairs vs wrong-country (placebo) pairs. Paper's lag convention.
@@ -309,9 +311,7 @@ def fair_test(name_to_iso):
             "countries": countries, "lp": lp, "forecast": {"scores": scores, "horizons": horizons}}
 
 
-# ---------- Context and timing from the R Markdown reanalysis (mobility_covid_replication_1.Rmd) ----------
-
-RMD_OUT = os.path.join(EDA_OUT, "rmd")  # CSVs exported from a run of the notebook
+# ---------- Context and timing from the R Markdown reanalysis (analysis/04_notebook/mobility_covid_replication.Rmd) ----------
 
 
 def rmd_figures(name_to_iso):

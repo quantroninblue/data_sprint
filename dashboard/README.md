@@ -1,4 +1,4 @@
-# Mobility & COVID-19 dashboard (mock-up)
+# Mobility & COVID-19 dashboard
 
 React + TypeScript + Vite. Editorial layout with a transit-map motif: the six Google mobility categories are the six "lines", and the sections are stops along them.
 
@@ -33,8 +33,8 @@ Every view compares the paper's published findings with ours:
 | Version | What it is | Source |
 |---|---|---|
 | Paper · 2020 | The paper's own numbers | Supplementary S1 (extracted from `data/raw/sulyok-repo/`), Tables 1–3 (`src/lib/paper.ts`) |
-| Ours · 2020 | Our replication, 15 Feb – 19 Jun 2020 | `Outputs/tables/` (best τ and lag, clusters, models); lag curves and continent tests from `replication/out/` |
-| Ours · 2020–22 | The same method to 16 Apr 2022, 7-day averages | `replication/out/` (`smooth` spec) |
+| Ours · 2020 | Our replication, 15 Feb – 19 Jun 2020 | `outputs/01_replication/tables/` (best τ and lag, clusters, models); lag curves and continent tests from `outputs/02_eda/` |
+| Ours · 2020–22 | The same method to 16 Apr 2022, 7-day averages | `outputs/02_eda/` (`smooth` spec) |
 
 | File | Contents |
 |---|---|
@@ -44,7 +44,7 @@ Every view compares the paper's published findings with ours:
 | `summary.json` | per country: strongest τ and its lag per category for `published`, `ours` and `full`, plus cluster family |
 | `continent_tests.json` | `ours` and `full`: Kruskal–Wallis, Dunn pairs (Holm), continent medians and IQRs |
 | `models.json` | BIC, validation RMSE, Diebold–Mariano and Table 3 for the paper, the authors' code re-run and the corrected run |
-| `fairtest.json` | the reanalysis: real vs wrong-country (placebo) pairs, the fixed correlation (case growth, shared daily trend removed) with lag profiles and per-country results, local projections for three samples, and real-time forecast scores. Lags are converted to the paper's sign convention. Source: `replication/out/` (scripts `10`–`14`) |
+| `fairtest.json` | the reanalysis: real vs wrong-country (placebo) pairs, the fixed correlation (case growth, shared daily trend removed) with lag profiles and per-country results, local projections for three samples, and real-time forecast scores. Lags are converted to the paper's sign convention. Source: `outputs/03_reanalysis/` (scripts `10`–`14`) |
 | `rolling.json` | per country and category: strongest τ and lag in each 90-day window (our preliminary extension) |
 
 Lag sign follows the paper: τ(lag) correlates mobility on day t with cases on day t − lag, so a negative lag means movement changed before cases.
